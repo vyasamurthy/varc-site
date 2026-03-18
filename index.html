@@ -240,13 +240,67 @@ footer a:hover{color:#fff;transform:translateX(4px)}
 .stg.visible>*:nth-child(5){transition-delay:.25s}.stg.visible>*:nth-child(6){transition-delay:.3s}
 .stg.visible>*:nth-child(7){transition-delay:.35s}.stg.visible>*:nth-child(8){transition-delay:.4s}
 .stg.visible>*:nth-child(9){transition-delay:.45s}
+
+/* ANIMATED LOGO */
+.vl-r1{animation:vlDraw 2s ease-out forwards;stroke-dasharray:280;stroke-dashoffset:280}
+.vl-r2{animation:vlDraw 2s ease-out .3s forwards;stroke-dasharray:220;stroke-dashoffset:220}
+.vl-r3{animation:vlDraw 2s ease-out .6s forwards;stroke-dasharray:160;stroke-dashoffset:160}
+@keyframes vlDraw{to{stroke-dashoffset:0}}
+.vl-cn{animation:vlFade .6s ease-out 1s forwards;opacity:0}
+@keyframes vlFade{to{opacity:1}}
+.vl-vx{animation:vlPop .4s cubic-bezier(.34,1.56,.64,1) 1.2s forwards;opacity:0;transform:scale(0)}
+@keyframes vlPop{to{opacity:1;transform:scale(1)}}
+.vl-pr{animation:vlDraw 2s ease-out forwards,vlPulse 3s ease-in-out 2s infinite;transform-origin:54px 49px}
+@keyframes vlPulse{0%,100%{transform:scale(1)}50%{transform:scale(1.02)}}
+.vl-spin{animation:vlSpin 30s linear infinite;transform-origin:54px 49px}
+@keyframes vlSpin{to{transform:rotate(360deg)}}
+.vl-gv{animation:vlPop .4s cubic-bezier(.34,1.56,.64,1) 1.2s forwards,vlGlow 2s ease-in-out 2s infinite alternate}
+@keyframes vlGlow{0%{r:2.5}100%{r:4}}
+.vlogo:hover .vl-spin{animation-duration:10s}
+.vlogo:hover .vl-pr{animation:vlPulse 1.5s ease-in-out infinite;transform-origin:54px 49px}
+.vlogo:hover .vl-gv{animation:vlGlow .6s ease-in-out infinite alternate}
 </style>
 </head>
 <body>
 <div id="scrollProg"></div>
-<nav id="nav"><a href="#" class="logo"><span>VARC</span></a><div class="nav-links"><a href="#platform">Platform</a><a href="#features">Features</a><a href="#docs">Docs</a><a href="#blog">Blog</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a href="https://varc-platform.onrender.com" target="_blank" class="btn-nav">Live Demo</a></div></nav>
+<nav id="nav"><a href="#" class="logo"><svg class="vlogo" width="36" height="38" viewBox="0 0 108 100" style="flex-shrink:0">
+<polygon class="vl-r1 vl-pr" points="54,1 96.3,25.3 96.3,74 54,98.2 11.7,74 11.7,25.3" fill="#1A6BFF"/>
+<g class="vl-spin"><polygon class="vl-r2" points="54,10 88,29.9 88,69.5 54,89.4 20,69.5 20,29.9" fill="none" stroke="#FFD000" stroke-width="1.8"/></g>
+<polygon class="vl-r3" points="54,21 77.5,34.5 77.5,63.5 54,77 30.5,63.5 30.5,34.5" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+<polygon points="54,33 66,39.5 66,54.5 54,61 42,54.5 42,39.5" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+<line class="vl-cn" x1="54" y1="1" x2="54" y2="10" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="96.3" y1="25.3" x2="88" y2="29.9" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="96.3" y1="74" x2="88" y2="69.5" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="54" y1="98.2" x2="54" y2="89.4" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="11.7" y1="74" x2="20" y2="69.5" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="11.7" y1="25.3" x2="20" y2="29.9" stroke="#FFD000" stroke-width="1.8"/>
+<circle class="vl-vx vl-gv" cx="54" cy="1" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="96.3" cy="25.3" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="96.3" cy="74" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="54" cy="98.2" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="11.7" cy="74" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="11.7" cy="25.3" r="2.5" fill="#FFD000"/>
+</svg><span>VARC</span></a><div class="nav-links"><a href="#platform">Platform</a><a href="#features">Features</a><a href="#docs">Docs</a><a href="#blog">Blog</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a href="https://varc-platform.onrender.com" target="_blank" class="btn-nav">Live Demo</a></div></nav>
 
 <section class="hero"><div class="hero-mesh"></div><canvas id="particles"></canvas><div style="position:relative;z-index:1">
+<div style="margin-bottom:24px;animation:fadeUp .8s ease-out both"><svg class="vlogo" width="88" height="94" viewBox="0 0 108 100" style="flex-shrink:0">
+<polygon class="vl-r1 vl-pr" points="54,1 96.3,25.3 96.3,74 54,98.2 11.7,74 11.7,25.3" fill="#1A6BFF"/>
+<g class="vl-spin"><polygon class="vl-r2" points="54,10 88,29.9 88,69.5 54,89.4 20,69.5 20,29.9" fill="none" stroke="#FFD000" stroke-width="1.8"/></g>
+<polygon class="vl-r3" points="54,21 77.5,34.5 77.5,63.5 54,77 30.5,63.5 30.5,34.5" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+<polygon points="54,33 66,39.5 66,54.5 54,61 42,54.5 42,39.5" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+<line class="vl-cn" x1="54" y1="1" x2="54" y2="10" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="96.3" y1="25.3" x2="88" y2="29.9" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="96.3" y1="74" x2="88" y2="69.5" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="54" y1="98.2" x2="54" y2="89.4" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="11.7" y1="74" x2="20" y2="69.5" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="11.7" y1="25.3" x2="20" y2="29.9" stroke="#FFD000" stroke-width="1.8"/>
+<circle class="vl-vx vl-gv" cx="54" cy="1" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="96.3" cy="25.3" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="96.3" cy="74" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="54" cy="98.2" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="11.7" cy="74" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="11.7" cy="25.3" r="2.5" fill="#FFD000"/>
+</svg></div>
 <div class="hero-badge"><span class="dot"></span> Now Live — OpsCenter v8.0 with 20 governance modules</div>
 <h1>Every AI Agent.<br><span class="grad">Every Interaction.<br>Governed.</span></h1>
 <p class="sub">VARC scores behavior, enforces compliance, and produces cryptographic evidence on every AI agent interaction — in real time. Not after the fact. Every single one.</p>
@@ -372,7 +426,24 @@ footer a:hover{color:#fff;transform:translateX(4px)}
 </section>
 
 <footer><div class="footer-grid">
-<div class="footer-brand"><a href="#" class="logo"><span>VARC</span></a><p>Verifiable AI Runtime Control. The enforcement layer for enterprise AI governance.</p><p style="margin-top:8px;color:rgba(255,255,255,.3);font-size:12px">A Venture Vertex LLC product<br>Frisco, Texas</p></div>
+<div class="footer-brand"><a href="#" class="logo"><svg class="vlogo" width="32" height="34" viewBox="0 0 108 100" style="flex-shrink:0">
+<polygon class="vl-r1 vl-pr" points="54,1 96.3,25.3 96.3,74 54,98.2 11.7,74 11.7,25.3" fill="#1A6BFF"/>
+<g class="vl-spin"><polygon class="vl-r2" points="54,10 88,29.9 88,69.5 54,89.4 20,69.5 20,29.9" fill="none" stroke="#FFD000" stroke-width="1.8"/></g>
+<polygon class="vl-r3" points="54,21 77.5,34.5 77.5,63.5 54,77 30.5,63.5 30.5,34.5" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1"/>
+<polygon points="54,33 66,39.5 66,54.5 54,61 42,54.5 42,39.5" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="0.8"/>
+<line class="vl-cn" x1="54" y1="1" x2="54" y2="10" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="96.3" y1="25.3" x2="88" y2="29.9" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="96.3" y1="74" x2="88" y2="69.5" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="54" y1="98.2" x2="54" y2="89.4" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="11.7" y1="74" x2="20" y2="69.5" stroke="#FFD000" stroke-width="1.8"/>
+<line class="vl-cn" x1="11.7" y1="25.3" x2="20" y2="29.9" stroke="#FFD000" stroke-width="1.8"/>
+<circle class="vl-vx vl-gv" cx="54" cy="1" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="96.3" cy="25.3" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="96.3" cy="74" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="54" cy="98.2" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="11.7" cy="74" r="2.5" fill="#FFD000"/>
+<circle class="vl-vx vl-gv" cx="11.7" cy="25.3" r="2.5" fill="#FFD000"/>
+</svg><span>VARC</span></a><p>Verifiable AI Runtime Control. The enforcement layer for enterprise AI governance.</p><p style="margin-top:8px;color:rgba(255,255,255,.3);font-size:12px">A Venture Vertex LLC product<br>Frisco, Texas</p></div>
 <div><h4>Platform</h4><a href="#platform">SAGA Framework</a><a href="#features">Features</a><a href="#compare">Comparison</a><a href="#pricing">Pricing</a><a href="https://varc-platform.onrender.com" target="_blank">Live Demo</a></div>
 <div><h4>Resources</h4><a href="#docs">Documentation</a><a href="#blog">Blog</a><a href="#contact">API Reference</a></div>
 <div><h4>Company</h4><a href="#team">Team</a><a href="#contact">Contact</a><a href="#team">Careers</a></div>
