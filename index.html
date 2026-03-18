@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VARC — Verifiable AI Runtime Control</title>
+<meta name="description" content="VARC governs every AI agent interaction in real time.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#FAFCFF;--bg2:#F0F4FA;--bg3:#E8EDF6;--t1:#0F1729;--t2:#3A4563;--t3:#6B7A99;--t4:#9EABC4;--ac:#1A6BFF;--ac2:#3D85FF;--ac3:#0A4FCC;--acg:linear-gradient(135deg,#1A6BFF,#00BFA6);--ok:#00BFA6;--cr:#E53E5C;--wn:#F5A623;--in:#1A6BFF;--glow:0 0 40px rgba(26,107,255,.1);--card:#FFF;--cb:rgba(26,107,255,.08);--mono:'JetBrains Mono',monospace;--sans:'Outfit',sans-serif}
+html{scroll-behavior:smooth}body{background:var(--bg);color:var(--t1);font-family:var(--sans);overflow-x:hidden;line-height:1.6}::selection{background:var(--ac);color:#fff}
+
+/* SCROLL PROGRESS */
+#scrollProg{position:fixed;top:0;left:0;height:3px;background:var(--acg);z-index:200;width:0;transition:width .1s}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 40px;height:68px;display:flex;align-items:center;justify-content:space-between;background:rgba(250,252,255,.92);backdrop-filter:blur(20px);border-bottom:1px solid rgba(26,107,255,.08);transition:all .4s}
+nav.scrolled{box-shadow:0 2px 20px rgba(0,0,0,.06)}
+.logo{display:flex;align-items:center;gap:10px;font-weight:800;font-size:24px;letter-spacing:2px;text-decoration:none;color:var(--t1)}
+.logo span{background:var(--acg);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{color:var(--t2);text-decoration:none;font-size:15px;font-weight:500;transition:color .2s;position:relative}
+.nav-links a::after{content:"";position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--ac);transition:width .3s}
+.nav-links a:hover{color:var(--ac)}
+.nav-links a:hover::after{width:100%}
+.btn-nav{padding:10px 24px;background:var(--ac);color:#fff;border:none;border-radius:6px;font-family:var(--sans);font-weight:600;font-size:14px;cursor:pointer;transition:all .3s;text-decoration:none;position:relative;overflow:hidden}
+.btn-nav::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.2),transparent);transform:translateX(-100%);transition:transform .5s}
+.btn-nav:hover::before{transform:translateX(100%)}
+.btn-nav:hover{background:var(--ac2);box-shadow:0 4px 20px rgba(26,107,255,.3);transform:translateY(-1px)}
+
+/* HERO */
+.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;background:linear-gradient(180deg,#F0F6FF,#FAFCFF 50%,#FFF);overflow:hidden}
+#particles{position:absolute;inset:0;pointer-events:none}
+.hero-mesh{position:absolute;inset:0;background-image:radial-gradient(circle at 20% 30%,rgba(26,107,255,.06) 0%,transparent 50%),radial-gradient(circle at 80% 70%,rgba(0,191,166,.04) 0%,transparent 50%);pointer-events:none;animation:meshMove 20s ease-in-out infinite alternate}
+@keyframes meshMove{0%{background-position:0% 0%}100%{background-position:100% 100%}}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;padding:6px 16px 6px 8px;border-radius:20px;background:rgba(26,107,255,.06);border:1px solid rgba(26,107,255,.12);font-size:13px;color:var(--ac);margin-bottom:32px;font-weight:500;animation:fadeUp .8s ease-out .2s both}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,191,166,.4)}50%{opacity:.4;box-shadow:0 0 0 8px rgba(0,191,166,0)}}
+.hero h1{font-size:clamp(48px,8vw,88px);font-weight:900;line-height:1.05;margin-bottom:24px;letter-spacing:-2px;animation:fadeUp .8s ease-out .4s both}
+.hero h1 .grad{background:var(--acg);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p.sub{font-size:clamp(18px,2.2vw,22px);color:var(--t2);max-width:680px;margin:0 auto 48px;font-weight:300;line-height:1.7;animation:fadeUp .8s ease-out .6s both}
+.hero-ctas{display:flex;gap:16px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s ease-out .8s both}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.btn-primary{padding:16px 36px;background:var(--ac);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-weight:700;font-size:17px;cursor:pointer;transition:all .3s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;position:relative;overflow:hidden}
+.btn-primary::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .6s}
+.btn-primary:hover::before{transform:translateX(100%)}
+.btn-primary:hover{background:var(--ac2);box-shadow:0 8px 30px rgba(26,107,255,.35);transform:translateY(-2px)}
+.btn-secondary{padding:16px 36px;background:transparent;color:var(--t1);border:1px solid var(--t4);border-radius:8px;font-family:var(--sans);font-weight:600;font-size:17px;cursor:pointer;transition:all .3s;text-decoration:none}
+.btn-secondary:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px)}
+
+/* METRICS */
+.metrics{display:flex;justify-content:center;gap:48px;padding:60px 40px;position:relative}
+.metrics::before{content:"";position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,var(--bg3),transparent)}
+.metric{text-align:center;opacity:0;transform:translateY(20px)}
+.metric.visible{opacity:1;transform:translateY(0);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.metric .val{font-family:var(--mono);font-size:40px;font-weight:700;color:var(--ac)}
+.metric .lbl{font-size:14px;color:var(--t3);margin-top:4px;letter-spacing:1px;text-transform:uppercase}
+
+/* SECTIONS */
+section{padding:100px 40px;position:relative;z-index:1}.container{max-width:1200px;margin:0 auto}
+.sec-label{font-family:var(--mono);font-size:13px;color:var(--ac);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px}
+.sec-title{font-size:clamp(36px,5vw,52px);font-weight:800;margin-bottom:16px;letter-spacing:-1px}
+.sec-desc{font-size:18px;color:var(--t2);max-width:600px;line-height:1.7;margin-bottom:48px}
+.alt-bg{background:var(--bg2)}
+
+/* SAGA */
+.saga-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-radius:12px;overflow:hidden}
+.saga-card{background:var(--card);padding:36px 28px;transition:all .4s;border:1px solid var(--cb);position:relative;overflow:hidden}
+.saga-card::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--acg);transform:scaleX(0);transition:transform .4s}
+.saga-card:hover{box-shadow:var(--glow);transform:translateY(-6px)}
+.saga-card:hover::before{transform:scaleX(1)}
+.saga-letter{font-size:52px;font-weight:900;color:var(--ac);margin-bottom:4px;font-family:var(--mono);transition:transform .3s}
+.saga-card:hover .saga-letter{transform:scale(1.1)}
+.saga-name{font-size:15px;font-weight:600;margin-bottom:12px}.saga-desc{font-size:14px;color:var(--t3);line-height:1.6}
+
+/* FEATURES */
+.feat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.feat-card{background:var(--card);border:1px solid var(--cb);border-radius:12px;padding:32px;transition:all .4s;transform-style:preserve-3d;perspective:600px}
+.feat-card:hover{border-color:rgba(26,107,255,.2);box-shadow:var(--glow);transform:translateY(-6px)}
+.feat-icon{width:52px;height:52px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:16px;transition:transform .3s}
+.feat-card:hover .feat-icon{transform:scale(1.15) rotate(5deg)}
+.feat-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.feat-card p{font-size:14px;color:var(--t3);line-height:1.6}
+
+/* DIFF TABLE */
+.diff-wrap{overflow-x:auto}.diff-table{width:100%;border-collapse:collapse;font-size:15px;background:var(--card);border-radius:12px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.04)}
+.diff-table th{background:var(--ac3);color:#fff;padding:14px 18px;text-align:left;font-weight:600;font-size:13px;letter-spacing:1px;text-transform:uppercase}
+.diff-table td{padding:12px 18px;border-bottom:1px solid var(--bg3);color:var(--t2);transition:all .3s}
+.diff-table tr{opacity:0;transform:translateX(-20px)}
+.diff-table tr.visible{opacity:1;transform:translateX(0);transition:all .5s cubic-bezier(.16,1,.3,1)}
+.diff-table tr:hover td{background:rgba(26,107,255,.03);transform:translateX(4px)}
+.varc-col{color:var(--ok);font-weight:600}.gap-col{color:var(--t4);font-style:italic}
+
+/* USE CASES */
+.use-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.use-card{background:var(--card);border-radius:12px;padding:28px 24px;border:1px solid var(--cb);transition:all .4s;position:relative;overflow:hidden}
+.use-card::after{content:"";position:absolute;inset:0;background:var(--acg);opacity:0;transition:opacity .4s}
+.use-card:hover{border-color:rgba(26,107,255,.2);transform:translateY(-6px);box-shadow:var(--glow)}
+.use-card:hover::after{opacity:.03}
+.use-card>*{position:relative;z-index:1}
+.use-card .ind{font-size:32px;margin-bottom:12px;display:block;transition:transform .3s}
+.use-card:hover .ind{transform:scale(1.2)}
+.use-card h4{font-size:16px;font-weight:700;margin-bottom:8px}.use-card p{font-size:13px;color:var(--t3);line-height:1.5;margin-bottom:12px}
+.reg{padding:2px 8px;background:rgba(26,107,255,.06);border-radius:4px;font-size:11px;color:var(--ac);font-family:var(--mono);transition:all .3s}
+.use-card:hover .reg{background:rgba(26,107,255,.12)}
+
+/* DEMO */
+.demo-section{background:var(--t1);color:#fff;overflow:hidden;position:relative}
+.demo-section::before{content:"";position:absolute;top:-100px;right:-100px;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(26,107,255,.15),transparent);animation:float 8s ease-in-out infinite}
+.demo-section::after{content:"";position:absolute;bottom:-100px;left:-100px;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,191,166,.1),transparent);animation:float 10s ease-in-out infinite reverse}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(30px,-20px)}}
+.demo-section .sec-label{color:var(--ac2)}.demo-section .sec-title{color:#fff}.demo-section .sec-desc{color:rgba(255,255,255,.6)}
+.demo-wrap{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1}
+.demo-visual{background:#0B0F1A;border-radius:12px;border:1px solid rgba(255,255,255,.1);overflow:hidden;transition:all .4s}
+.demo-visual:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(0,0,0,.3)}
+.demo-bar{height:32px;background:#161B22;display:flex;align-items:center;gap:6px;padding:0 12px;border-bottom:1px solid rgba(255,255,255,.06)}
+.demo-dot{width:8px;height:8px;border-radius:50%}
+.demo-url{font-family:var(--mono);font-size:11px;color:rgba(255,255,255,.4);margin-left:12px;background:rgba(255,255,255,.05);padding:3px 10px;border-radius:4px;flex:1}
+.demo-screen{padding:20px;min-height:260px}
+.demo-line{height:8px;border-radius:4px;margin-bottom:8px;opacity:.5;animation:shimmer 2s ease-in-out infinite}
+@keyframes shimmer{0%{opacity:.2}50%{opacity:.6}100%{opacity:.2}}
+.ds{background:rgba(255,255,255,.05);border-radius:6px;padding:12px;text-align:center;transition:all .3s}
+.ds:hover{background:rgba(255,255,255,.1);transform:scale(1.05)}
+.ds .dv{font-family:var(--mono);font-size:20px;font-weight:700}.ds .dl{font-size:9px;color:rgba(255,255,255,.4);margin-top:2px;text-transform:uppercase;letter-spacing:1px}
+
+/* PRICING */
+.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.price-card{background:var(--card);border:1px solid var(--cb);border-radius:12px;padding:36px 28px;transition:all .4s;position:relative}
+.price-card:hover{transform:translateY(-8px);box-shadow:0 12px 40px rgba(0,0,0,.08)}
+.price-card.featured{border-color:var(--ac);box-shadow:0 4px 30px rgba(26,107,255,.12)}
+.price-card.featured::before{content:"MOST POPULAR";position:absolute;top:-12px;left:50%;transform:translateX(-50%);padding:4px 16px;background:var(--ac);color:#fff;border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1px}
+.price-card h3{font-size:22px;font-weight:700;margin-bottom:4px}.price-card .price{font-family:var(--mono);font-size:40px;font-weight:700;color:var(--ac);margin:16px 0 4px}
+.price-card .period{font-size:13px;color:var(--t3)}
+.price-card ul{list-style:none;margin:24px 0;display:flex;flex-direction:column;gap:10px}
+.price-card li{font-size:14px;color:var(--t2);display:flex;align-items:center;gap:8px}
+.price-card li::before{content:"✓";color:var(--ok);font-weight:700}
+.btn-price{width:100%;padding:14px;border:1px solid var(--bg3);background:var(--bg);color:var(--t1);border-radius:8px;font-family:var(--sans);font-weight:600;font-size:15px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.btn-price::before{content:"";position:absolute;inset:0;background:var(--acg);opacity:0;transition:opacity .3s}
+.btn-price:hover{border-color:var(--ac);color:var(--ac);transform:translateY(-2px)}
+.price-card.featured .btn-price{background:var(--ac);border-color:var(--ac);color:#fff}
+.price-card.featured .btn-price:hover{background:var(--ac2)}
+
+/* TEAM */
+.team-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.team-card{background:var(--card);border-radius:12px;padding:28px;text-align:center;border:1px solid var(--cb);transition:all .4s}
+.team-card:hover{border-color:rgba(26,107,255,.2);transform:translateY(-8px) scale(1.02);box-shadow:var(--glow)}
+.team-avatar{width:84px;height:84px;border-radius:50%;margin:0 auto 16px;display:flex;align-items:center;justify-content:center;font-size:34px;font-weight:800;font-family:var(--mono);color:#fff;transition:transform .4s}
+.team-card:hover .team-avatar{transform:scale(1.1) rotate(5deg)}
+.team-card h4{font-size:16px;font-weight:700;margin-bottom:2px}
+.team-role{font-size:13px;color:var(--ac);margin-bottom:8px;font-weight:500}
+.team-card p{font-size:12px;color:var(--t3);line-height:1.5}
+.team-social{display:flex;gap:12px;justify-content:center;margin-top:12px}
+.team-social a{color:var(--t3);font-size:14px;text-decoration:none;transition:all .3s;font-weight:600}
+.team-social a:hover{color:var(--ac);transform:translateY(-2px)}
+
+/* DOCS */
+.docs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.doc-card{background:var(--card);border-radius:12px;padding:28px;border:1px solid var(--cb);transition:all .4s}
+.doc-card:hover{border-color:rgba(26,107,255,.2);box-shadow:var(--glow);transform:translateY(-6px)}
+.doc-icon{font-size:30px;margin-bottom:12px;display:block;transition:transform .3s}
+.doc-card:hover .doc-icon{transform:scale(1.2) rotate(-5deg)}
+.doc-card h3{font-size:17px;font-weight:700;margin-bottom:8px}.doc-card>p{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:16px}
+.doc-links{display:flex;flex-direction:column;gap:8px}
+.doc-link{font-size:13px;color:var(--ac);display:flex;align-items:center;gap:6px;transition:all .3s;padding:4px 0;cursor:pointer}
+.doc-link:hover{color:var(--ac3);transform:translateX(8px)}
+.doc-link::before{content:"\2192";font-weight:700;transition:transform .3s}
+.doc-link:hover::before{transform:translateX(4px)}
+
+/* BLOG */
+.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.blog-card{background:var(--card);border-radius:12px;overflow:hidden;border:1px solid var(--cb);transition:all .4s}
+.blog-card:hover{border-color:rgba(26,107,255,.2);transform:translateY(-8px);box-shadow:0 16px 48px rgba(0,0,0,.08)}
+.blog-img{height:170px;display:flex;align-items:center;justify-content:center;font-size:52px;opacity:.2;transition:all .4s}
+.blog-card:hover .blog-img{opacity:.35;transform:scale(1.1)}
+.blog-body{padding:24px}.blog-tag{font-family:var(--mono);font-size:11px;color:var(--ac);letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
+.blog-card h3{font-size:17px;font-weight:700;margin-bottom:8px;line-height:1.3}
+.blog-card .bp{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:12px}
+.blog-meta{font-size:12px;color:var(--t4);display:flex;justify-content:space-between}
+.blog-full{max-height:0;overflow:hidden;transition:max-height .6s cubic-bezier(.16,1,.3,1);font-size:14px;color:var(--t2);line-height:1.8;border-top:0px solid var(--bg3)}
+.blog-full.open{max-height:2000px;padding:24px;border-top-width:1px}
+.blog-full h4{font-size:15px;font-weight:700;color:var(--t1);margin:16px 0 8px}.blog-full p{margin-bottom:12px}
+.read-btn{font-size:13px;color:var(--ac);cursor:pointer;font-weight:600;border:none;background:none;font-family:var(--sans);padding:4px 0;margin-top:8px;transition:all .3s}
+.read-btn:hover{color:var(--ac3);transform:translateX(4px)}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:start}
+.contact-form{background:var(--card);border-radius:12px;padding:36px;border:1px solid var(--cb);transition:box-shadow .4s}
+.contact-form:focus-within{box-shadow:0 8px 30px rgba(26,107,255,.08)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+.form-group{display:flex;flex-direction:column;gap:6px}.form-group.full{grid-column:1/-1}
+.form-group label{font-size:13px;font-weight:600;color:var(--t2)}
+.form-group input,.form-group select,.form-group textarea{background:var(--bg);border:1px solid var(--bg3);border-radius:6px;padding:12px 14px;color:var(--t1);font-family:var(--sans);font-size:15px;transition:all .3s;outline:none}
+.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:var(--ac);box-shadow:0 0 0 3px rgba(26,107,255,.1)}
+.form-group textarea{resize:vertical;min-height:100px}
+.btn-submit{width:100%;padding:14px;background:var(--ac);color:#fff;border:none;border-radius:8px;font-family:var(--sans);font-weight:700;font-size:16px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
+.btn-submit::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.15),transparent);transform:translateX(-100%);transition:transform .6s}
+.btn-submit:hover::before{transform:translateX(100%)}
+.btn-submit:hover{background:var(--ac2);box-shadow:0 4px 20px rgba(26,107,255,.3)}
+.ci{display:flex;gap:16px;align-items:start;margin-bottom:24px;transition:all .3s}
+.ci:hover{transform:translateX(4px)}
+.ci-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;transition:transform .3s}
+.ci:hover .ci-icon{transform:scale(1.1)}
+.ci h4{font-size:15px;font-weight:700;margin-bottom:2px}.ci p,.ci a{font-size:14px;color:var(--t3);line-height:1.5;text-decoration:none}.ci a:hover{color:var(--ac)}
+
+/* CTA */
+.cta-section{text-align:center;padding:120px 40px;background:linear-gradient(180deg,var(--bg),#E8F0FE);position:relative;overflow:hidden}
+.cta-section::before{content:"";position:absolute;top:50%;left:50%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(26,107,255,.06),transparent);transform:translate(-50%,-50%);animation:ctaPulse 4s ease-in-out infinite}
+@keyframes ctaPulse{0%,100%{transform:translate(-50%,-50%) scale(1)}50%{transform:translate(-50%,-50%) scale(1.15)}}
+.cta-section h2{font-size:clamp(36px,6vw,56px);font-weight:900;margin-bottom:16px;position:relative}
+.cta-section p{font-size:20px;color:var(--t2);margin-bottom:40px;max-width:500px;margin-left:auto;margin-right:auto;position:relative}
+
+/* FOOTER */
+footer{padding:60px 40px 32px;background:var(--t1);color:rgba(255,255,255,.7)}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:40px;max-width:1200px;margin:0 auto}
+.footer-brand p{font-size:14px;color:rgba(255,255,255,.4);line-height:1.6;max-width:300px;margin-top:12px}
+footer h4{font-size:13px;font-weight:700;color:rgba(255,255,255,.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+footer a{display:block;color:rgba(255,255,255,.6);text-decoration:none;font-size:15px;margin-bottom:10px;transition:all .3s}
+footer a:hover{color:#fff;transform:translateX(4px)}
+.footer-bottom{max-width:1200px;margin:40px auto 0;padding-top:24px;border-top:1px solid rgba(255,255,255,.08);display:flex;justify-content:space-between;font-size:13px;color:rgba(255,255,255,.3)}
+
+/* RESPONSIVE */
+@media(max-width:900px){.saga-grid,.feat-grid,.price-grid,.docs-grid,.blog-grid,.team-grid{grid-template-columns:1fr 1fr}.use-grid{grid-template-columns:1fr 1fr}.demo-wrap,.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.nav-links{display:none}.metrics{flex-wrap:wrap;gap:24px}}
+@media(max-width:600px){.saga-grid,.feat-grid,.price-grid,.use-grid,.team-grid,.docs-grid,.blog-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr}nav{padding:0 20px}section{padding:60px 20px}.form-row{grid-template-columns:1fr}}
+
+/* REVEAL SYSTEM */
+.rv{opacity:0;transform:translateY(40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.rv.visible{opacity:1;transform:translateY(0)}
+.rv-l{opacity:0;transform:translateX(-40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.rv-l.visible{opacity:1;transform:translateX(0)}
+.rv-r{opacity:0;transform:translateX(40px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.rv-r.visible{opacity:1;transform:translateX(0)}
+.rv-s{opacity:0;transform:scale(.9);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.rv-s.visible{opacity:1;transform:scale(1)}
+.stg>*{opacity:0;transform:translateY(24px);transition:all .6s cubic-bezier(.16,1,.3,1)}
+.stg.visible>*{opacity:1;transform:translateY(0)}
+.stg.visible>*:nth-child(1){transition-delay:.05s}.stg.visible>*:nth-child(2){transition-delay:.1s}
+.stg.visible>*:nth-child(3){transition-delay:.15s}.stg.visible>*:nth-child(4){transition-delay:.2s}
+.stg.visible>*:nth-child(5){transition-delay:.25s}.stg.visible>*:nth-child(6){transition-delay:.3s}
+.stg.visible>*:nth-child(7){transition-delay:.35s}.stg.visible>*:nth-child(8){transition-delay:.4s}
+.stg.visible>*:nth-child(9){transition-delay:.45s}
+</style>
+</head>
+<body>
+<div id="scrollProg"></div>
+<nav id="nav"><a href="#" class="logo"><span>VARC</span></a><div class="nav-links"><a href="#platform">Platform</a><a href="#features">Features</a><a href="#docs">Docs</a><a href="#blog">Blog</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a href="https://varc-platform.onrender.com" target="_blank" class="btn-nav">Live Demo</a></div></nav>
+
+<section class="hero"><div class="hero-mesh"></div><canvas id="particles"></canvas><div style="position:relative;z-index:1">
+<div class="hero-badge"><span class="dot"></span> Now Live — OpsCenter v8.0 with 20 governance modules</div>
+<h1>Every AI Agent.<br><span class="grad">Every Interaction.<br>Governed.</span></h1>
+<p class="sub">VARC scores behavior, enforces compliance, and produces cryptographic evidence on every AI agent interaction — in real time. Not after the fact. Every single one.</p>
+<div class="hero-ctas"><a href="https://varc-platform.onrender.com" target="_blank" class="btn-primary">Open Live Demo →</a><a href="#platform" class="btn-secondary">See How It Works</a></div>
+</div></section>
+
+<div class="metrics" id="metricsBar"><div class="metric" data-target="692" data-suffix=""><div class="val">0</div><div class="lbl">Compliance Frameworks</div></div><div class="metric" data-target="819" data-suffix="K+"><div class="val">0</div><div class="lbl">Cross-Mappings</div></div><div class="metric" data-target="8" data-suffix=""><div class="val">0</div><div class="lbl">Behavioral Dimensions</div></div><div class="metric" data-target="5" data-suffix=""><div class="val">0</div><div class="lbl">GRO Enforcement Levels</div></div><div class="metric" data-target="20" data-suffix=""><div class="val">0</div><div class="lbl">OpsCenter Modules</div></div></div>
+
+<section id="platform"><div class="container">
+<div class="sec-label rv">Runtime Governance Pipeline</div><h2 class="sec-title rv">The SAGA Framework</h2><p class="sec-desc rv">Every AI agent interaction passes through a 4-phase runtime pipeline before delivery or blocking.</p>
+<div class="saga-grid stg">
+<div class="saga-card"><div class="saga-letter">S</div><div class="saga-name">Scoring</div><div class="saga-desc">8-dimension Behavioral Envelope Verification scores every interaction across PII exposure, authority escalation, harm potential, and more.</div></div>
+<div class="saga-card"><div class="saga-letter">A</div><div class="saga-name">Attenuation</div><div class="saga-desc">Cryptographic identity tokens verify agent identity and attenuate permissions on delegation. Permissions can only narrow, never widen.</div></div>
+<div class="saga-card"><div class="saga-letter">G</div><div class="saga-name">Governance</div><div class="saga-desc">5-level Graduated Response: Autonomous, Monitor, HITL Hold, Restrict, Suspend. Proportional to risk — not binary.</div></div>
+<div class="saga-card"><div class="saga-letter">A</div><div class="saga-name">Audit</div><div class="saga-desc">Hash-chained metagovernance evidence trail. Every decision tamper-evident. Every action auditable. The guardian has its own guardian.</div></div>
+</div></div></section>
+
+<section id="features" class="alt-bg"><div class="container">
+<div class="sec-label rv">Capabilities</div><h2 class="sec-title rv">What Others Can't Do</h2><p class="sec-desc rv">Built for the gap between governance platforms that define policy and observability tools that monitor after the fact.</p>
+<div class="feat-grid stg">
+<div class="feat-card"><div class="feat-icon" style="background:rgba(26,107,255,.06);color:var(--ac)">&#9671;</div><h3>Behavioral Scoring</h3><p>8-dimension BEV scoring on every interaction. Not binary guardrails — a continuous risk surface.</p></div>
+<div class="feat-card"><div class="feat-icon" style="background:rgba(0,191,166,.06);color:var(--ok)">&#11041;</div><h3>Session Drift Detection</h3><p>CUSUM algorithm tracks behavioral drift across turns. Catches multi-turn attacks that single-prompt filters miss.</p></div>
+<div class="feat-card"><div class="feat-icon" style="background:rgba(229,62,92,.06);color:var(--cr)">&#9876;</div><h3>Adversarial Testing</h3><p>Interactive challenge mode. Prompt injection, social engineering, encoding tricks — test your governance live.</p></div>
+<div class="feat-card"><div class="feat-icon" style="background:rgba(26,107,255,.06);color:var(--in)">&#128065;</div><h3>Shadow AI Discovery</h3><p>Network scan for unregistered AI endpoints. Find rogue LLM API calls before they become breaches.</p></div>
+<div class="feat-card"><div class="feat-icon" style="background:rgba(245,166,35,.06);color:var(--wn)">&#9635;</div><h3>692 Compliance Frameworks</h3><p>Live API with 819K+ cross-framework control mappings. Per-agent, per-domain assessment.</p></div>
+<div class="feat-card"><div class="feat-icon" style="background:rgba(26,107,255,.06);color:var(--ac)">&#9673;</div><h3>Multi-Provider Governed Chat</h3><p>Route through Claude, GPT, or Gemini — every prompt governed through the same pipeline.</p></div>
+<div class="feat-card"><div class="feat-icon" style="background:rgba(0,191,166,.06);color:var(--ok)">&#128737;</div><h3>Metagovernance</h3><p>Hash-chained evidence trail that governs the governance engine's own decisions. Tamper-evident by design.</p></div>
+<div class="feat-card"><div class="feat-icon" style="background:rgba(26,107,255,.06);color:var(--in)">&#9939;</div><h3>CI/CD Governance Gates</h3><p>Embed governance into GitHub Actions, GitLab CI, Jenkins, Azure DevOps.</p></div>
+<div class="feat-card"><div class="feat-icon" style="background:rgba(229,62,92,.06);color:var(--cr)">&#128268;</div><h3>Platform Connectors</h3><p>ServiceNow AI Control Tower, Palo Alto Networks AIRS/Agentix, and custom REST API.</p></div>
+</div></div></section>
+
+<section id="compare"><div class="container">
+<div class="sec-label rv">Differentiation</div><h2 class="sec-title rv">VARC vs. Market</h2><p class="sec-desc rv">Every other tool does part of the job. VARC does the part nobody else does.</p>
+<div class="diff-wrap rv-s"><table class="diff-table"><thead><tr class="visible"><th>Capability</th><th>VARC</th><th>Governance Platforms</th><th>Observability</th><th>Prompt Firewalls</th></tr></thead><tbody>
+<tr><td>Per-interaction scoring</td><td class="varc-col">8-dimension BEV</td><td class="gap-col">No runtime scoring</td><td class="gap-col">Single metrics</td><td class="gap-col">Binary pass/fail</td></tr>
+<tr><td>Graduated response</td><td class="varc-col">5-level GRO</td><td class="gap-col">Policy only</td><td class="gap-col">Alerts only</td><td class="gap-col">Block or allow</td></tr>
+<tr><td>Session awareness</td><td class="varc-col">CUSUM multi-turn</td><td class="gap-col">None</td><td class="gap-col">Model drift only</td><td class="gap-col">Single prompt</td></tr>
+<tr><td>Agent identity</td><td class="varc-col">Cryptographic tokens</td><td class="gap-col">None</td><td class="gap-col">None</td><td class="gap-col">None</td></tr>
+<tr><td>Evidence chain</td><td class="varc-col">Hash-linked audit</td><td class="gap-col">Flat logs</td><td class="gap-col">Flat logs</td><td class="gap-col">None</td></tr>
+<tr><td>Compliance frameworks</td><td class="varc-col">692 live API</td><td class="gap-col">5-15 packs</td><td class="gap-col">None</td><td class="gap-col">None</td></tr>
+<tr><td>Shadow AI discovery</td><td class="varc-col">Network scan</td><td class="gap-col">Manual inventory</td><td class="gap-col">None</td><td class="gap-col">None</td></tr>
+</tbody></table></div></div></section>
+
+<section class="alt-bg"><div class="container">
+<div class="sec-label rv">Industries</div><h2 class="sec-title rv">Built for Regulated AI</h2>
+<div class="use-grid stg">
+<div class="use-card"><span class="ind">&#127974;</span><h4>Banking & Lending</h4><p>Loan processing, claims, customer service AI — governed against lending regulations.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="reg">ECOA</span><span class="reg">FCRA</span><span class="reg">SR 11-7</span><span class="reg">BSA/AML</span></div></div>
+<div class="use-card"><span class="ind">&#127973;</span><h4>Healthcare</h4><p>HSA/FSA administration, clinical decision support with full HIPAA enforcement.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="reg">HIPAA</span><span class="reg">HITECH</span><span class="reg">FDA SaMD</span></div></div>
+<div class="use-card"><span class="ind">&#128737;</span><h4>Government</h4><p>Federal AI agents with sovereign deployment and air-gapped configurations.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="reg">NIST RMF</span><span class="reg">FedRAMP</span><span class="reg">EO 14110</span></div></div>
+<div class="use-card"><span class="ind">&#128272;</span><h4>Cybersecurity</h4><p>SOC agents, threat response, code review — governed against security standards.</p><div style="display:flex;flex-wrap:wrap;gap:4px"><span class="reg">PCI DSS</span><span class="reg">SOX</span><span class="reg">OWASP</span><span class="reg">SOC 2</span></div></div>
+</div></div></section>
+<section class="demo-section" id="demo"><div class="container"><div class="demo-wrap"><div class="rv-l">
+<div class="sec-label">Try It Now</div><h2 class="sec-title">Live OpsCenter</h2><p class="sec-desc">20 interactive modules. Register a tenant, import agents, run scenarios, assess compliance — all live.</p>
+<a href="https://varc-platform.onrender.com" target="_blank" class="btn-primary">Open Production OpsCenter →</a>
+<div style="margin-top:24px;display:flex;gap:24px"><div style="font-size:13px;color:rgba(255,255,255,.4)"><span style="color:var(--ok);font-weight:700">20</span> tabs</div><div style="font-size:13px;color:rgba(255,255,255,.4)"><span style="color:var(--ok);font-weight:700">125+</span> endpoints</div><div style="font-size:13px;color:rgba(255,255,255,.4)"><span style="color:var(--ok);font-weight:700">821</span> tests</div></div>
+</div><div class="demo-visual rv-r"><div class="demo-bar"><div class="demo-dot" style="background:#FF5F57"></div><div class="demo-dot" style="background:#FEBD2F"></div><div class="demo-dot" style="background:#27C93F"></div><div class="demo-url">varc-platform.onrender.com</div></div>
+<div class="demo-screen"><div style="display:flex;gap:8px;margin-bottom:16px"><div style="padding:6px 14px;background:var(--ac);border-radius:4px;font-size:11px;color:#fff;font-weight:600">Dashboard</div><div style="padding:6px 14px;background:rgba(255,255,255,.05);border-radius:4px;font-size:11px;color:rgba(255,255,255,.4)">Agents</div><div style="padding:6px 14px;background:rgba(255,255,255,.05);border-radius:4px;font-size:11px;color:rgba(255,255,255,.4)">Compliance</div><div style="padding:6px 14px;background:rgba(255,255,255,.05);border-radius:4px;font-size:11px;color:rgba(255,255,255,.4)">Shadow AI</div></div>
+<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:16px"><div class="ds"><div class="dv" style="color:var(--ok)">247</div><div class="dl">Governed</div></div><div class="ds"><div class="dv" style="color:var(--cr)">12</div><div class="dl">Blocked</div></div><div class="ds"><div class="dv" style="color:var(--ac2)">6</div><div class="dl">Agents</div></div><div class="ds"><div class="dv" style="color:var(--ok)">INTACT</div><div class="dl">Chain</div></div></div>
+<div class="demo-line" style="width:85%;background:var(--ac)"></div><div class="demo-line" style="width:65%;background:var(--ok);animation-delay:.3s"></div><div class="demo-line" style="width:92%;background:var(--ac2);animation-delay:.6s"></div>
+</div></div></div></div></section>
+
+<section id="pricing"><div class="container">
+<div class="sec-label rv" style="text-align:center">Pricing</div><h2 class="sec-title rv" style="text-align:center">Scale With Confidence</h2><p class="sec-desc rv" style="text-align:center;margin-left:auto;margin-right:auto">Consumption-based pricing. Pay for what you govern.</p>
+<div class="price-grid stg">
+<div class="price-card"><h3>Essentials</h3><p style="font-size:14px;color:var(--t3)">For teams getting started</p><div class="price">$25,000<span style="font-size:15px;color:var(--t3);font-weight:400">/mo</span></div><div class="period">Up to 500K interactions/month</div><ul><li>25 AI agents governed</li><li>SAGA pipeline — all 4 phases</li><li>BEV 8-dimension scoring</li><li>GRO 5-level enforcement</li><li>50 compliance frameworks</li><li>Email support</li></ul><button class="btn-price">Start Free Trial</button></div>
+<div class="price-card featured"><h3>Professional</h3><p style="font-size:14px;color:var(--t3)">For regulated enterprises</p><div class="price">$75,000<span style="font-size:15px;color:var(--t3);font-weight:400">/mo</span></div><div class="period">Up to 5M interactions/month</div><ul><li>100 AI agents governed</li><li>100 compliance frameworks</li><li>Shadow AI discovery</li><li>ServiceNow + PANW connectors</li><li>CI/CD governance gates</li><li>Sovereign deployment</li><li>Dedicated support + SLA</li></ul><button class="btn-price">Request Demo</button></div>
+<div class="price-card"><h3>Enterprise</h3><p style="font-size:14px;color:var(--t3)">For global deployments</p><div class="price" style="font-size:30px">Custom</div><div class="period">Unlimited interactions</div><ul><li>Everything in Professional</li><li>Air-gapped / on-premise</li><li>12 sovereign regions</li><li>Custom frameworks</li><li>Multi-tenant fleet</li><li>White-glove onboarding</li><li>24/7 support + named SA</li></ul><button class="btn-price">Contact Sales</button></div>
+</div></div></section>
+
+<section id="team" class="alt-bg"><div class="container">
+<div class="sec-label rv" style="text-align:center">Leadership</div><h2 class="sec-title rv" style="text-align:center">The Team Behind VARC</h2><p class="sec-desc rv" style="text-align:center;margin-left:auto;margin-right:auto">Deep expertise in Agentic AI, AI Governance, Cloud Architecture, and Enterprise Data Platforms.</p>
+<div class="team-grid stg">
+<div class="team-card"><div class="team-avatar" style="background:var(--acg)">VM</div><h4>Vyasa Murthy</h4><div class="team-role">Founder & Managing Partner</div><p>28+ years in enterprise technology. Deep expertise in Agentic AI governance, cloud architecture (GCP certified), AI ethics & compliance strategy, and GSI partnership ecosystems. Built and scaled $245M+ technology portfolios.</p><div class="team-social"><a href="https://www.linkedin.com/in/vyasamurthy/" target="_blank">LinkedIn</a></div></div>
+<div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#00BFA6,#47B5FF)">AI</div><h4>AI Architecture</h4><div class="team-role">Hiring — Principal Architect</div><p>Runtime AI governance at scale. Behavioral scoring, policy engines, compliance automation in regulated industries.</p><div class="team-social"><a href="#contact">Apply</a></div></div>
+<div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#F5A623,#E53E5C)">GRC</div><h4>Compliance & GRC</h4><div class="team-role">Hiring — Head of Compliance</div><p>Financial services compliance. SR 11-7, ECOA/FCRA, BSA/AML, EU AI Act. GRC platform or Big 4 background.</p><div class="team-social"><a href="#contact">Apply</a></div></div>
+<div class="team-card"><div class="team-avatar" style="background:linear-gradient(135deg,#47B5FF,#1A6BFF)">ENG</div><h4>Platform Engineering</h4><div class="team-role">Hiring — Senior Engineer</div><p>Python/FastAPI, React, Kubernetes. ServiceNow and PANW integration experience a plus.</p><div class="team-social"><a href="#contact">Apply</a></div></div>
+</div></div></section>
+
+<section id="docs"><div class="container">
+<div class="sec-label rv">Resources</div><h2 class="sec-title rv">Documentation</h2><p class="sec-desc rv">Everything you need to integrate, configure, and operate VARC.</p>
+<div class="docs-grid stg">
+<div class="doc-card"><span class="doc-icon">&#128640;</span><h3>Getting Started</h3><p>Deploy VARC, register your first tenant, and run governed interactions in under 15 minutes.</p><div class="doc-links"><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Quick Start Guide</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Installation & Deployment</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">First Tenant Setup</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Agent Registration</span></div></div>
+<div class="doc-card"><span class="doc-icon">&#128214;</span><h3>Platform Guide</h3><p>Deep dive into the 4-phase governance pipeline with architecture diagrams and configuration reference.</p><div class="doc-links"><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Behavioral Scoring (BEV)</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Identity & Attenuation</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Graduated Response (GRO)</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Evidence Chain</span></div></div>
+<div class="doc-card"><span class="doc-icon">&#9889;</span><h3>API Reference</h3><p>Full OpenAPI specification for all 125+ endpoints. API reference available under NDA.</p><div class="doc-links"><span class="doc-link" onclick="alert('API documentation available under NDA. Contact info [at] venture-vertex.com to request access.')">REST API v1 Reference (Request Access)</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Authentication & API Keys</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Webhook Configuration</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">SDK — Python / JavaScript / cURL</span></div></div>
+<div class="doc-card"><span class="doc-icon">&#9635;</span><h3>Compliance Guides</h3><p>Framework-specific guides for configuring compliance assessment.</p><div class="doc-links"><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Financial Services (SR 11-7, ECOA)</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Healthcare (HIPAA, HITECH)</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">EU AI Act Compliance</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Custom Framework Configuration</span></div></div>
+<div class="doc-card"><span class="doc-icon">&#128268;</span><h3>Integrations</h3><p>Connect VARC to your existing stack with step-by-step connector guides.</p><div class="doc-links"><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">ServiceNow AI Control Tower</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Palo Alto Networks AIRS</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">CI/CD Gates (GitHub / GitLab / Jenkins)</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">SIEM Push (XSIAM, Splunk)</span></div></div>
+<div class="doc-card"><span class="doc-icon">&#128737;</span><h3>Security</h3><p>Deployment architecture, sovereign configuration, data residency, and encryption.</p><div class="doc-links"><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Architecture Overview</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Sovereign Deployment Guide</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Security Whitepaper</span><span class="doc-link" onclick="alert('Documentation coming soon. Contact info [at] venture-vertex.com for early access.')">Compliance Evidence</span></div></div>
+</div></div></section>
+<section id="blog" class="alt-bg"><div class="container">
+<div class="sec-label rv">Insights</div><h2 class="sec-title rv">From the VARC Blog</h2><p class="sec-desc rv">Technical deep dives, compliance guidance, and market analysis.</p>
+<div class="blog-grid stg">
+<div class="blog-card" id="b1"><div class="blog-img" style="background:linear-gradient(135deg,#E8F0FE,#D0E3FF)">&#128737;</div><div class="blog-body"><div class="blog-tag">Technical Deep Dive</div><h3>Why Binary Guardrails Fail: The Case for Graduated Response</h3><p class="bp">Block-or-allow is not governance. Here is why proportional enforcement fundamentally changes enterprise AI risk management.</p><div class="blog-meta"><span>Vyasa Murthy</span><span>March 2026</span></div><button class="read-btn" onclick="document.querySelector('#b1 .blog-full').classList.toggle('open');this.textContent=this.textContent==='Read More \u2192'?'Close \u2191':'Read More \u2192'">Read More &#8594;</button></div>
+<div class="blog-full"><p>Every AI security product on the market today operates on the same assumption: a prompt is either safe or dangerous. Pass or fail. Allow or block. This binary model worked tolerably when AI interactions were simple — one question, one answer.</p><p>That world no longer exists. Agentic AI systems process chains of interactions over extended sessions. An agent might handle 30 turns in a single claims workflow, each building on context from the last. The attack surface is not a single prompt — it is the behavioral trajectory across the entire session.</p><h4>The Sleeping Giant Problem</h4><p>The most sophisticated adversarial pattern in production is what we call the sleeping giant. An attacker sends 10 completely benign prompts. Each passes every guardrail. The context window fills with trusted history. Then prompt 11 arrives — leveraging accumulated trust to extract data, escalate privileges, or trigger unauthorized actions.</p><p>No single-prompt filter catches this. The 11th prompt, evaluated in isolation, may look only moderately suspicious. It is the behavioral trajectory that reveals the attack — and binary guardrails have no concept of trajectory.</p><h4>Graduated Response: The Missing Layer</h4><p>VARC operates on 5 levels, not 2. When behavioral scoring detects early drift indicators — even subtle ones — the system escalates proportionally:</p><p><strong>Level 0 — Autonomous:</strong> Agent operates freely. Clean behavioral profile.</p><p><strong>Level 1 — Monitor:</strong> Behavioral indicators shifted. Logging verbosity increases. Operations team notified.</p><p><strong>Level 2 — Human-in-the-Loop:</strong> Risk crossed a threshold. Decisions queue for human review before delivery.</p><p><strong>Level 3 — Restrict:</strong> Agent capabilities narrowed. High-risk actions disabled.</p><p><strong>Level 4 — Suspend:</strong> Full agent suspension. Forensic capture triggered. The emergency stop — but the last resort.</p><h4>Why This Matters for Regulated Industries</h4><p>In financial services, a false positive block on a lending agent means a legitimate borrower does not get their loan decision. In healthcare, blocking a medical records query means a provider cannot access patient information during a critical decision. Graduated response gives enterprises proportional risk management with full documentation. That is governance. Binary pass/fail is just a filter.</p></div></div>
+
+<div class="blog-card" id="b2"><div class="blog-img" style="background:linear-gradient(135deg,#E8FBF6,#D0F0EA)">&#128065;</div><div class="blog-body"><div class="blog-tag">Shadow AI</div><h3>Your Employees Are Already Using AI You Do Not Know About</h3><p class="bp">Shadow AI is the new shadow IT — except the data leakage vector is 100x worse.</p><div class="blog-meta"><span>VARC Research</span><span>March 2026</span></div><button class="read-btn" onclick="document.querySelector('#b2 .blog-full').classList.toggle('open');this.textContent=this.textContent==='Read More \u2192'?'Close \u2191':'Read More \u2192'">Read More &#8594;</button></div>
+<div class="blog-full"><p>In every enterprise network scan we have conducted, between 3 and 12 unregistered AI API endpoints are actively processing corporate data without governance oversight. Marketing pipes customer data through GPT. Engineering runs self-hosted Ollama for code review. Data science calls Anthropic from personal accounts.</p><h4>What We Find on Enterprise Networks</h4><p><strong>Commercial LLM APIs (3-5 endpoints):</strong> api.openai.com, api.anthropic.com, generativelanguage.googleapis.com. Employees using AI through browser extensions, personal API keys, or unauthorized SaaS tools.</p><p><strong>Self-hosted models (1-3 endpoints):</strong> Ollama on port 11434, vLLM instances, HuggingFace inference servers. Often zero access controls.</p><p><strong>The PII Exposure Problem:</strong> Over 60% of shadow AI endpoints process personally identifiable information — customer names, account numbers, medical records sent to AI systems with no retention policies or compliance framework.</p><h4>Three Actions to Take Today</h4><p><strong>1. Scan your network.</strong> VARC detects calls to 12 AI provider signatures including OpenAI, Anthropic, Google, Azure AI, HuggingFace, Cohere, Replicate, and self-hosted models.</p><p><strong>2. Classify and risk-score.</strong> Marketing using GPT for blog drafts differs from engineering running an unprotected inference server with production database access.</p><p><strong>3. Bring under governance or block.</strong> For each endpoint: onboard into your framework, block at the network level, or escalate to your CISO.</p></div></div>
+
+<div class="blog-card" id="b3"><div class="blog-img" style="background:linear-gradient(135deg,#FFF4E8,#FFE8D0)">&#128203;</div><div class="blog-body"><div class="blog-tag">Compliance</div><h3>SR 11-7 for AI Agents: Model Risk in the Agentic Era</h3><p class="bp">The OCC guidance was written for traditional models. Here is how to apply it to autonomous AI agents.</p><div class="blog-meta"><span>Vyasa Murthy</span><span>February 2026</span></div><button class="read-btn" onclick="document.querySelector('#b3 .blog-full').classList.toggle('open');this.textContent=this.textContent==='Read More \u2192'?'Close \u2191':'Read More \u2192'">Read More &#8594;</button></div>
+<div class="blog-full"><p>OCC Bulletin 2011-12 (SR 11-7) remains the foundational model risk management guidance for US banks. Written in 2011 when models meant logistic regression for credit scoring. It never anticipated autonomous AI agents making real-time decisions.</p><h4>Three Areas Where SR 11-7 Needs Translation</h4><p><strong>1. Model Validation (Section III):</strong> You cannot run a traditional test dataset against an AI agent responding to free-text prompts in real time. The VARC approach: continuous behavioral validation. Every interaction scored across 8 dimensions. Drift triggers alerts. Quarterly Red Team assessments simulate adversarial scenarios.</p><p><strong>2. Ongoing Monitoring (Section IV):</strong> For AI agents, outcomes happen in milliseconds across thousands of interaction types. VARC's CUSUM drift detection monitors behavioral patterns per session, flagging deviations from the established envelope.</p><p><strong>3. Model Inventory (Section V):</strong> For AI agents, this means tracking every model version, data source, and decision pathway. VARC's AI Registry auto-discovers and catalogs agents, maps them to frameworks, and tracks governance coverage. Shadow AI Discovery ensures completeness.</p><h4>What Examiners Want to See</h4><p>Examiners ask three questions: (1) How do you validate the agent performs as intended? (2) How do you detect behavioral drift? (3) Can you show the evidence trail for a specific decision? VARC provides concrete, auditable answers from the runtime governance pipeline.</p></div></div>
+</div></div></section>
+
+<section id="contact"><div class="container">
+<div class="sec-label rv">Get in Touch</div><h2 class="sec-title rv">Let's Talk AI Governance</h2><p class="sec-desc rv">Request a demo, explore partnerships, or discuss how VARC fits your requirements.</p>
+<div class="contact-grid">
+<div class="contact-form rv-l">
+<div class="form-row"><div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"></div><div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div></div>
+<div class="form-row"><div class="form-group"><label>Work Email</label><input type="email" placeholder="jane@company.com"></div><div class="form-group"><label>Company</label><input type="text" placeholder="Acme Corp"></div></div>
+<div class="form-row"><div class="form-group"><label>Job Title</label><input type="text" placeholder="VP, AI Governance"></div><div class="form-group"><label>Interest</label><select><option value="">Select...</option><option>Product Demo</option><option>Enterprise Pricing</option><option>Partnership / Integration</option><option>Analyst Briefing</option><option>Careers</option><option>Other</option></select></div></div>
+<div class="form-row"><div class="form-group full"><label>Message</label><textarea placeholder="Tell us about your AI governance needs..."></textarea></div></div>
+<button class="btn-submit" onclick="this.textContent='Sent! We will be in touch within 24 hours.';this.style.background='#00BFA6';this.disabled=true">Send Message</button>
+</div>
+<div class="contact-info rv-r">
+<div class="ci"><div class="ci-icon" style="background:rgba(0,191,166,.06);color:var(--ok)">&#127970;</div><div><h4>Headquarters</h4><p>Venture Vertex LLC<br>Frisco, Texas</p></div></div>
+<div class="ci"><div class="ci-icon" style="background:rgba(26,107,255,.06);color:var(--in)">&#127760;</div><div><h4>Live Demo</h4><p><a href="https://varc-platform.onrender.com" target="_blank">varc-platform.onrender.com</a><br>No login required</p></div></div>
+<div class="ci"><div class="ci-icon" style="background:rgba(245,166,35,.06);color:var(--wn)">&#128203;</div><div><h4>For Analysts</h4><p>Gartner, Forrester, IDC — complimentary briefings.<br><a href="#" onclick="window.location='mai'+'lto:inf'+'o@venture-vertex'+'.com?subject=Analyst%20Briefing%20Request';return false">Request Briefing &#8594;</a></p></div></div>
+<div class="ci"><div class="ci-icon" style="background:rgba(26,107,255,.06);color:var(--ac)">&#129309;</div><div><h4>Partnerships</h4><p>GSI partners, ServiceNow consultants, PANW resellers.<br><a href="#" onclick="window.location='mai'+'lto:inf'+'o@venture-vertex'+'.com?subject=Partnership%20Inquiry';return false">Partner With Us &#8594;</a></p></div></div>
+</div></div></div></section>
+
+<section class="cta-section">
+<h2 class="rv">Ready to Govern<br><span style="background:var(--acg);-webkit-background-clip:text;-webkit-text-fill-color:transparent">Your AI Fleet?</span></h2>
+<p class="rv">See VARC in action. No login required.</p>
+<div class="rv" style="display:flex;gap:16px;justify-content:center;position:relative"><a href="https://varc-platform.onrender.com" target="_blank" class="btn-primary">Open Live Demo &#8594;</a><a href="#contact" class="btn-secondary">Contact Us</a></div>
+</section>
+
+<footer><div class="footer-grid">
+<div class="footer-brand"><a href="#" class="logo"><span>VARC</span></a><p>Verifiable AI Runtime Control. The enforcement layer for enterprise AI governance.</p><p style="margin-top:8px;color:rgba(255,255,255,.3);font-size:12px">A Venture Vertex LLC product<br>Frisco, Texas</p></div>
+<div><h4>Platform</h4><a href="#platform">SAGA Framework</a><a href="#features">Features</a><a href="#compare">Comparison</a><a href="#pricing">Pricing</a><a href="https://varc-platform.onrender.com" target="_blank">Live Demo</a></div>
+<div><h4>Resources</h4><a href="#docs">Documentation</a><a href="#blog">Blog</a><a href="#contact">API Reference</a></div>
+<div><h4>Company</h4><a href="#team">Team</a><a href="#contact">Contact</a><a href="#team">Careers</a></div>
+</div><div class="footer-bottom"><span>&#169; 2026 Venture Vertex LLC. All rights reserved.</span><span>VARC &#8212; Verifiable AI Runtime Control</span></div></footer>
+<script>
+// ── PARTICLE FIELD ──
+(function(){
+  const c=document.getElementById('particles'),ctx=c.getContext('2d');
+  let w,h,particles=[];
+  function resize(){w=c.width=c.offsetWidth;h=c.height=c.offsetHeight}
+  resize();window.addEventListener('resize',resize);
+  for(let i=0;i<60;i++)particles.push({x:Math.random()*w,y:Math.random()*h,r:Math.random()*2+.5,dx:(Math.random()-.5)*.3,dy:(Math.random()-.5)*.3,o:Math.random()*.3+.1});
+  function draw(){
+    ctx.clearRect(0,0,w,h);
+    particles.forEach(p=>{
+      p.x+=p.dx;p.y+=p.dy;
+      if(p.x<0)p.x=w;if(p.x>w)p.x=0;if(p.y<0)p.y=h;if(p.y>h)p.y=0;
+      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(26,107,255,${p.o})`;ctx.fill();
+    });
+    // connections
+    for(let i=0;i<particles.length;i++){
+      for(let j=i+1;j<particles.length;j++){
+        const dx=particles[i].x-particles[j].x,dy=particles[i].y-particles[j].y,d=Math.sqrt(dx*dx+dy*dy);
+        if(d<120){ctx.beginPath();ctx.moveTo(particles[i].x,particles[i].y);ctx.lineTo(particles[j].x,particles[j].y);ctx.strokeStyle=`rgba(26,107,255,${.06*(1-d/120)})`;ctx.lineWidth=.5;ctx.stroke()}
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+// ── SCROLL PROGRESS BAR ──
+window.addEventListener('scroll',function(){
+  const h=document.documentElement.scrollHeight-window.innerHeight;
+  document.getElementById('scrollProg').style.width=(window.scrollY/h*100)+'%';
+  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+});
+
+// ── SCROLL REVEAL ──
+const obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
+  });
+},{threshold:.15});
+document.querySelectorAll('.rv,.rv-l,.rv-r,.rv-s,.stg').forEach(function(el){obs.observe(el)});
+
+// ── TABLE ROW REVEAL ──
+const tObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      const rows=e.target.querySelectorAll('tbody tr');
+      rows.forEach(function(r,i){setTimeout(function(){r.classList.add('visible')},i*100)});
+      tObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('.diff-table').forEach(function(t){tObs.observe(t)});
+
+// ── ANIMATED COUNTERS ──
+const mObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.metric').forEach(function(m,i){
+        setTimeout(function(){
+          m.classList.add('visible');
+          const target=parseInt(m.dataset.target);
+          const suffix=m.dataset.suffix||'';
+          const valEl=m.querySelector('.val');
+          const dur=1200;const start=Date.now();
+          function tick(){
+            const elapsed=Date.now()-start;const progress=Math.min(elapsed/dur,1);
+            const eased=1-Math.pow(1-progress,3);
+            valEl.textContent=Math.round(target*eased).toLocaleString()+suffix;
+            if(progress<1)requestAnimationFrame(tick);
+          }
+          tick();
+        },i*150);
+      });
+      mObs.unobserve(e.target);
+    }
+  });
+},{threshold:.5});
+mObs.observe(document.getElementById('metricsBar'));
+
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(function(a){
+  a.addEventListener('click',function(e){
+    var h=a.getAttribute('href');
+    if(h.length>1){e.preventDefault();var t=document.querySelector(h);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}
+  });
+});
+
+// ── 3D TILT ON FEATURE CARDS ──
+document.querySelectorAll('.feat-card').forEach(function(card){
+  card.addEventListener('mousemove',function(e){
+    var rect=card.getBoundingClientRect();
+    var x=(e.clientX-rect.left)/rect.width-.5;
+    var y=(e.clientY-rect.top)/rect.height-.5;
+    card.style.transform='translateY(-6px) perspective(600px) rotateY('+x*8+'deg) rotateX('+(-y*8)+'deg)';
+  });
+  card.addEventListener('mouseleave',function(){card.style.transform=''});
+});
+</script>
+</body>
+</html>
