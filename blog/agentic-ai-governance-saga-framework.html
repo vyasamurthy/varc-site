@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Governing Agentic AI: The SAGA Framework for Runtime Enforcement | VARC</title>
+<meta name="description" content="Agentic AI systems need more than guardrails. The SAGA framework (Scoring, Attenuation, Governance, Audit) provides 4-phase runtime enforcement for autonomous AI agents.">
+<meta name="keywords" content="agentic AI governance, SAGA framework, AI agent governance, runtime AI enforcement, behavioral envelope verification, graduated response orchestration, AI metagovernance, autonomous AI governance">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://varc.live/blog/agentic-ai-governance-saga-framework.html">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://varc.live/blog/agentic-ai-governance-saga-framework.html">
+<meta property="og:title" content="Governing Agentic AI: The SAGA Framework for Runtime Enforcement">
+<meta property="og:description" content="Agentic AI systems need more than guardrails. The SAGA framework (Scoring, Attenuation, Governance, Audit) provides 4-phase runtime enforcement for autonomous AI agents.">
+<meta property="og:image" content="https://varc.live/og-image.png">
+<meta property="og:site_name" content="VARC">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Governing Agentic AI: The SAGA Framework for Runtime Enforcement">
+<meta name="twitter:description" content="Agentic AI systems need more than guardrails. The SAGA framework (Scoring, Attenuation, Governance, Audit) provides 4-phase runtime enforcement for autonomous AI agents.">
+<link rel="icon" href="../favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Article","headline":"Governing Agentic AI: The SAGA Framework for Runtime Enforcement","description":"Agentic AI systems need more than guardrails. The SAGA framework (Scoring, Attenuation, Governance, Audit) provides 4-phase runtime enforcement for autonomous AI agents.","url":"https://varc.live/blog/agentic-ai-governance-saga-framework.html","datePublished":"2026-03-03","author":{"@type":"Person","name":"Vyasa Murthy"},"publisher":{"@type":"Organization","name":"Venture Vertex LLC","url":"https://varc.live"}}
+</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:#FAFCFF;color:#0F1729;font-family:'Outfit',sans-serif;line-height:1.8}
+nav{padding:16px 40px;border-bottom:1px solid rgba(26,107,255,.08);display:flex;align-items:center;justify-content:space-between}
+.logo{font-weight:800;font-size:22px;letter-spacing:2px;text-decoration:none;color:#0F1729}
+.logo span{background:linear-gradient(135deg,#1A6BFF,#00BFA6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+nav a{color:#3A4563;text-decoration:none;font-size:14px;margin-left:24px}
+nav a:hover{color:#1A6BFF}
+article{max-width:760px;margin:60px auto;padding:0 24px}
+h1{font-size:clamp(28px,4vw,42px);font-weight:800;line-height:1.2;margin-bottom:16px;letter-spacing:-1px}
+h2{font-size:24px;font-weight:700;margin:32px 0 12px;color:#1A6BFF}
+h3{font-size:18px;font-weight:700;margin:24px 0 8px}
+p{margin-bottom:16px;color:#3A4563;font-size:17px}
+.meta{font-size:13px;color:#6B7A99;margin-bottom:32px;padding-bottom:16px;border-bottom:1px solid #E8EDF6}
+.cta{background:linear-gradient(135deg,#F0F6FF,#E8F0FE);border-radius:12px;padding:32px;margin:40px 0;text-align:center}
+.cta h3{color:#0F1729;margin-bottom:8px}.cta p{color:#3A4563;margin-bottom:16px}
+.btn{display:inline-block;padding:12px 28px;background:#1A6BFF;color:#fff;border-radius:8px;text-decoration:none;font-weight:700;font-size:15px}
+.btn:hover{background:#3D85FF}
+strong{color:#0F1729}
+code{font-family:'JetBrains Mono',monospace;background:#F0F4FA;padding:2px 6px;border-radius:4px;font-size:14px;color:#1A6BFF}
+footer{max-width:760px;margin:60px auto;padding:24px;border-top:1px solid #E8EDF6;font-size:13px;color:#9EABC4;text-align:center}
+footer a{color:#1A6BFF;text-decoration:none}
+</style>
+</head>
+<body>
+<nav><a href="https://varc.live" class="logo"><span>VARC</span></a><div><a href="https://varc.live/#features">Features</a><a href="https://varc.live/blog/">Blog</a><a href="https://varc.live/#pricing">Pricing</a><a href="https://varc-platform.onrender.com" target="_blank">Live Demo</a></div></nav>
+<article>
+<h1>Governing Agentic AI: The SAGA Framework for Runtime Enforcement</h1>
+<div class="meta">By Vyasa Murthy &middot; March 3, 2026 &middot; VARC Research</div>
+<p>By 2026, Gartner projects that 40% of enterprise applications will embed autonomous AI agents. These agents don't just answer questions. They make decisions, chain together in workflows, access databases, and interact with customers. Governing them requires a fundamentally different approach from governing traditional AI models.</p><h2>Why Agents Are Different</h2><p>Traditional AI governance was built for models: validate before deployment, monitor performance metrics, retrain when drift is detected. Agents break this model in three ways:</p><p><strong>Real-time decisions:</strong> An agent makes decisions in milliseconds, not batch processes. Governance must operate at the same speed.</p><p><strong>Session context:</strong> An agent maintains state across a conversation. A decision on turn 15 depends on everything that happened in turns 1-14. Single-interaction evaluation is insufficient.</p><p><strong>Delegation chains:</strong> Agent A delegates to Agent B, which calls Agent C. Permissions must narrow on delegation, never widen. Without cryptographic identity verification, the delegation chain is unauditable.</p><h2>The SAGA Framework</h2><p>VARC's SAGA framework addresses each of these challenges through 4 runtime phases:</p><h3>Scoring</h3><p>Every interaction is scored across 8 behavioral dimensions using Behavioral Envelope Verification (BEV). The dimensions: PII exposure, authority escalation, harm potential, data classification, consistency, fairness, accuracy, and information seeking. The composite score and dimensional profile determine the risk surface of each interaction.</p><h3>Attenuation</h3><p>Cryptographic identity tokens verify agent identity and attenuate permissions on delegation. When Agent A delegates to Agent B, the token narrows. Agent B can never have more permissions than Agent A granted. This is mathematically enforced, not policy-enforced.</p><h3>Governance</h3><p>Graduated Response Orchestration (GRO) applies 5 levels of response proportional to the risk score: Autonomous, Monitor, Human-in-the-Loop, Restrict, Suspend. The response is proportional, not binary. A lending agent that slightly exceeds a fairness threshold gets human oversight. An agent attempting data exfiltration gets suspended with forensic capture.</p><h3>Audit</h3><p>Every governance decision is recorded in a hash-chained metagovernance trail. The chain is tamper-evident: modifying any entry breaks the hash chain. The governance engine is governed by its own evidence trail. The guardian has its own guardian.</p><h2>692 Compliance Frameworks at Runtime</h2><p>VARC integrates with 692 live compliance frameworks via API, with 819,000+ cross-framework control mappings. Each agent is assessed against frameworks specific to its operational domain. A lending agent maps to SR 11-7, ECOA, and FCRA. A healthcare agent maps to HIPAA and HITECH. Assessment is continuous, not point-in-time.</p>
+<div class="cta"><h3>See VARC in Action</h3><p>Try the live OpsCenter with 21 governance modules. No login required.</p><a href="https://varc-platform.onrender.com" target="_blank" class="btn">Open Live Demo</a></div>
+</article>
+<footer>&copy; 2026 Venture Vertex LLC &middot; <a href="https://varc.live">varc.live</a> &middot; <a href="https://varc.live/blog/">All Posts</a></footer>
+</body>
+</html>
