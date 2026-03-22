@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://varc.live</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
-  <url><loc>https://varc.live/blog/</loc><lastmod>2026-03-19</lastmod><changefreq>weekly</changefreq><priority>0.9</priority></url>
-  <url><loc>https://varc.live/blog/ai-governance-platform-comparison-2026.html</loc><lastmod>2025-12-05</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://varc.live/blog/runtime-ai-governance-vs-guardrails.html</loc><lastmod>2025-12-18</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://varc.live/blog/shadow-ai-discovery-enterprise.html</loc><lastmod>2026-01-09</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://varc.live/blog/eu-ai-act-runtime-enforcement.html</loc><lastmod>2026-02-06</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
-  <url><loc>https://varc.live/blog/agentic-ai-governance-saga-framework.html</loc><lastmod>2026-03-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://varc.live/</loc><lastmod>2026-03-21</lastmod><changefreq>weekly</changefreq><priority>1.0</priority></url>
+  <url><loc>https://varc.live/blog/</loc><lastmod>2026-03-21</lastmod><changefreq>weekly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://varc.live/blog/ai-governance-platform-comparison-2026.html</loc><lastmod>2025-12-05</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://varc.live/blog/runtime-ai-governance-vs-guardrails.html</loc><lastmod>2025-12-18</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://varc.live/blog/shadow-ai-discovery-enterprise.html</loc><lastmod>2026-01-09</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://varc.live/blog/eu-ai-act-runtime-enforcement.html</loc><lastmod>2026-02-06</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://varc.live/blog/agentic-ai-governance-saga-framework.html</loc><lastmod>2026-03-03</lastmod><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://varc.live/blog/ai-runtime-governance-enforcement.html</loc><lastmod>2026-03-15</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://varc.live/blog/five-governance-engines-ai-agents.html</loc><lastmod>2026-03-20</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 </urlset>
