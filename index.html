@@ -303,6 +303,12 @@ footer a:hover{color:var(--t1);transform:translateX(3px)}
 @media(max-width:900px){.saga-grid,.price-grid,.blog-grid,.coverage-grid{grid-template-columns:1fr 1fr}.demo-grid,.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.metrics{flex-wrap:wrap}.metric{flex:1 1 40%;border-right:none;border-bottom:1px solid var(--border);padding:24px}.nav-links>a:not(.nav-cta){display:none}}
 @media(max-width:600px){.saga-grid,.price-grid,.engines-grid,.use-grid,.blog-grid,.coverage-grid{grid-template-columns:1fr}nav{padding:0 20px}section{padding:64px 20px}.footer-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
 </style>
+<!-- Privacy-friendly analytics by Plausible -->
+<script async src="https://plausible.io/js/pa-AGAY9GPECnGmqFCeCBzxN.js"></script>
+<script>
+  window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+  plausible.init()
+</script>
 </head>
 <body>
 <div id="sp"></div>
@@ -329,7 +335,7 @@ footer a:hover{color:var(--t1);transform:translateX(3px)}
 </svg>
 <span style="font-size:11px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.02em">Marketplace</span>
 </a>
-    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="nav-cta">Live Demo →</a>
+    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="nav-cta" onclick="plausible('Demo Click',{props:{location:'nav'}})">Live Demo →</a>
   </div>
 </nav>
 
@@ -573,7 +579,7 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
         <div class="sec-label">Live Platform</div>
         <h2 class="sec-title">OpsCenter v9<br>Production</h2>
         <p class="sec-desc">13 governance modules. 180+ sprints. Deployed on Google Cloud Run. Seed the demo environment and govern your first AI agent in under 60 seconds.</p>
-        <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn-primary" style="display:inline-flex;margin-bottom:32px">Open Production OpsCenter →</a>
+        <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn-primary" style="display:inline-flex;margin-bottom:32px" onclick="plausible('Demo Click',{props:{location:'demo-section'}})">Open Production OpsCenter →</a>
         <div style="display:flex;flex-direction:column;gap:12px">
           <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t3)"><span style="color:var(--ok);font-weight:700;font-family:var(--mono)">✓</span> No login required — seed and explore instantly</div>
           <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t3)"><span style="color:var(--ok);font-weight:700;font-family:var(--mono)">✓</span> Deployed on Google Cloud Run, us-central1</div>
@@ -637,7 +643,7 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
           <li class="na">Intent Alignment Scoring</li>
           <li class="na">Shadow AI Discovery</li>
         </ul>
-        <a href="https://console.cloud.google.com/marketplace" target="_blank" class="btn-price">Start Free Trial</a>
+        <a href="https://console.cloud.google.com/marketplace" target="_blank" class="btn-price" onclick="plausible('Marketplace Click',{props:{plan:'Starter'}})">Start Free Trial</a>
       </div>
       <div class="price-card featured">
         <h3>Professional</h3>
@@ -654,7 +660,7 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
           <li>SIEM integration (Splunk, XSIAM)</li>
           <li>Dedicated support + SLA</li>
         </ul>
-        <a href="https://console.cloud.google.com/marketplace" target="_blank" class="btn-price">Request Demo</a>
+        <a href="https://console.cloud.google.com/marketplace" target="_blank" class="btn-price" onclick="plausible('Marketplace Click',{props:{plan:'Professional'}})">Request Demo</a>
       </div>
       <div class="price-card">
         <h3>Enterprise</h3>
@@ -685,7 +691,7 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
     <h2 class="sec-title rv">From the VARC Blog</h2>
     <p class="sec-desc rv">Technical deep dives, compliance guidance, and market analysis.</p>
     <div class="blog-grid stg">
-      <a href="blog/runtime-ai-governance-vs-guardrails.html" class="blog-card">
+      <a href="blog/runtime-ai-governance-vs-guardrails.html" class="blog-card" onclick="plausible('Blog Click',{props:{post:'graduated-response'}})">
         <div class="blog-thumb" style="background:linear-gradient(135deg,#0C1528,#101C35)">🛡️</div>
         <div class="blog-body">
           <div class="blog-tag">Technical Deep Dive</div>
@@ -695,7 +701,7 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
           <div class="read-more">Read More →</div>
         </div>
       </a>
-      <a href="blog/shadow-ai-discovery-enterprise.html" class="blog-card">
+      <a href="blog/shadow-ai-discovery-enterprise.html" class="blog-card" onclick="plausible('Blog Click',{props:{post:'shadow-ai'}})">
         <div class="blog-thumb" style="background:linear-gradient(135deg,#0C1528,#0a1a2e)">👁</div>
         <div class="blog-body">
           <div class="blog-tag">Shadow AI</div>
@@ -705,7 +711,7 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
           <div class="read-more">Read More →</div>
         </div>
       </a>
-      <a href="blog/ai-governance-platform-comparison-2026.html" class="blog-card">
+      <a href="blog/ai-governance-platform-comparison-2026.html" class="blog-card" onclick="plausible('Blog Click',{props:{post:'sr-11-7'}})">
         <div class="blog-thumb" style="background:linear-gradient(135deg,#0C1528,#1a1228)">📋</div>
         <div class="blog-body">
           <div class="blog-tag">Compliance</div>
@@ -751,7 +757,7 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
         <div class="form-row">
           <div class="form-group full"><label>Message</label><textarea placeholder="Tell us about your AI governance needs..."></textarea></div>
         </div>
-        <button class="btn-submit" onclick="this.textContent='Sent! We will be in touch within 24 hours.';this.style.background='#00BFA6';this.disabled=true">Send Message</button>
+        <button class="btn-submit" onclick="plausible('Contact Form Submitted');this.textContent='Sent! We will be in touch within 24 hours.';this.style.background='#00BFA6';this.disabled=true">Send Message</button>
       </div>
       <div class="contact-info rv-r">
         <div class="ci2"><div class="ci2-icon">🏢</div><div><h4>Headquarters</h4><p>Venture Vertex LLC<br>Dallas, Texas</p></div></div>
@@ -769,7 +775,7 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
   <h2 class="rv">Ready to Govern<br><span class="grad">Your AI Fleet?</span></h2>
   <p class="rv">No code changes. No policy rewrites. VARC wraps your existing agents.</p>
   <div class="cta-actions rv">
-    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn-primary">Open Live Demo →</a>
+    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn-primary" onclick="plausible('Demo Click',{props:{location:'cta'}})">Open Live Demo →</a>
     <a href="#contact" class="btn-ghost">Talk to Sales</a>
   </div>
 </section>
