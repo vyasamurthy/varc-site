@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support — VARC Verifiable AI Runtime Control</title>
+<meta name="description" content="VARC support resources, documentation, and contact information for enterprise AI governance platform.">
+<link rel="canonical" href="https://varc.live/support">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Plausible -->
+<script defer data-domain="varc.live" src="https://plausible.io/js/script.tagged-events.js"></script>
+<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050A14;--bg2:#080F1E;--bg3:#0C1528;
+  --t1:#F0F4FF;--t2:#94A3C4;--t3:#4A5A7A;
+  --ac:#2563EB;--ac2:#3B82F6;
+  --cy:#00D4FF;--ok:#00FF88;
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
+  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+  --r:12px;--r2:8px;
+}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);line-height:1.6;min-height:100vh}
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(5,10,20,.95);border-bottom:1px solid var(--border)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:22px;color:var(--t1)}
+.logo-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--ac),var(--cy));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
+.nav-cta{padding:8px 20px;background:var(--ac);color:#fff;border-radius:6px;font-weight:600;font-size:13px;text-decoration:none;transition:all .2s}
+.nav-cta:hover{background:var(--ac2)}
+.hero{padding:80px 48px 60px;text-align:center;background:radial-gradient(ellipse 70% 50% at 50% 0%,rgba(37,99,235,.1),transparent)}
+.hero h1{font-family:var(--display);font-size:48px;font-weight:800;letter-spacing:-1px;margin-bottom:16px}
+.hero p{font-size:18px;color:var(--t2);max-width:520px;margin:0 auto}
+.container{max-width:1000px;margin:0 auto;padding:0 48px 80px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-bottom:48px}
+.card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px;transition:all .25s}
+.card:hover{border-color:rgba(0,212,255,.2);transform:translateY(-3px)}
+.card-icon{font-size:28px;margin-bottom:14px}
+.card h3{font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:8px}
+.card p{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:16px}
+.card a{font-size:13px;color:var(--cy);text-decoration:none;font-weight:600;display:flex;align-items:center;gap:4px;transition:gap .15s}
+.card a:hover{gap:8px}
+.contact-box{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:40px;margin-bottom:32px;position:relative;overflow:hidden}
+.contact-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--cy),transparent)}
+.contact-box h2{font-family:var(--display);font-size:24px;font-weight:800;margin-bottom:8px}
+.contact-box p{font-size:15px;color:var(--t2);margin-bottom:24px}
+.contact-methods{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.cm{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:20px}
+.cm .label{font-family:var(--mono);font-size:10px;color:var(--t3);letter-spacing:.08em;text-transform:uppercase;margin-bottom:6px}
+.cm .value{font-size:14px;font-weight:600;color:var(--t1)}
+.cm .value a{color:var(--cy);text-decoration:none}
+.cm .value a:hover{text-decoration:underline}
+.cm .sub{font-size:12px;color:var(--t3);margin-top:4px}
+.sla-table{width:100%;border-collapse:collapse;font-size:14px;border-radius:var(--r);overflow:hidden;margin-bottom:32px}
+.sla-table th{background:var(--bg3);color:var(--t2);padding:12px 16px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-family:var(--mono);border-bottom:1px solid var(--border)}
+.sla-table td{padding:11px 16px;border-bottom:1px solid var(--border);color:var(--t2);background:var(--bg2)}
+.sla-table tr:hover td{background:var(--bg3)}
+.badge{display:inline-block;padding:2px 8px;border-radius:4px;font-size:11px;font-weight:600;font-family:var(--mono)}
+.badge.ok{background:rgba(0,255,136,.1);color:var(--ok);border:1px solid rgba(0,255,136,.2)}
+.badge.cy{background:rgba(0,212,255,.1);color:var(--cy);border:1px solid rgba(0,212,255,.2)}
+.badge.wn{background:rgba(245,158,11,.1);color:#F59E0B;border:1px solid rgba(245,158,11,.2)}
+.faq{display:flex;flex-direction:column;gap:12px;margin-bottom:48px}
+.faq-item{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:20px 24px}
+.faq-item h4{font-size:15px;font-weight:600;margin-bottom:8px;color:var(--t1)}
+.faq-item p{font-size:13px;color:var(--t3);line-height:1.6}
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 48px;text-align:center}
+footer p{font-size:13px;color:var(--t3)}
+footer a{color:var(--cy);text-decoration:none}
+@media(max-width:768px){.grid,.contact-methods{grid-template-columns:1fr}nav{padding:0 20px}.container{padding:0 20px 60px}.hero{padding:60px 20px 40px}.hero h1{font-size:32px}}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><div class="logo-mark">V</div>VARC</a>
+  <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="nav-cta" onclick="plausible('Demo Click',{props:{location:'support-nav'}})">Live Demo →</a>
+</nav>
+
+<div class="hero">
+  <h1>Support Center</h1>
+  <p>Everything you need to deploy, configure, and operate VARC in your enterprise environment.</p>
+</div>
+
+<div class="container">
+
+  <!-- QUICK LINKS -->
+  <div class="grid">
+    <div class="card">
+      <div class="card-icon">🚀</div>
+      <h3>Getting Started</h3>
+      <p>Deploy VARC, register your first tenant, and govern your first AI agent in under 15 minutes.</p>
+      <a href="mailto:info@venture-vertex.com?subject=Getting Started with VARC">Request Onboarding Guide →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">📖</div>
+      <h3>Platform Documentation</h3>
+      <p>Deep dive into the SAGA framework, BEV scoring, GRO enforcement, and the evidence chain.</p>
+      <a href="mailto:info@venture-vertex.com?subject=VARC Documentation Request">Request Documentation →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h3>API Reference</h3>
+      <p>Full OpenAPI specification for all platform endpoints. Available under NDA for enterprise customers.</p>
+      <a href="mailto:info@venture-vertex.com?subject=VARC API Documentation Request">Request API Access →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔌</div>
+      <h3>Integrations</h3>
+      <p>Connect VARC to ServiceNow, Palo Alto, Splunk, GitHub Actions, and 52 MCP server environments.</p>
+      <a href="mailto:info@venture-vertex.com?subject=VARC Integration Support">Integration Support →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">🛡️</div>
+      <h3>Security & Compliance</h3>
+      <p>Deployment architecture, sovereign configuration, data residency, encryption, and compliance guides.</p>
+      <a href="mailto:info@venture-vertex.com?subject=VARC Security Documentation">Security Docs →</a>
+    </div>
+    <div class="card">
+      <div class="card-icon">☁️</div>
+      <h3>Google Cloud Marketplace</h3>
+      <p>Subscription management, billing, plan upgrades, and EDP credit questions for Marketplace customers.</p>
+      <a href="https://console.cloud.google.com/marketplace" target="_blank">Manage Subscription →</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <div class="contact-box">
+    <h2>Contact Support</h2>
+    <p>Our team responds to all inquiries within one business day. Enterprise customers on Professional and Enterprise plans receive priority response.</p>
+    <div class="contact-methods">
+      <div class="cm">
+        <div class="label">General Support</div>
+        <div class="value"><a href="mailto:info@venture-vertex.com">info@venture-vertex.com</a></div>
+        <div class="sub">All plan inquiries, onboarding, and general questions</div>
+      </div>
+      <div class="cm">
+        <div class="label">Enterprise & Partnerships</div>
+        <div class="value"><a href="mailto:info@venture-vertex.com?subject=Enterprise Inquiry">info@venture-vertex.com</a></div>
+        <div class="sub">Enterprise pricing, GSI partnerships, reseller programs</div>
+      </div>
+      <div class="cm">
+        <div class="label">Live Demo</div>
+        <div class="value"><a href="https://varc-api-67840786835.us-central1.run.app" target="_blank">OpsCenter v9</a></div>
+        <div class="sub">No login required — explore the full platform instantly</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SLA TABLE -->
+  <h2 style="font-family:var(--display);font-size:22px;font-weight:800;margin-bottom:16px">Support Response Times</h2>
+  <table class="sla-table">
+    <thead>
+      <tr>
+        <th>Plan</th>
+        <th>Initial Response</th>
+        <th>Resolution Target</th>
+        <th>Channel</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Starter</strong></td>
+        <td>1 business day</td>
+        <td>5 business days</td>
+        <td>Email</td>
+        <td><span class="badge cy">Standard</span></td>
+      </tr>
+      <tr>
+        <td><strong>Professional</strong></td>
+        <td>4 business hours</td>
+        <td>2 business days</td>
+        <td>Email + Video</td>
+        <td><span class="badge ok">Priority</span></td>
+      </tr>
+      <tr>
+        <td><strong>Enterprise</strong></td>
+        <td>1 business hour</td>
+        <td>Same business day</td>
+        <td>Dedicated + 24/7</td>
+        <td><span class="badge ok">Premium</span></td>
+      </tr>
+      <tr>
+        <td><strong>POC / Trial</strong></td>
+        <td>1 business day</td>
+        <td>3 business days</td>
+        <td>Email</td>
+        <td><span class="badge wn">Trial</span></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- FAQ -->
+  <h2 style="font-family:var(--display);font-size:22px;font-weight:800;margin-bottom:16px">Frequently Asked Questions</h2>
+  <div class="faq">
+    <div class="faq-item">
+      <h4>How quickly can VARC be deployed?</h4>
+      <p>VARC can be deployed and governing your first AI agent within 15 minutes using our Docker-based deployment. No code changes are required to existing agents. Enterprise on-premise deployments typically complete within 1-2 days with our onboarding team.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Does VARC require changes to my existing AI agents?</h4>
+      <p>No. VARC wraps your existing agents as a governance layer. There are no code changes, no policy rewrites, and no re-architecture of your existing AI infrastructure required.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How do I access VARC through Google Cloud Marketplace?</h4>
+      <p>Search for "VARC" on the Google Cloud Marketplace, select your plan, and subscribe. Your subscription applies against your existing GCP committed spend (EDP credits). Once subscribed, you'll receive onboarding instructions within one business day.</p>
+    </div>
+    <div class="faq-item">
+      <h4>What compliance frameworks does VARC support?</h4>
+      <p>VARC includes 692 live compliance frameworks with 819K+ cross-mappings including EU AI Act, ISO 42001, NIST AI RMF, HIPAA, SR 11-7, ECOA, FCRA, SOX, PCI DSS, FedRAMP, and many more. Custom framework configuration is available on Enterprise plans.</p>
+    </div>
+    <div class="faq-item">
+      <h4>Can VARC be deployed on-premise or in an air-gapped environment?</h4>
+      <p>Yes. VARC supports on-premise Docker deployment, customer VPC deployment on AWS/Azure/GCP, and fully air-gapped configurations with zero external calls. Contact us for air-gapped deployment documentation.</p>
+    </div>
+    <div class="faq-item">
+      <h4>How do I upgrade or downgrade my plan?</h4>
+      <p>Plan changes can be managed through the Google Cloud Marketplace console or by contacting info@venture-vertex.com. Upgrades take effect immediately. Downgrades take effect at the end of the current billing period.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 Venture Vertex LLC · <a href="/">varc.live</a> · <a href="mailto:info@venture-vertex.com">info@venture-vertex.com</a> · Dallas, Texas</p>
+</footer>
+
+</body>
+</html>
