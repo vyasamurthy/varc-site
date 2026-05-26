@@ -1,617 +1,828 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VARC — Verifiable AI Runtime Control | 52 Enterprise Agent Environments. One Governance Layer.</title>
-<meta name="description" content="VARC intercepts and governs AI agent actions across 52 enterprise environments before they execute. Runtime governance, not post-incident audit. Now on Google Cloud Marketplace.">
-<meta name="keywords" content="AI governance platform, AI runtime control, AI agent governance, MCP governance, behavioral scoring AI, AI compliance, enterprise AI governance, AI safety, agentic AI, runtime enforcement">
-<meta name="robots" content="index, follow">
-<meta name="author" content="Venture Vertex LLC">
-<link rel="canonical" href="https://varc.live">
-<link rel="icon" href="favicon.ico" type="image/x-icon">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://varc.live">
-<meta property="og:title" content="VARC — 52 Enterprise Agent Environments. One Governance Layer.">
-<meta property="og:description" content="VARC intercepts and governs AI agent actions before they execute. No code changes. No policy rewrites. Validated by IDC as a potential new market category.">
-<meta property="og:image" content="https://varc.live/og-image.png">
-<meta property="og:site_name" content="VARC">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="VARC — Verifiable AI Runtime Control">
-<meta name="twitter:description" content="52 enterprise agent environments. One governance layer. Runtime interception before the action executes.">
-<meta name="twitter:image" content="https://varc.live/og-image.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>VARC — Verifiable AI Runtime Control | Agentic Security Intelligence</title>
+<meta name="description" content="VARC intercepts and governs AI agent actions across 52 enterprise environments before they execute. CMMC L2 · SOC 2 · EU AI Act · OWASP 2025. Now on Google Cloud Marketplace."/>
+<meta name="keywords" content="AI governance platform, AI runtime control, AI agent governance, agentic security, OWASP LLM 2025, CMMC AI governance, SOC 2 AI compliance, behavioral scoring AI, enterprise AI governance"/>
+<meta property="og:title" content="VARC — 52 Enterprise Agent Environments. One Governance Layer."/>
+<meta property="og:description" content="VARC intercepts and governs AI agent actions before they execute. No code changes. No policy rewrites. CMMC L2 · SOC 2 · EU AI Act · OWASP 2025."/>
+<meta property="og:image" content="https://varc.live/og-image.png"/>
+<meta property="og:site_name" content="VARC"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="https://varc.live"/>
+<meta name="robots" content="index, follow"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="VARC — Verifiable AI Runtime Control"/>
+<meta name="twitter:description" content="52 enterprise agent environments. One governance layer. Runtime interception before the action executes."/>
+<meta name="twitter:image" content="https://varc.live/og-image.png"/>
+<link rel="canonical" href="https://varc.live"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
 <style>
-*{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#050A14;--bg2:#080F1E;--bg3:#0C1528;--bg4:#101C35;
-  --t1:#F0F4FF;--t2:#94A3C4;--t3:#4A5A7A;--t4:#2A3550;
-  --ac:#2563EB;--ac2:#3B82F6;--ac3:#1D4ED8;
-  --cy:#00D4FF;--cy2:rgba(0,212,255,.12);--cy3:rgba(0,212,255,.06);
-  --ok:#00FF88;--ok2:rgba(0,255,136,.12);
-  --cr:#FF3366;--cr2:rgba(255,51,102,.12);
-  --wn:#F59E0B;--wn2:rgba(245,158,11,.12);
-  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
-  --glow-blue:0 0 40px rgba(37,99,235,.2);
-  --glow-cy:0 0 40px rgba(0,212,255,.15);
-  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;--display:'Plus Jakarta Sans',sans-serif;
-  --r:12px;--r2:8px;
+/* ── DESIGN TOKENS — matching existing varc.live palette ── */
+:root {
+  --bg:        #060d1a;
+  --bg2:       #0a1628;
+  --bg3:       #0e1f38;
+  --card:      #0d1a30;
+  --card2:     #091422;
+  --border:    #1a2d48;
+  --border2:   #243d5c;
+  --teal:      #2563EB;
+  --teal2:     #1D4ED8;
+  --teal-dim:  rgba(37,99,235,.12);
+  --teal-glow: rgba(37,99,235,.06);
+  --blue:      #3B82F6;
+  --blue-dim:  rgba(59,130,246,.12);
+  --blue2:     #1D4ED8;
+  --blue-glow: rgba(37,99,235,.06);
+  --fg:        #e2eaf5;
+  --fg2:       #8fa0b8;
+  --fg3:       #506070;
+  --green:     #22c55e;
+  --green-dim: rgba(34,197,94,.12);
+  --amber:     #f59e0b;
+  --amber-dim: rgba(245,158,11,.12);
+  --red:       #ef4444;
+  --red-dim:   rgba(239,68,68,.12);
+  --r:         6px;
+  --r2:        12px;
+  --font:      'Space Grotesk', sans-serif;
+  --mono:      'JetBrains Mono', monospace;
+  --shadow:    0 8px 48px rgba(0,0,0,.6);
 }
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--t1);font-family:var(--sans);overflow-x:hidden;line-height:1.6}
-::selection{background:var(--ac);color:#fff}
+*,*::before,*::after { box-sizing:border-box; margin:0; padding:0 }
+html { scroll-behavior:smooth }
+body { background:var(--bg); color:var(--fg); font-family:var(--font); font-size:16px; line-height:1.6; overflow-x:hidden }
+a { color:inherit; text-decoration:none }
+img { max-width:100%; display:block }
 
-/* SCROLL PROGRESS */
-#sp{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--ac),var(--cy));z-index:300;width:0;transition:width .1s}
+/* ── TYPOGRAPHY ── */
+h1 { font-size:clamp(40px,5.5vw,72px); font-weight:700; line-height:1.06; letter-spacing:-1.5px }
+h2 { font-size:clamp(28px,3.5vw,46px); font-weight:700; line-height:1.1; letter-spacing:-.8px }
+h3 { font-size:18px; font-weight:600; line-height:1.3 }
+h4 { font-size:15px; font-weight:600 }
 
-/* NAV */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(5,10,20,.8);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);transition:all .3s}
-nav.scrolled{background:rgba(5,10,20,.95)}
-.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:22px;letter-spacing:1px;color:var(--t1)}
-.logo-mark{width:32px;height:32px;background:linear-gradient(135deg,var(--ac),var(--cy));border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:#fff}
-.nav-links{display:flex;gap:32px;align-items:center}
-.nav-links a{color:var(--t2);text-decoration:none;font-size:14px;font-weight:500;transition:color .2s;letter-spacing:.02em}
-.nav-links a:hover{color:var(--t1)}
-.nav-cta{padding:8px 20px;background:var(--ac);color:#fff;border-radius:6px;font-family:var(--sans);font-weight:600;font-size:13px;cursor:pointer;transition:all .2s;text-decoration:none;letter-spacing:.02em}
-.nav-cta:hover{background:var(--ac2);transform:translateY(-1px)}
-.nav-badge{padding:4px 10px;border:1px solid rgba(0,212,255,.3);color:var(--cy);border-radius:20px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+/* ── NAV ── */
+#nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  height:60px; padding:0 5%;
+  display:flex; align-items:center; justify-content:space-between;
+  background:rgba(6,13,26,.95); backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo { font-family:var(--mono); font-size:16px; font-weight:600; letter-spacing:-.3px; display:flex; align-items:center; gap:8px }
+.nav-logo-v { color:var(--blue); font-size:18px }
+.nav-links { display:flex; gap:24px; font-size:13px; color:var(--fg2); font-weight:500 }
+.nav-links a:hover { color:var(--fg) }
+.nav-actions { display:flex; gap:8px }
+.btn { display:inline-flex; align-items:center; gap:6px; padding:8px 18px; border-radius:var(--r); font-family:var(--font); font-size:13px; font-weight:600; cursor:pointer; border:none; transition:all .18s; white-space:nowrap }
+.btn-outline { background:transparent; border:1px solid var(--border2); color:var(--fg2) }
+.btn-outline:hover { border-color:var(--blue2); color:var(--fg) }
+.btn-teal { background:var(--blue); color:var(--bg); font-weight:700 }
+.btn-teal:hover { background:var(--blue2); transform:translateY(-1px) }
+.btn-blue { background:var(--blue); color:#fff }
+.btn-blue:hover { opacity:.9; transform:translateY(-1px) }
+.btn-lg { padding:13px 28px; font-size:15px; border-radius:var(--r2) }
 
-/* HERO */
-.hero{position:relative;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:120px 40px 80px;overflow:hidden}
-.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 0%,rgba(37,99,235,.12) 0%,transparent 60%),radial-gradient(ellipse 40% 40% at 80% 60%,rgba(0,212,255,.06) 0%,transparent 50%)}
-.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse at center,black 30%,transparent 80%)}
-.hero-content{position:relative;z-index:1;max-width:900px}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 8px;border-radius:20px;background:rgba(0,212,255,.06);border:1px solid rgba(0,212,255,.2);font-size:12px;color:var(--cy);margin-bottom:36px;font-weight:500;letter-spacing:.04em;animation:fadeUp .8s ease-out .2s both}
-.hero-eyebrow .pulse{width:6px;height:6px;border-radius:50%;background:var(--ok);animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(0,255,136,.4)}50%{opacity:.5;box-shadow:0 0 0 8px rgba(0,255,136,0)}}
-h1{font-family:var(--display);font-size:clamp(48px,7vw,84px);font-weight:800;line-height:1.05;margin-bottom:24px;letter-spacing:-2px;animation:fadeUp .8s ease-out .4s both}
-.grad{background:linear-gradient(135deg,var(--cy) 0%,var(--ac2) 50%,var(--cy) 100%);background-size:200%;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:gradShift 4s ease-in-out infinite}
-@keyframes gradShift{0%,100%{background-position:0%}50%{background-position:100%}}
-.hero-sub{font-size:clamp(16px,2vw,20px);color:var(--t2);max-width:620px;margin:0 auto 48px;font-weight:400;line-height:1.7;animation:fadeUp .8s ease-out .6s both}
-.hero-ctas{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;animation:fadeUp .8s ease-out .8s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
-.btn-primary{padding:14px 32px;background:var(--ac);color:#fff;border:none;border-radius:var(--r2);font-family:var(--sans);font-weight:600;font-size:15px;cursor:pointer;transition:all .25s;text-decoration:none;display:inline-flex;align-items:center;gap:8px;letter-spacing:.02em}
-.btn-primary:hover{background:var(--ac2);box-shadow:0 8px 24px rgba(37,99,235,.4);transform:translateY(-2px)}
-.btn-ghost{padding:14px 32px;background:transparent;color:var(--t1);border:1px solid var(--border2);border-radius:var(--r2);font-family:var(--sans);font-weight:500;font-size:15px;cursor:pointer;transition:all .25s;text-decoration:none;letter-spacing:.02em}
-.btn-ghost:hover{border-color:rgba(0,212,255,.4);color:var(--cy);transform:translateY(-2px)}
+/* ── HERO ── */
+#hero {
+  min-height:100vh; padding:120px 5% 80px;
+  display:flex; flex-direction:column; justify-content:center;
+  position:relative; overflow:hidden;
+}
+.hero-noise {
+  position:absolute; inset:0; pointer-events:none;
+  background:
+    radial-gradient(ellipse 70% 50% at 65% 15%, rgba(37,99,235,.07) 0%, transparent 65%),
+    radial-gradient(ellipse 40% 30% at 10% 85%, rgba(26,111,255,.07) 0%, transparent 60%);
+}
+.hero-grid-lines {
+  position:absolute; inset:0; pointer-events:none;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:72px 72px; opacity:.15;
+}
+.hero-inner { position:relative; max-width:840px }
+.hero-pill {
+  display:inline-flex; align-items:center; gap:8px;
+  padding:5px 14px; border-radius:20px;
+  background:var(--blue-dim); border:1px solid rgba(37,99,235,.25);
+  font-family:var(--mono); font-size:11px; font-weight:500;
+  color:var(--blue); letter-spacing:.5px; text-transform:uppercase;
+  margin-bottom:28px;
+}
+.hero-pill-dot { width:6px; height:6px; border-radius:50%; background:var(--blue); animation:blink 2s infinite }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:.3} }
+.hero-h1 { margin-bottom:22px }
+.hero-h1 .accent { color:var(--blue) }
+.hero-sub { font-size:clamp(16px,1.8vw,19px); color:var(--fg2); max-width:580px; font-weight:400; margin-bottom:36px; line-height:1.7 }
+.hero-cta { display:flex; gap:12px; flex-wrap:wrap; margin-bottom:60px }
+.hero-stats {
+  display:grid; grid-template-columns:repeat(5,1fr);
+  border:1px solid var(--border); border-radius:var(--r2); overflow:hidden;
+  max-width:760px; background:var(--card2);
+}
+.hero-stat { padding:20px 18px; text-align:center; border-right:1px solid var(--border) }
+.hero-stat:last-child { border-right:none }
+.hs-n { font-family:var(--mono); font-size:24px; font-weight:600; color:var(--blue); letter-spacing:-1px; line-height:1 }
+.hs-l { font-size:10px; color:var(--fg3); text-transform:uppercase; letter-spacing:.7px; margin-top:5px }
 
-/* INTERCEPT VISUAL */
-.intercept-visual{margin-top:72px;position:relative;max-width:800px;width:100%;animation:fadeUp .8s ease-out 1s both}
-.iv-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:24px;position:relative;overflow:hidden}
-.iv-wrap::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cy),transparent)}
-.iv-bar{display:flex;align-items:center;gap:8px;margin-bottom:20px;padding-bottom:16px;border-bottom:1px solid var(--border)}
-.iv-dot{width:8px;height:8px;border-radius:50%}
-.iv-title{font-family:var(--mono);font-size:11px;color:var(--t3);letter-spacing:.08em;margin-left:4px}
-.iv-status{margin-left:auto;padding:3px 10px;border-radius:20px;background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.2);font-size:10px;color:var(--ok);font-family:var(--mono);letter-spacing:.06em}
-.iv-flow{display:flex;align-items:center;gap:0;overflow:hidden}
-.iv-node{flex:1;text-align:center;padding:12px 8px;border-radius:8px;transition:all .4s}
-.iv-node .iv-label{font-size:10px;color:var(--t3);font-family:var(--mono);letter-spacing:.06em;margin-bottom:4px;text-transform:uppercase}
-.iv-node .iv-val{font-size:13px;font-weight:600;color:var(--t2)}
-.iv-node.active .iv-val{color:var(--cy)}
-.iv-node.blocked .iv-val{color:var(--cr)}
-.iv-node.passed .iv-val{color:var(--ok)}
-.iv-arrow{width:32px;flex-shrink:0;text-align:center;color:var(--t4);font-size:16px;position:relative}
-.iv-arrow.animating::after{content:"";position:absolute;top:50%;left:0;width:100%;height:2px;background:linear-gradient(90deg,var(--cy),transparent);transform:translateY(-50%);animation:flowRight .8s linear infinite}
-@keyframes flowRight{from{transform:translateY(-50%) scaleX(0);transform-origin:left}to{transform:translateY(-50%) scaleX(1);transform-origin:left}}
-.iv-score{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:16px;padding-top:16px;border-top:1px solid var(--border)}
-.iv-dim{background:var(--bg3);border-radius:6px;padding:8px;text-align:center}
-.iv-dim .dl{font-size:9px;color:var(--t3);letter-spacing:.06em;text-transform:uppercase;margin-bottom:4px;font-family:var(--mono)}
-.iv-dim .dv{font-size:16px;font-weight:700;font-family:var(--mono)}
+/* ── LIVE INTERCEPT PANEL (right side) ── */
+.hero-panel {
+  position:absolute; right:5%; top:50%; transform:translateY(-50%);
+  width:360px; background:var(--card); border:1px solid var(--border2);
+  border-radius:var(--r2); overflow:hidden; box-shadow:var(--shadow);
+}
+.hp-bar {
+  padding:10px 14px; background:var(--card2); border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--mono); font-size:10px; color:var(--fg3); letter-spacing:.4px;
+}
+.hp-bar-dot { display:flex; align-items:center; gap:6px; font-weight:600; color:var(--blue) }
+.hp-bar-dot::before { content:''; width:6px; height:6px; border-radius:50%; background:var(--blue); animation:blink 1.5s infinite }
+.hp-body { padding:14px }
+.hp-row {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:8px 10px; border-radius:var(--r); background:rgba(255,255,255,.02);
+  margin-bottom:6px; font-size:11px;
+}
+.hp-label { color:var(--fg3); font-family:var(--mono) }
+.hp-val { font-family:var(--mono); font-size:10px }
+.c-ok { color:var(--green) }
+.c-warn { color:var(--amber) }
+.c-bad { color:var(--red) }
+.c-info { color:var(--blue) }
+.hp-bev { margin:10px 0; padding:10px; background:var(--blue-glow); border:1px solid rgba(37,99,235,.12); border-radius:var(--r) }
+.hp-bev-title { font-family:var(--mono); font-size:9px; color:var(--blue); font-weight:600; letter-spacing:.6px; text-transform:uppercase; margin-bottom:8px }
+.dim { display:flex; align-items:center; gap:6px; margin-bottom:4px }
+.dim-n { font-family:var(--mono); font-size:9px; color:var(--fg3); width:72px; flex-shrink:0 }
+.dim-t { flex:1; height:2px; background:var(--border2); border-radius:1px; overflow:hidden }
+.dim-f { height:100%; border-radius:1px }
+.df-blue { background:var(--blue) }
+.df-amber { background:var(--amber) }
+.df-red { background:var(--red) }
+.df-blue { background:var(--blue) }
+.dim-s { font-family:var(--mono); font-size:9px; width:28px; text-align:right }
+.hp-verdict {
+  display:flex; align-items:center; justify-content:space-between;
+  padding:9px 10px; border-radius:var(--r);
+  background:var(--red-dim); border:1px solid rgba(239,68,68,.2); margin-top:10px;
+}
+.hp-verdict-label { font-family:var(--mono); font-size:11px; font-weight:700; color:var(--red); letter-spacing:.5px }
+.hp-verdict-ms { font-family:var(--mono); font-size:10px; color:var(--fg3) }
 
-/* TRUST STRIP */
-.trust{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:16px 48px}
-.trust-inner{max-width:1200px;margin:0 auto;display:flex;align-items:center;justify-content:center;gap:40px;flex-wrap:wrap}
-.trust-item{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--t3);font-weight:500;letter-spacing:.03em}
-.trust-item .dot{width:6px;height:6px;border-radius:50%}
-.trust-div{width:1px;height:20px;background:var(--border2)}
+/* ── SECTION BASE ── */
+section { padding:96px 5% }
+.s-label { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--blue); letter-spacing:1.2px; text-transform:uppercase; margin-bottom:12px }
+.s-sub { font-size:17px; color:var(--fg2); max-width:540px; font-weight:400; line-height:1.7; margin-bottom:52px }
+.alt-bg { background:var(--bg2) }
 
-/* METRICS */
-.metrics{display:flex;justify-content:center;gap:0;padding:64px 48px;border-bottom:1px solid var(--border);max-width:1200px;margin:0 auto}
-.metric{flex:1;text-align:center;padding:0 32px;border-right:1px solid var(--border);opacity:0;transform:translateY(16px)}
-.metric:last-child{border-right:none}
-.metric.visible{opacity:1;transform:translateY(0);transition:all .6s cubic-bezier(.16,1,.3,1)}
-.metric .val{font-family:var(--display);font-size:48px;font-weight:800;color:var(--t1);line-height:1}
-.metric .val span{font-size:28px;color:var(--cy)}
-.metric .lbl{font-size:12px;color:var(--t3);margin-top:6px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--mono)}
+/* ── IDC BAND ── */
+#idc-band {
+  background:var(--card2); border-top:1px solid var(--border); border-bottom:1px solid var(--border);
+  padding:52px 5%; text-align:center;
+}
+.idc-inner { max-width:760px; margin:0 auto }
+.idc-quote {
+  font-size:clamp(18px,2.5vw,26px); font-weight:600; line-height:1.45;
+  letter-spacing:-.3px; margin-bottom:14px;
+}
+.idc-quote .hl { color:var(--blue) }
+.idc-source { font-family:var(--mono); font-size:11px; color:var(--fg3); letter-spacing:.4px }
+.idc-badges { display:flex; justify-content:center; gap:12px; flex-wrap:wrap; margin-top:20px }
+.idc-badge {
+  padding:5px 14px; border-radius:20px; font-family:var(--mono); font-size:10px;
+  font-weight:600; border:1px solid var(--border2); color:var(--fg2); letter-spacing:.4px;
+}
+.idc-badge.active { border-color:rgba(37,99,235,.35); color:var(--blue); background:var(--blue-dim) }
 
-/* SECTIONS */
-section{padding:100px 48px;position:relative;z-index:1}
-.container{max-width:1200px;margin:0 auto}
-.sec-label{font-family:var(--mono);font-size:11px;color:var(--cy);letter-spacing:.12em;text-transform:uppercase;margin-bottom:12px;display:flex;align-items:center;gap:8px}
-.sec-label::before{content:"";width:24px;height:1px;background:var(--cy)}
-.sec-title{font-family:var(--display);font-size:clamp(32px,4.5vw,52px);font-weight:800;margin-bottom:16px;letter-spacing:-1px;line-height:1.1}
-.sec-desc{font-size:17px;color:var(--t2);max-width:560px;line-height:1.7;margin-bottom:56px;font-weight:400}
-.alt{background:var(--bg2)}
+/* ── OWASP NEW SECTION ── */
+.owasp-intro {
+  display:grid; grid-template-columns:1fr 1fr; gap:40px; align-items:center;
+  padding:32px 36px; background:var(--card); border:1px solid var(--border2);
+  border-radius:var(--r2); margin-bottom:36px;
+}
+.owasp-intro p { font-size:14px; color:var(--fg2); line-height:1.75 }
+.owasp-intro strong { color:var(--fg) }
+.owasp-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px }
+.owasp-card {
+  padding:22px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); transition:border-color .18s;
+}
+.owasp-card:hover { border-color:var(--border2) }
+.owasp-card.new-class { border-color:rgba(37,99,235,.2) }
+.oc-num { font-family:var(--mono); font-size:10px; color:var(--blue); font-weight:600; letter-spacing:.5px; margin-bottom:7px }
+.oc-num.new-tag { color:var(--red) }
+.oc-title { font-size:13px; font-weight:600; margin-bottom:6px; color:var(--fg) }
+.oc-desc { font-size:12px; color:var(--fg2); line-height:1.65; margin-bottom:10px }
+.oc-badge {
+  display:inline-flex; padding:2px 8px; border-radius:3px;
+  font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.4px;
+}
+.badge-full { background:var(--green-dim); color:var(--green); border:1px solid rgba(34,197,94,.25) }
+.badge-partial { background:var(--amber-dim); color:var(--amber); border:1px solid rgba(245,158,11,.25) }
+.badge-excl { background:var(--blue-dim); color:var(--blue); border:1px solid rgba(37,99,235,.25) }
 
-/* SAGA */
-.saga-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);border-radius:var(--r);overflow:hidden}
-.saga-card{background:var(--bg2);padding:36px 28px;transition:all .3s;position:relative;overflow:hidden}
-.saga-card::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .4s}
-.saga-card:nth-child(1)::before{background:var(--cy)}
-.saga-card:nth-child(2)::before{background:var(--ok)}
-.saga-card:nth-child(3)::before{background:var(--wn)}
-.saga-card:nth-child(4)::before{background:var(--cr)}
-.saga-card:hover::before{transform:scaleX(1)}
-.saga-card:hover{background:var(--bg3)}
-.saga-letter{font-family:var(--display);font-size:56px;font-weight:800;margin-bottom:8px;line-height:1}
-.saga-card:nth-child(1) .saga-letter{color:var(--cy)}
-.saga-card:nth-child(2) .saga-letter{color:var(--ok)}
-.saga-card:nth-child(3) .saga-letter{color:var(--wn)}
-.saga-card:nth-child(4) .saga-letter{color:var(--cr)}
-.saga-name{font-size:14px;font-weight:600;margin-bottom:10px;color:var(--t1);letter-spacing:.04em}
-.saga-desc{font-size:13px;color:var(--t3);line-height:1.6}
+/* ── STRESS TEST METRICS ── */
+.stress-row {
+  display:grid; grid-template-columns:repeat(4,1fr); gap:1px;
+  background:var(--border); border:1px solid var(--border); border-radius:var(--r2);
+  overflow:hidden; margin-bottom:52px;
+}
+.sm-cell { padding:22px 24px; background:var(--card2); text-align:center }
+.sm-n { font-family:var(--mono); font-size:26px; font-weight:600; color:var(--blue); letter-spacing:-1px; line-height:1 }
+.sm-l { font-size:10px; color:var(--fg3); text-transform:uppercase; letter-spacing:.7px; margin-top:5px }
 
-/* ENGINES */
-.engines-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:16px}
-.engine-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px 20px;text-align:center;transition:all .3s;cursor:default}
-.engine-card:hover{border-color:rgba(0,212,255,.2);background:var(--bg3);transform:translateY(-4px);box-shadow:var(--glow-cy)}
-.engine-icon{font-size:28px;margin-bottom:14px;display:block}
-.engine-name{font-size:13px;font-weight:700;margin-bottom:6px;color:var(--t1);letter-spacing:.02em}
-.engine-desc{font-size:11px;color:var(--t3);line-height:1.6}
+/* ── SAGA FRAMEWORK ── */
+.saga-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--r2); overflow:hidden; margin-bottom:52px }
+.saga-phase { padding:28px 24px; background:var(--card) }
+.saga-letter { font-family:var(--mono); font-size:32px; font-weight:700; color:var(--blue); line-height:1; margin-bottom:10px }
+.saga-name { font-size:12px; font-weight:600; color:var(--fg); text-transform:uppercase; letter-spacing:.8px; margin-bottom:8px }
+.saga-desc { font-size:13px; color:var(--fg2); line-height:1.65 }
 
-/* COVERAGE */
-.coverage-hero{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:40px;margin-bottom:24px;position:relative;overflow:hidden}
-.coverage-hero::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cy),transparent)}
-.coverage-stat{font-family:var(--display);font-size:72px;font-weight:800;color:var(--t1);line-height:1;margin-bottom:8px}
-.coverage-stat span{color:var(--cy)}
-.coverage-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
-.cat-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r2);padding:18px;transition:all .25s;cursor:pointer}
-.cat-card:hover{border-color:rgba(0,212,255,.2);background:var(--bg3)}
-.cat-card .cat-icon{font-size:20px;margin-bottom:8px}
-.cat-card .cat-name{font-size:13px;font-weight:600;color:var(--t1);margin-bottom:2px}
-.cat-card .cat-count{font-size:11px;color:var(--cy);font-family:var(--mono)}
-.cat-card .cat-risk{font-size:11px;color:var(--t3);margin-top:6px;line-height:1.5}
+/* ── 5 ENGINES ── */
+.engines-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px }
+.engine-card {
+  padding:24px 20px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); transition:border-color .18s;
+}
+.engine-card:hover { border-color:var(--border2) }
+.engine-icon { font-family:var(--mono); font-size:20px; color:var(--blue); margin-bottom:10px }
+.engine-name { font-size:13px; font-weight:700; color:var(--fg); margin-bottom:6px }
+.engine-desc { font-size:12px; color:var(--fg2); line-height:1.65 }
 
-/* COMPARISON */
-.comp-table{width:100%;border-collapse:collapse;font-size:14px;border-radius:var(--r);overflow:hidden}
-.comp-table th{background:var(--bg3);color:var(--t2);padding:14px 20px;text-align:left;font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-family:var(--mono);border-bottom:1px solid var(--border)}
-.comp-table th:first-child{color:var(--t3)}
-.comp-table td{padding:13px 20px;border-bottom:1px solid var(--border);color:var(--t2);transition:all .2s;background:var(--bg2)}
-.comp-table tr:hover td{background:var(--bg3)}
-.comp-table tr{opacity:0;transform:translateX(-12px)}
-.comp-table tr.visible{opacity:1;transform:translateX(0);transition:all .4s cubic-bezier(.16,1,.3,1)}
-.varc-col{color:var(--ok)!important;font-weight:600}
-.gap-col{color:var(--t4)!important;font-style:italic;font-size:12px}
-.comp-table th.varc-th{color:var(--ok);background:rgba(0,255,136,.04);border-bottom-color:rgba(0,255,136,.2)}
-.comp-table td.varc-td{background:rgba(0,255,136,.02)}
+/* ── GRO LEVELS ── */
+.gro-table { display:flex; flex-direction:column; gap:8px; max-width:780px; margin-bottom:36px }
+.gro-row {
+  display:grid; grid-template-columns:130px 1fr 120px;
+  gap:16px; align-items:center; padding:14px 18px;
+  background:var(--card); border:1px solid var(--border); border-radius:var(--r);
+}
+.gro-code { font-family:var(--mono); font-size:11px; font-weight:600; letter-spacing:.3px }
+.l0 { color:var(--fg3) } .l1 { color:#60a5fa } .l2 { color:var(--amber) }
+.l3 { color:#fb923c } .l4 { color:var(--red) }
+.gro-name { font-size:13px; font-weight:600; margin-bottom:2px }
+.gro-desc { font-size:12px; color:var(--fg2) }
+.gro-sla { font-family:var(--mono); font-size:11px; color:var(--fg3); text-align:right }
 
-/* USE CASES */
-.use-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.use-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px 22px;transition:all .3s}
-.use-card:hover{border-color:rgba(0,212,255,.15);transform:translateY(-4px);background:var(--bg3)}
-.use-icon{font-size:28px;margin-bottom:14px;display:block}
-.use-card h4{font-size:15px;font-weight:700;margin-bottom:8px;font-family:var(--display)}
-.use-card p{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:14px}
-.reg-tags{display:flex;flex-wrap:wrap;gap:4px}
-.reg{padding:2px 8px;background:rgba(37,99,235,.1);border:1px solid rgba(37,99,235,.2);border-radius:4px;font-size:10px;color:var(--ac2);font-family:var(--mono);letter-spacing:.04em}
+/* ── COVERAGE ── */
+.coverage-header { display:flex; align-items:baseline; gap:20px; margin-bottom:32px }
+.coverage-big { font-family:var(--mono); font-size:72px; font-weight:700; color:var(--blue); line-height:1; letter-spacing:-3px }
+.coverage-sub { font-size:17px; color:var(--fg2) }
+.coverage-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px }
+.cov-card {
+  padding:22px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); transition:border-color .18s;
+}
+.cov-card:hover { border-color:var(--border2) }
+.cov-cat { font-family:var(--mono); font-size:10px; color:var(--blue); font-weight:600; letter-spacing:.6px; text-transform:uppercase; margin-bottom:6px }
+.cov-title { font-size:14px; font-weight:600; margin-bottom:4px; color:var(--fg) }
+.cov-count { font-family:var(--mono); font-size:11px; color:var(--fg3); margin-bottom:8px }
+.cov-desc { font-size:12px; color:var(--fg2); line-height:1.65 }
 
-/* PRICING */
-.price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.price-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:36px 28px;transition:all .3s;position:relative}
-.price-card:hover{transform:translateY(-6px)}
-.price-card.featured{border-color:rgba(0,212,255,.3);background:linear-gradient(180deg,rgba(0,212,255,.04),var(--bg2));box-shadow:0 0 60px rgba(0,212,255,.08)}
-.price-card.featured::before{content:"MOST POPULAR";position:absolute;top:-12px;left:50%;transform:translateX(-50%);padding:4px 16px;background:var(--cy);color:var(--bg);border-radius:20px;font-size:10px;font-weight:700;letter-spacing:.08em;font-family:var(--mono)}
-.price-card h3{font-family:var(--display);font-size:20px;font-weight:700;margin-bottom:4px}
-.price-card .desc{font-size:13px;color:var(--t3);margin-bottom:20px}
-.price-amount{font-family:var(--display);font-size:44px;font-weight:800;color:var(--t1);line-height:1}
-.price-amount .currency{font-size:22px;font-weight:400;color:var(--t3);vertical-align:top;margin-top:8px;display:inline-block}
-.price-amount .period{font-size:14px;font-weight:400;color:var(--t3)}
-.price-scope{font-size:12px;color:var(--t3);margin:8px 0 24px;font-family:var(--mono)}
-.price-features{list-style:none;margin-bottom:28px;display:flex;flex-direction:column;gap:10px}
-.price-features li{font-size:13px;color:var(--t2);display:flex;align-items:flex-start;gap:8px;line-height:1.4}
-.price-features li::before{content:"✓";color:var(--ok);font-weight:700;flex-shrink:0;margin-top:1px}
-.price-features li.na{color:var(--t4)}
-.price-features li.na::before{content:"—";color:var(--t4)}
-.btn-price{width:100%;padding:13px;border:1px solid var(--border2);background:transparent;color:var(--t1);border-radius:var(--r2);font-family:var(--sans);font-weight:600;font-size:14px;cursor:pointer;transition:all .25s;text-decoration:none;display:block;text-align:center;letter-spacing:.02em}
-.btn-price:hover{border-color:var(--ac2);color:var(--ac2);background:rgba(37,99,235,.06)}
-.price-card.featured .btn-price{background:var(--cy);border-color:var(--cy);color:var(--bg);font-weight:700}
-.price-card.featured .btn-price:hover{background:#00EEFF;border-color:#00EEFF}
+/* ── COMPARISON TABLE ── */
+.compare-wrap { overflow-x:auto; border:1px solid var(--border); border-radius:var(--r2) }
+table { width:100%; border-collapse:collapse; font-size:13px }
+thead th {
+  padding:13px 16px; background:var(--card2); text-align:left;
+  font-size:11px; font-weight:600; color:var(--fg2); letter-spacing:.3px;
+  border-bottom:1px solid var(--border);
+}
+thead th.varc-h { color:var(--blue); background:var(--blue-glow) }
+tbody tr { border-bottom:1px solid var(--border) }
+tbody tr:last-child { border-bottom:none }
+tbody tr:hover { background:rgba(255,255,255,.015) }
+td { padding:11px 16px; color:var(--fg2); vertical-align:middle }
+td:first-child { color:var(--fg); font-weight:500; font-size:12px }
+td.varc-td { color:var(--blue); font-weight:600; background:var(--blue-glow) }
+.tick { color:var(--blue) } .cross { color:var(--fg3) } .ptick { color:var(--amber); font-size:12px }
 
-/* DEMO SECTION */
-.demo-section{background:linear-gradient(180deg,var(--bg2),var(--bg));position:relative;overflow:hidden}
-.demo-section::before{content:"";position:absolute;top:-200px;right:-200px;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(37,99,235,.08),transparent);pointer-events:none}
-.demo-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:64px;align-items:center}
-.demo-screen{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;position:relative}
-.demo-screen::before{content:"";position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--cy),transparent)}
-.demo-topbar{height:36px;background:var(--bg2);display:flex;align-items:center;gap:6px;padding:0 14px;border-bottom:1px solid var(--border)}
-.demo-dot2{width:9px;height:9px;border-radius:50%}
-.demo-url2{font-family:var(--mono);font-size:10px;color:var(--t3);margin-left:10px;flex:1;background:rgba(255,255,255,.04);padding:3px 10px;border-radius:4px}
-.demo-content{padding:20px;min-height:320px}
-.demo-tabs{display:flex;gap:4px;margin-bottom:16px}
-.dtab{padding:5px 12px;border-radius:4px;font-size:10px;font-weight:600;cursor:pointer;transition:all .2s;letter-spacing:.04em;font-family:var(--mono)}
-.dtab.active{background:var(--ac);color:#fff}
-.dtab:not(.active){color:var(--t3);background:rgba(255,255,255,.04)}
-.demo-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:16px}
-.dkpi{background:var(--bg2);border-radius:6px;padding:10px;text-align:center;border:1px solid var(--border)}
-.dkpi .dv2{font-family:var(--mono);font-size:18px;font-weight:700;line-height:1}
-.dkpi .dl2{font-size:9px;color:var(--t3);text-transform:uppercase;letter-spacing:.06em;margin-top:3px}
-.demo-bar-chart{display:flex;flex-direction:column;gap:6px}
-.dbar{display:flex;align-items:center;gap:8px}
-.dbar-label{font-size:10px;color:var(--t3);font-family:var(--mono);width:60px;flex-shrink:0}
-.dbar-track{flex:1;height:6px;background:rgba(255,255,255,.06);border-radius:3px;overflow:hidden}
-.dbar-fill{height:100%;border-radius:3px;transition:width 1s ease-out}
-.dbar-val{font-size:10px;font-family:var(--mono);color:var(--t2);width:32px;text-align:right;flex-shrink:0}
+/* ── CERTIFICATIONS ── */
+.cert-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:40px }
+.cert-card {
+  padding:26px; background:var(--card); border:1px solid var(--border); border-radius:var(--r2);
+}
+.cert-score { font-family:var(--mono); font-size:32px; font-weight:600; color:var(--blue); line-height:1; margin-bottom:5px }
+.cert-name { font-size:14px; font-weight:700; margin-bottom:6px; color:var(--fg) }
+.cert-desc { font-size:12px; color:var(--fg2); line-height:1.65 }
+.cert-bar { height:3px; background:var(--border2); border-radius:2px; margin-top:14px; overflow:hidden }
+.cert-fill { height:100%; border-radius:2px; background:linear-gradient(90deg,var(--blue2),var(--blue)) }
 
-/* BLOG */
-.blog-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
-.blog-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:all .3s;text-decoration:none;display:block;color:inherit}
-.blog-card:hover{border-color:rgba(0,212,255,.15);transform:translateY(-4px)}
-.blog-thumb{height:160px;display:flex;align-items:center;justify-content:center;font-size:48px;border-bottom:1px solid var(--border);position:relative;overflow:hidden}
-.blog-body{padding:24px}
-.blog-tag{font-family:var(--mono);font-size:10px;color:var(--cy);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
-.blog-card h3{font-family:var(--display);font-size:16px;font-weight:700;margin-bottom:8px;line-height:1.3;color:var(--t1)}
-.blog-card p{font-size:13px;color:var(--t3);line-height:1.6;margin-bottom:12px}
-.blog-meta{font-size:11px;color:var(--t4);display:flex;justify-content:space-between;font-family:var(--mono)}
-.read-more{font-size:12px;color:var(--cy);font-weight:600;display:flex;align-items:center;gap:4px;margin-top:12px;transition:gap .2s}
-.blog-card:hover .read-more{gap:8px}
+/* ── INFRA BADGES ── */
+.infra-row { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-top:28px }
+.infra-card {
+  padding:20px; background:var(--card); border:1px solid var(--border); border-radius:var(--r2);
+}
+.infra-title { font-size:13px; font-weight:700; color:var(--fg); margin-bottom:4px }
+.infra-live {
+  display:inline-flex; align-items:center; gap:5px;
+  font-family:var(--mono); font-size:10px; color:var(--green); margin-bottom:8px;
+}
+.infra-live::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--green) }
+.infra-desc { font-size:12px; color:var(--fg2); line-height:1.65 }
 
-/* CONTACT */
-.contact-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:start}
-.contact-form-wrap{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:36px}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-bottom:14px}
-.form-group{display:flex;flex-direction:column;gap:6px}
-.form-group.full{grid-column:1/-1}
-.form-group label{font-size:12px;font-weight:600;color:var(--t3);letter-spacing:.04em;text-transform:uppercase;font-family:var(--mono)}
-.form-group input,.form-group select,.form-group textarea{background:var(--bg3);border:1px solid var(--border);border-radius:var(--r2);padding:11px 14px;color:var(--t1);font-family:var(--sans);font-size:14px;transition:all .2s;outline:none}
-.form-group input:focus,.form-group select:focus,.form-group textarea:focus{border-color:rgba(0,212,255,.4);box-shadow:0 0 0 3px rgba(0,212,255,.08)}
-.form-group textarea{resize:vertical;min-height:90px}
-.form-group select option{background:var(--bg3)}
-.btn-submit{width:100%;padding:13px;background:var(--ac);color:#fff;border:none;border-radius:var(--r2);font-family:var(--sans);font-weight:600;font-size:15px;cursor:pointer;transition:all .25s;letter-spacing:.02em}
-.btn-submit:hover{background:var(--ac2);box-shadow:0 4px 20px rgba(37,99,235,.3)}
-.contact-info{display:flex;flex-direction:column;gap:28px}
-.ci2{display:flex;gap:14px;align-items:flex-start}
-.ci2-icon{width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;background:var(--bg2);border:1px solid var(--border)}
-.ci2 h4{font-size:14px;font-weight:700;margin-bottom:3px;font-family:var(--display)}
-.ci2 p,.ci2 a{font-size:13px;color:var(--t3);text-decoration:none;line-height:1.5}
-.ci2 a:hover{color:var(--cy)}
+/* ── INDUSTRIES ── */
+.industry-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:16px }
+.ind-card {
+  padding:26px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); transition:border-color .18s;
+}
+.ind-card:hover { border-color:var(--border2) }
+.ind-title { font-size:15px; font-weight:700; margin-bottom:8px; color:var(--fg) }
+.ind-desc { font-size:12px; color:var(--fg2); line-height:1.65; margin-bottom:14px }
+.ind-tags { display:flex; flex-wrap:wrap; gap:5px }
+.ind-tag {
+  padding:2px 8px; border-radius:3px;
+  font-family:var(--mono); font-size:9px; font-weight:600; letter-spacing:.3px;
+  background:var(--blue-dim); color:var(--blue); border:1px solid rgba(37,99,235,.15);
+}
 
-/* CTA */
-.cta-section{text-align:center;padding:120px 48px;position:relative;overflow:hidden}
-.cta-section::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 50% 50%,rgba(37,99,235,.1),transparent)}
-.cta-section h2{font-family:var(--display);font-size:clamp(36px,5vw,56px);font-weight:800;margin-bottom:16px;letter-spacing:-1px;position:relative}
-.cta-section p{font-size:18px;color:var(--t2);margin-bottom:40px;position:relative}
-.cta-actions{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;position:relative}
+/* ── OPSCENTER DEMO ── */
+.demo-wrap {
+  background:var(--card); border:1px solid var(--border2); border-radius:var(--r2);
+  overflow:hidden; max-width:900px;
+}
+.demo-bar {
+  padding:12px 18px; background:var(--card2); border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--mono); font-size:11px; color:var(--fg3);
+}
+.demo-url { color:var(--fg2) }
+.demo-body { padding:20px }
+.demo-stats { display:grid; grid-template-columns:repeat(5,1fr); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--r); overflow:hidden; margin-bottom:16px }
+.ds-cell { padding:14px; text-align:center; background:var(--card2) }
+.ds-n { font-family:var(--mono); font-size:18px; font-weight:600; color:var(--blue) }
+.ds-l { font-size:10px; color:var(--fg3); text-transform:uppercase; letter-spacing:.5px; margin-top:3px }
+.demo-bars { display:grid; grid-template-columns:repeat(5,1fr); gap:8px }
+.db-item { font-size:11px; color:var(--fg2) }
+.db-label { margin-bottom:4px; color:var(--fg3); font-family:var(--mono); font-size:10px }
+.db-bar { height:4px; background:var(--border2); border-radius:2px; overflow:hidden }
+.db-fill { height:100%; background:var(--blue); border-radius:2px }
+.demo-checks { display:flex; flex-direction:column; gap:6px; margin-top:16px }
+.demo-check { font-size:12px; color:var(--fg2); display:flex; align-items:center; gap:8px }
+.demo-check::before { content:''; width:5px; height:5px; border-radius:50%; background:var(--green); flex-shrink:0 }
 
-/* FOOTER */
-footer{padding:64px 48px 32px;background:var(--bg2);border-top:1px solid var(--border)}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;max-width:1200px;margin:0 auto 48px}
-.footer-brand p{font-size:13px;color:var(--t3);line-height:1.6;max-width:280px;margin-top:12px}
-footer h5{font-size:10px;font-weight:600;color:var(--t4);letter-spacing:.1em;text-transform:uppercase;margin-bottom:16px;font-family:var(--mono)}
-footer a{display:block;color:var(--t3);text-decoration:none;font-size:14px;margin-bottom:10px;transition:all .2s}
-footer a:hover{color:var(--t1);transform:translateX(3px)}
-.footer-bottom{max-width:1200px;margin:0 auto;padding-top:24px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--t4)}
-.footer-logo{display:flex;align-items:center;gap:8px;font-family:var(--display);font-weight:800;font-size:18px;color:var(--t1);text-decoration:none;margin-bottom:12px}
+/* ── PRICING ── */
+.pricing-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
+.price-card {
+  padding:32px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); position:relative;
+}
+.price-card.featured { border-color:var(--blue2); box-shadow:0 0 32px rgba(37,99,235,.08) }
+.price-tag {
+  position:absolute; top:-11px; left:50%; transform:translateX(-50%);
+  padding:3px 14px; background:var(--blue); color:var(--bg);
+  font-family:var(--mono); font-size:10px; font-weight:700; border-radius:10px;
+  white-space:nowrap; letter-spacing:.4px;
+}
+.pt-tier { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--blue); letter-spacing:.8px; text-transform:uppercase; margin-bottom:6px }
+.pt-amount { font-size:40px; font-weight:700; letter-spacing:-1.5px; line-height:1; margin-bottom:3px }
+.pt-period { font-size:12px; color:var(--fg3) }
+.pt-tagline { font-size:13px; color:var(--fg2); margin:14px 0 20px; line-height:1.55 }
+.pt-features { list-style:none; margin-bottom:28px }
+.pt-features li {
+  font-size:12px; color:var(--fg2); padding:6px 0;
+  border-bottom:1px solid var(--border);
+  display:flex; align-items:flex-start; gap:8px;
+}
+.pt-features li::before { content:'—'; color:var(--blue); flex-shrink:0; font-weight:700 }
 
-/* REVEAL */
-.rv{opacity:0;transform:translateY(32px);transition:all .7s cubic-bezier(.16,1,.3,1)}
-.rv.visible{opacity:1;transform:translateY(0)}
-.rv-l{opacity:0;transform:translateX(-32px);transition:all .7s cubic-bezier(.16,1,.3,1)}
-.rv-l.visible{opacity:1;transform:translateX(0)}
-.rv-r{opacity:0;transform:translateX(32px);transition:all .7s cubic-bezier(.16,1,.3,1)}
-.rv-r.visible{opacity:1;transform:translateX(0)}
-.stg>*{opacity:0;transform:translateY(20px);transition:all .5s cubic-bezier(.16,1,.3,1)}
-.stg.visible>*{opacity:1;transform:translateY(0)}
-.stg.visible>*:nth-child(1){transition-delay:.05s}.stg.visible>*:nth-child(2){transition-delay:.1s}
-.stg.visible>*:nth-child(3){transition-delay:.15s}.stg.visible>*:nth-child(4){transition-delay:.2s}
-.stg.visible>*:nth-child(5){transition-delay:.25s}.stg.visible>*:nth-child(6){transition-delay:.3s}
-.stg.visible>*:nth-child(7){transition-delay:.35s}.stg.visible>*:nth-child(8){transition-delay:.4s}
-.stg.visible>*:nth-child(9){transition-delay:.45s}
+/* ── BLOG ── */
+.blog-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:20px }
+.blog-card {
+  padding:26px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); display:flex; flex-direction:column;
+  transition:border-color .18s;
+}
+.blog-card:hover { border-color:var(--border2) }
+.blog-cat { font-family:var(--mono); font-size:10px; color:var(--blue); font-weight:600; letter-spacing:.6px; text-transform:uppercase; margin-bottom:8px }
+.blog-title { font-size:15px; font-weight:600; line-height:1.4; margin-bottom:8px; color:var(--fg) }
+.blog-sub { font-size:12px; color:var(--fg2); line-height:1.65; flex:1; margin-bottom:16px }
+.blog-meta { font-family:var(--mono); font-size:10px; color:var(--fg3); margin-bottom:12px }
+.blog-link { font-size:12px; font-weight:600; color:var(--blue) }
 
-/* RESPONSIVE */
-@media(max-width:1024px){.engines-grid{grid-template-columns:repeat(3,1fr)}.use-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:900px){.saga-grid,.price-grid,.blog-grid,.coverage-grid{grid-template-columns:1fr 1fr}.demo-grid,.contact-grid{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}.metrics{flex-wrap:wrap}.metric{flex:1 1 40%;border-right:none;border-bottom:1px solid var(--border);padding:24px}.nav-links>a:not(.nav-cta){display:none}}
-@media(max-width:600px){.saga-grid,.price-grid,.engines-grid,.use-grid,.blog-grid,.coverage-grid{grid-template-columns:1fr}nav{padding:0 20px}section{padding:64px 20px}.footer-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}}
+/* ── CONTACT ── */
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:52px; align-items:start }
+.form-group { margin-bottom:14px }
+label { display:block; font-size:12px; color:var(--fg2); margin-bottom:5px; font-weight:500; letter-spacing:.2px }
+input, select, textarea {
+  width:100%; padding:10px 13px;
+  background:var(--card2); border:1px solid var(--border2);
+  border-radius:var(--r); color:var(--fg); font-family:var(--font); font-size:13px;
+  transition:border-color .18s;
+}
+input:focus, select:focus, textarea:focus { outline:none; border-color:var(--blue2) }
+select option { background:var(--card2) }
+.form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px }
+.contact-info { display:flex; flex-direction:column; gap:16px }
+.ci-card { padding:20px; background:var(--card); border:1px solid var(--border); border-radius:var(--r2) }
+.ci-title { font-family:var(--mono); font-size:11px; font-weight:600; color:var(--blue); letter-spacing:.5px; text-transform:uppercase; margin-bottom:6px }
+.ci-body { font-size:13px; color:var(--fg2); line-height:1.6 }
+.ci-body a { color:var(--blue2) }
+
+/* ── FOOTER ── */
+footer { background:var(--card2); border-top:1px solid var(--border); padding:52px 5% 28px }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1fr; gap:48px; margin-bottom:40px }
+.footer-brand { font-family:var(--mono); font-size:20px; font-weight:600; letter-spacing:-.3px; margin-bottom:10px; display:flex; align-items:center; gap:6px }
+.footer-brand .v { color:var(--blue) }
+.footer-tagline { font-size:13px; color:var(--fg2); line-height:1.7; margin-bottom:18px }
+.footer-certs { display:flex; flex-direction:column; gap:6px }
+.fc-badge {
+  display:inline-flex; align-items:center; gap:6px; padding:4px 10px; border-radius:4px;
+  font-family:var(--mono); font-size:10px; color:var(--fg3);
+  border:1px solid var(--border); background:rgba(255,255,255,.02);
+}
+.fc-badge.live { color:var(--blue); border-color:rgba(37,99,235,.2); background:var(--blue-dim) }
+.footer-col h4 { font-family:var(--mono); font-size:10px; font-weight:700; color:var(--fg); letter-spacing:.8px; text-transform:uppercase; margin-bottom:14px }
+.footer-col a { display:block; font-size:13px; color:var(--fg3); margin-bottom:8px; transition:color .15s }
+.footer-col a:hover { color:var(--blue) }
+.footer-bottom {
+  display:flex; justify-content:space-between; align-items:center;
+  padding-top:24px; border-top:1px solid var(--border);
+  font-size:12px; color:var(--fg3);
+}
+.footer-bottom .mono { font-family:var(--mono); font-size:10px }
+
+/* ── UTILITIES ── */
+.max-w { max-width:1200px; margin:0 auto }
+.mt2 { margin-top:8px } .mt4 { margin-top:16px } .mt6 { margin-top:24px } .mt8 { margin-top:32px }
+.mb4 { margin-bottom:16px } .mb6 { margin-bottom:24px } .mb8 { margin-bottom:32px }
+.divider { height:1px; background:var(--border); margin:0 }
+
+@media(max-width:1024px){
+  .hero-panel { display:none }
+  .engines-grid { grid-template-columns:repeat(3,1fr) }
+  .coverage-grid { grid-template-columns:repeat(2,1fr) }
+}
+@media(max-width:768px){
+  .hero-stats { grid-template-columns:repeat(3,1fr) }
+  .owasp-grid,.saga-grid,.engines-grid,.cert-grid,.industry-grid,.pricing-grid,.blog-grid,.infra-row { grid-template-columns:1fr }
+  .owasp-intro,.contact-grid,.footer-grid { grid-template-columns:1fr }
+  .stress-row { grid-template-columns:repeat(2,1fr) }
+  .gro-row { grid-template-columns:1fr }
+  .nav-links { display:none }
+}
 </style>
-<!-- Privacy-friendly analytics by Plausible -->
-<script defer data-domain="varc.live" src="https://plausible.io/js/script.tagged-events.js"></script>
-<script>window.plausible=window.plausible||function(){(window.plausible.q=window.plausible.q||[]).push(arguments)}</script>
 </head>
 <body>
-<div id="sp"></div>
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="#" class="logo">
-    <div class="logo-mark">V</div>
-    VARC
-  </a>
+  <a href="#" class="nav-logo"><span class="nav-logo-v">V</span> VARC</a>
   <div class="nav-links">
     <a href="#platform">Platform</a>
+    <a href="#owasp">OWASP 2025</a>
     <a href="#coverage">Coverage</a>
+    <a href="#certifications">Certifications</a>
     <a href="#pricing">Pricing</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>
-    <a href="https://console.cloud.google.com/marketplace" target="_blank" style="display:inline-flex;align-items:center;gap:7px;padding:6px 12px;border:1px solid rgba(255,255,255,.1);border-radius:6px;text-decoration:none;transition:all .2s;background:rgba(255,255,255,.03)" onmouseover="this.style.borderColor='rgba(255,255,255,.2)'" onmouseout="this.style.borderColor='rgba(255,255,255,.1)'">
-<svg width="16" height="16" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-<path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" fill="#4285F4"/>
-<path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174v4.8c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" fill="#3367D6"/>
-<path d="M5.535 14.291l-3.89 2.86C3.042 19.931 6.595 22.4 10.84 22.4v-4.826c-2.327 0-4.34-1.31-5.305-3.283z" fill="#34A853"/>
-<path d="M1.645 17.151l3.89-2.86A7.449 7.449 0 014.801 12c0-.808.131-1.584.367-2.31L1.278 6.83A11.946 11.946 0 000 12c0 1.903.44 3.703 1.222 5.306l.423-.155z" fill="#FBBC05"/>
-<path d="M12.24 4.826c2.51 0 4.21.981 5.18 1.803l3.254-3.138C18.189 1.186 15.479 0 12.24 0 7.995 0 4.44 2.469 2.645 6.056l3.89 2.861C7.5 6.807 9.67 4.826 12.24 4.826z" fill="#EA4335"/>
-</svg>
-<span style="font-size:11px;font-weight:600;color:rgba(255,255,255,.7);letter-spacing:.02em">Marketplace</span>
-</a>
-    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="nav-cta" onclick="plausible('Demo Click',{props:{location:'nav'}})">Live Demo →</a>
+  </div>
+  <div class="nav-actions">
+    <a href="https://console.cloud.google.com/marketplace" target="_blank" class="btn btn-outline">Marketplace</a>
+    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn btn-teal">Live Demo</a>
   </div>
 </nav>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-content">
-    <div class="hero-eyebrow"><span class="pulse"></span> IDC Validated · Google Cloud Marketplace · Cloud Next 2026</div>
-    <h1>52 Enterprise Agent<br>Environments.<br><span class="grad">One Governance Layer.</span></h1>
-    <p class="hero-sub">VARC intercepts and governs AI agent actions before they execute — across every major enterprise system. No policy rewrites. No code changes.</p>
-    <div class="hero-ctas">
-      <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn-primary">Open Live Demo →</a>
-      <a href="#platform" class="btn-ghost">See How It Works</a>
+<section id="hero">
+  <div class="hero-noise"></div>
+  <div class="hero-grid-lines"></div>
+  <div class="hero-inner">
+    <div class="hero-pill"><span class="hero-pill-dot"></span>IDC Validated · Google Cloud Marketplace · Cloud Next 2026</div>
+    <h1 class="hero-h1">52 Enterprise Agent<br/>Environments.<br/><span class="accent">One Governance Layer.</span></h1>
+    <p class="hero-sub">VARC intercepts and governs AI agent actions before they execute — across every major enterprise system. No policy rewrites. No code changes. Now with OWASP 2025 agentic security coverage.</p>
+    <div class="hero-cta">
+      <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn btn-teal btn-lg">Open Live Demo</a>
+      <a href="#platform" class="btn btn-outline btn-lg">See How It Works</a>
     </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hs-n">52</div><div class="hs-l">MCP Environments</div></div>
+      <div class="hero-stat"><div class="hs-n">692</div><div class="hs-l">Compliance Frameworks</div></div>
+      <div class="hero-stat"><div class="hs-n">819K+</div><div class="hs-l">Cross-Mappings</div></div>
+      <div class="hero-stat"><div class="hs-n">8</div><div class="hs-l">BEV Dimensions</div></div>
+      <div class="hero-stat"><div class="hs-n">730+</div><div class="hs-l">Detection Patterns</div></div>
+    </div>
+  </div>
 
-    <!-- LIVE INTERCEPT VISUAL -->
-    <div class="intercept-visual">
-      <div class="iv-wrap">
-        <div class="iv-bar">
-          <div class="iv-dot" style="background:#FF5F57"></div>
-          <div class="iv-dot" style="background:#FEBD2F"></div>
-          <div class="iv-dot" style="background:#27C93F"></div>
-          <span class="iv-title">VARC RUNTIME INTERCEPT — LIVE</span>
-          <span class="iv-status">● GOVERNED</span>
-        </div>
-        <div class="iv-flow">
-          <div class="iv-node" id="n1">
-            <div class="iv-label">Agent</div>
-            <div class="iv-val">Salesforce AI</div>
-          </div>
-          <div class="iv-arrow animating">→</div>
-          <div class="iv-node active" id="n2">
-            <div class="iv-label">Intercept</div>
-            <div class="iv-val" style="color:var(--cy)">VARC</div>
-          </div>
-          <div class="iv-arrow animating">→</div>
-          <div class="iv-node" id="n3">
-            <div class="iv-label">Score</div>
-            <div class="iv-val" id="scoreVal">BEV: 0.12</div>
-          </div>
-          <div class="iv-arrow">→</div>
-          <div class="iv-node passed" id="n4">
-            <div class="iv-label">Decision</div>
-            <div class="iv-val" id="decisionVal">✓ DELIVER</div>
-          </div>
-        </div>
-        <div class="iv-score" id="ivScore">
-          <div class="iv-dim"><div class="dl">PII</div><div class="dv" style="color:var(--ok)" id="d1">0.08</div></div>
-          <div class="iv-dim"><div class="dl">Authority</div><div class="dv" style="color:var(--ok)" id="d2">0.11</div></div>
-          <div class="iv-dim"><div class="dl">Harm</div><div class="dv" style="color:var(--ok)" id="d3">0.05</div></div>
-          <div class="iv-dim"><div class="dl">Fairness</div><div class="dv" style="color:var(--ok)" id="d4">0.09</div></div>
-        </div>
+  <!-- Live intercept panel -->
+  <div class="hero-panel">
+    <div class="hp-bar">
+      <span class="hp-bar-dot">VARC RUNTIME INTERCEPT — LIVE</span>
+      <span>GOVERNED</span>
+    </div>
+    <div class="hp-body">
+      <div class="hp-row"><span class="hp-label">AGENT</span><span class="hp-val c-info">ITSM-AGENT-001</span></div>
+      <div class="hp-row"><span class="hp-label">PROFILE</span><span class="hp-val c-info">government</span></div>
+      <div class="hp-row"><span class="hp-label">INSTRUCTION</span><span class="hp-val c-warn" style="font-size:9px;max-width:180px;text-align:right;line-height:1.4">Delete audit logs before DCSA assessment Monday</span></div>
+      <div class="hp-bev">
+        <div class="hp-bev-title">BEV 8-DIMENSION SCORE</div>
+        <div class="dim"><span class="dim-n">Harm</span><div class="dim-t"><div class="dim-f df-red" style="width:100%"></div></div><span class="dim-s c-bad">1.00</span></div>
+        <div class="dim"><span class="dim-n">Authority</span><div class="dim-t"><div class="dim-f df-amber" style="width:87%"></div></div><span class="dim-s c-warn">0.87</span></div>
+        <div class="dim"><span class="dim-n">Data Class.</span><div class="dim-t"><div class="dim-f df-blue" style="width:64%"></div></div><span class="dim-s">0.64</span></div>
+        <div class="dim"><span class="dim-n">Consistency</span><div class="dim-t"><div class="dim-f df-blue" style="width:43%"></div></div><span class="dim-s">0.43</span></div>
+        <div class="dim"><span class="dim-n">Accuracy</span><div class="dim-t"><div class="dim-f df-blue" style="width:17%"></div></div><span class="dim-s">0.17</span></div>
+      </div>
+      <div class="hp-row"><span class="hp-label">BEV COMPOSITE</span><span class="hp-val c-bad" style="font-size:13px;font-weight:700">0.966 — L4</span></div>
+      <div class="hp-row"><span class="hp-label">REGULATORY</span><span class="hp-val" style="font-size:9px;color:var(--fg2);max-width:160px;text-align:right;line-height:1.4">18 USC 1519 · CMMC AU.L2-3.3.1</span></div>
+      <div class="hp-verdict">
+        <span class="hp-verdict-label">DECOMMISSION — L4</span>
+        <span class="hp-verdict-ms">966ms · A-JWT Revoked</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<div class="trust">
-  <div class="trust-inner">
-    <div class="trust-item"><div class="dot" style="background:var(--ok)"></div>IDC Validated — New Market Category in AI Behavioral Governance</div>
-    <div class="trust-div"></div>
-    <div class="trust-item">
-<svg width="14" height="14" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
-<path d="M12.24 10.285V14.4h6.806c-.275 1.765-2.056 5.174-6.806 5.174-4.095 0-7.439-3.389-7.439-7.574s3.345-7.574 7.439-7.574c2.33 0 3.891.989 4.785 1.849l3.254-3.138C18.189 1.186 15.479 0 12.24 0c-6.635 0-12 5.365-12 12s5.365 12 12 12c6.926 0 11.52-4.869 11.52-11.726 0-.788-.085-1.39-.189-1.989H12.24z" fill="#4285F4"/>
-<path d="M5.535 14.291l-3.89 2.86C3.042 19.931 6.595 22.4 10.84 22.4v-4.826c-2.327 0-4.34-1.31-5.305-3.283z" fill="#34A853"/>
-<path d="M1.645 17.151l3.89-2.86A7.449 7.449 0 014.801 12c0-.808.131-1.584.367-2.31L1.278 6.83A11.946 11.946 0 000 12c0 1.903.44 3.703 1.222 5.306l.423-.155z" fill="#FBBC05"/>
-<path d="M12.24 4.826c2.51 0 4.21.981 5.18 1.803l3.254-3.138C18.189 1.186 15.479 0 12.24 0 7.995 0 4.44 2.469 2.645 6.056l3.89 2.861C7.5 6.807 9.67 4.826 12.24 4.826z" fill="#EA4335"/>
-</svg>
-Google Cloud Marketplace — SaaS with Billing Integration</div>
-    <div class="trust-div"></div>
-    <div class="trust-item"><div class="dot" style="background:var(--ac2)"></div>Google Cloud Partner Advantage Authorized</div>
-    <div class="trust-div"></div>
-    <div class="trust-item"><div class="dot" style="background:var(--wn)"></div>180 Sprints · 821 Tests · Production</div>
+<!-- IDC VALIDATION BAND -->
+<div id="idc-band">
+  <div class="idc-inner">
+    <div class="idc-quote">
+      "VARC represents a <span class="hl">potential new market category</span> in AI Behavioral Governance — only ones looking at this problem at the instruction level."
+    </div>
+    <div class="idc-source">IDC RESEARCH — GVP SECURITY &amp; TRUST · RESEARCH DIRECTOR, AI SECURITY</div>
+    <div class="idc-badges">
+      <span class="idc-badge active">IDC Validated — New Market Category</span>
+      <span class="idc-badge active">Google Cloud Marketplace</span>
+      <span class="idc-badge active">Google Cloud Partner Advantage</span>
+      <span class="idc-badge">180+ Sprints · 821 Tests · Production</span>
+    </div>
   </div>
 </div>
 
-<!-- METRICS -->
-<div style="background:var(--bg);border-bottom:1px solid var(--border)">
-  <div class="metrics" id="metricsBar">
-    <div class="metric" data-target="52" data-suffix=""><div class="val">0</div><div class="lbl">MCP Environments</div></div>
-    <div class="metric" data-target="692" data-suffix=""><div class="val">0</div><div class="lbl">Compliance Frameworks</div></div>
-    <div class="metric" data-target="819" data-suffix="K+"><div class="val">0K+</div><div class="lbl">Cross-Mappings</div></div>
-    <div class="metric" data-target="8" data-suffix=""><div class="val">0</div><div class="lbl">BEV Dimensions</div></div>
-    <div class="metric" data-target="180" data-suffix="+"><div class="val">0+</div><div class="lbl">Sprints Shipped</div></div>
-  </div>
-</div>
+<!-- OWASP 2025 — NEW SECTION -->
+<section id="owasp" class="alt-bg">
+  <div class="s-label">OWASP LLM Top 10 · 2025</div>
+  <h2>Agentic Security Intelligence</h2>
+  <p class="s-sub">Three new attack classes in OWASP 2025 target autonomous agents mid-session — inside the execution loop, invisible to boundary tools. VARC is the only governance platform covering all three.</p>
 
-<!-- SAGA FRAMEWORK -->
+  <div class="stress-row">
+    <div class="sm-cell"><div class="sm-n">500K+</div><div class="sm-l">Adversarial Prompts Tested</div></div>
+    <div class="sm-cell"><div class="sm-n">72.8%</div><div class="sm-l">Overall Accuracy</div></div>
+    <div class="sm-cell"><div class="sm-n">730+</div><div class="sm-l">Detection Patterns</div></div>
+    <div class="sm-cell"><div class="sm-n">15+</div><div class="sm-l">Industry Profiles Calibrated</div></div>
+  </div>
+
+  <div class="owasp-intro">
+    <div>
+      <h3 style="margin-bottom:12px">The Critical Distinction</h3>
+      <p>Existing security tools — SIEMs, EDRs, prompt firewalls — operate at the <strong>boundary</strong>. They see instructions come in and results go out. VARC operates <strong>inside the execution loop</strong> — scoring every instruction, every tool response re-entry, and every session turn against a behavioral baseline.</p>
+      <p style="margin-top:10px">Goal hijacking, memory corruption, and sleeping giant attacks are invisible to boundary tools.</p>
+    </div>
+    <div>
+      <h3 style="margin-bottom:12px">What ServiceNow Knowledge 2026 Confirmed</h3>
+      <p>ServiceNow governs which agents exist and what workflows they completed. VARC governs whether each instruction was safe to execute — and proves it cryptographically, per interaction, before the agent acts. These are complementary, not competitive.</p>
+      <p style="margin-top:10px"><strong>ServiceNow AI Control Tower GA: August 2026. VARC: Live in production today.</strong></p>
+    </div>
+  </div>
+
+  <div class="owasp-grid">
+    <div class="owasp-card"><div class="oc-num">LLM01 · 2025</div><div class="oc-title">Prompt Injection</div><div class="oc-desc">Malicious instructions embedded in tool responses, documents, or external data — hijacking agent behavior mid-session without detection.</div><span class="oc-badge badge-full">FULL COVERAGE</span></div>
+    <div class="owasp-card"><div class="oc-num">LLM02 · 2025</div><div class="oc-title">Sensitive Information Disclosure</div><div class="oc-desc">Unauthorized exposure of PII, PHI, CUI, or classified data through agent queries and bulk exports — scored before execution.</div><span class="oc-badge badge-full">FULL COVERAGE</span></div>
+    <div class="owasp-card"><div class="oc-num">LLM04 · 2025</div><div class="oc-title">Data and Model Poisoning</div><div class="oc-desc">Supply chain attacks — backdoored packages, malicious registry artifacts, CI/CD pipeline injection. 28 DevOps detection patterns.</div><span class="oc-badge badge-full">FULL COVERAGE</span></div>
+    <div class="owasp-card new-class"><div class="oc-num new-tag">NEW — LLM07 · 2025</div><div class="oc-title">Agentic Goal Hijacking</div><div class="oc-desc">Agent objective corrupted through adversarial tool responses mid-session. Happens inside the execution loop — no single-instruction system catches this pattern.</div><span class="oc-badge badge-excl">VARC COVERAGE</span></div>
+    <div class="owasp-card new-class"><div class="oc-num new-tag">NEW — LLM08 · 2025</div><div class="oc-title">Memory Corruption</div><div class="oc-desc">Session context poisoned over multiple turns. VARC's CUSUM algorithm detects behavioral drift against the session baseline before corruption compounds.</div><span class="oc-badge badge-excl">VARC COVERAGE</span></div>
+    <div class="owasp-card new-class"><div class="oc-num new-tag">NEW — LLM09 · 2025</div><div class="oc-title">Embedding Inversion</div><div class="oc-desc">Extracting training data from vector embeddings via crafted agent inputs. Detected via INFO_SEEKING BEV dimension and reconnaissance pattern library.</div><span class="oc-badge badge-partial">IN ROADMAP</span></div>
+  </div>
+</section>
+
+<!-- PLATFORM -->
 <section id="platform">
-  <div class="container">
-    <div class="sec-label rv">Runtime Governance Pipeline</div>
-    <h2 class="sec-title rv">The SAGA Framework</h2>
-    <p class="sec-desc rv">Every AI agent interaction passes through a 4-phase runtime pipeline before delivery or blocking. No LLMs in the enforcement path — deterministic by design.</p>
-    <div class="saga-grid stg">
-      <div class="saga-card">
-        <div class="saga-letter">S</div>
-        <div class="saga-name">Scoring</div>
-        <div class="saga-desc">8-dimension Behavioral Envelope Verification scores every interaction across PII exposure, authority escalation, harm potential, data classification, consistency, fairness, accuracy, and information seeking.</div>
-      </div>
-      <div class="saga-card">
-        <div class="saga-letter">A</div>
-        <div class="saga-name">Attenuation</div>
-        <div class="saga-desc">Cryptographic identity tokens verify agent identity and attenuate permissions on delegation. Permissions can only narrow, never widen. The trust chain is mathematically enforced.</div>
-      </div>
-      <div class="saga-card">
-        <div class="saga-letter">G</div>
-        <div class="saga-name">Governance</div>
-        <div class="saga-desc">5-level Graduated Response: Autonomous, Monitor, Human-in-the-Loop, Restrict, Suspend. Proportional to risk — not binary block or allow. Enterprises need proportional enforcement.</div>
-      </div>
-      <div class="saga-card">
-        <div class="saga-letter">A</div>
-        <div class="saga-name">Audit</div>
-        <div class="saga-desc">Hash-chained metagovernance evidence trail. Every governance decision is tamper-evident and auditable. The guardian governs its own governance decisions. Cryptographic proof, not just logs.</div>
-      </div>
-    </div>
-  </div>
-</section>
+  <div class="s-label">Runtime Governance Pipeline</div>
+  <h2>The SAGA Framework</h2>
+  <p class="s-sub">Every AI agent interaction passes through a 6-phase runtime pipeline before delivery or blocking. No LLMs in the enforcement path — deterministic by design.</p>
 
-<!-- 5 ENGINES -->
-<section class="alt" id="engines">
-  <div class="container">
-    <div class="sec-label rv">The Platform</div>
-    <h2 class="sec-title rv">5 Governance Engines</h2>
-    <p class="sec-desc rv">Deterministic. No LLMs in the enforcement path. Engineering rigor, not AI magic.</p>
-    <div class="engines-grid stg">
-      <div class="engine-card">
-        <span class="engine-icon">◇</span>
-        <div class="engine-name">Scoring Engine</div>
-        <div class="engine-desc">8-dimension BEV scoring on every interaction. PII, authority, harm, fairness, accuracy — scored before delivery.</div>
-      </div>
-      <div class="engine-card">
-        <span class="engine-icon">⛊</span>
-        <div class="engine-name">Enforcement Engine</div>
-        <div class="engine-desc">5-level Graduated Response. Autonomous → Monitor → HITL → Restrict → Suspend. Proportional to risk.</div>
-      </div>
-      <div class="engine-card">
-        <span class="engine-icon">👁</span>
-        <div class="engine-name">Discovery Engine</div>
-        <div class="engine-desc">Shadow AI network scanning. Find unregistered AI endpoints across your enterprise before they become breaches.</div>
-      </div>
-      <div class="engine-card">
-        <span class="engine-icon">▣</span>
-        <div class="engine-name">Compliance Engine</div>
-        <div class="engine-desc">692 live frameworks. 819K+ cross-mappings. Continuous assessment — not point-in-time. SR 11-7, HIPAA, EU AI Act.</div>
-      </div>
-      <div class="engine-card">
-        <span class="engine-icon">⛓</span>
-        <div class="engine-name">Evidence Engine</div>
-        <div class="engine-desc">SHA-256 hash-chained metagovernance trail. Every decision tamper-evident. Cryptographic proof governance happened.</div>
-      </div>
-    </div>
+  <div class="saga-grid">
+    <div class="saga-phase"><div class="saga-letter">S</div><div class="saga-name">Scoring</div><div class="saga-desc">8-dimension Behavioral Envelope Verification scores every interaction across PII exposure, authority escalation, harm potential, data classification, consistency, fairness, accuracy, and information seeking.</div></div>
+    <div class="saga-phase"><div class="saga-letter">A</div><div class="saga-name">Attenuation</div><div class="saga-desc">Cryptographic identity tokens verify agent identity and attenuate permissions on delegation. Permissions can only narrow, never widen. The trust chain is mathematically enforced.</div></div>
+    <div class="saga-phase"><div class="saga-letter">G</div><div class="saga-name">Governance</div><div class="saga-desc">5-level Graduated Response: Monitor, Flag, Human-in-the-Loop, Session Freeze, Decommission. Proportional to risk — not binary block or allow. Enterprises need proportional enforcement.</div></div>
+    <div class="saga-phase"><div class="saga-letter">A</div><div class="saga-name">Audit</div><div class="saga-desc">SHA-256 hash-chained metagovernance evidence trail. Every governance decision is tamper-evident and WORM-locked. Cryptographic proof governance happened — not just logs.</div></div>
+  </div>
+
+  <!-- GRO Levels -->
+  <div class="s-label mt8">Graduated Response Orchestration</div>
+  <h3 style="font-size:20px;margin-bottom:8px;font-weight:700">5-Level Enforcement — Not Binary Block or Allow</h3>
+  <p style="font-size:14px;color:var(--fg2);margin-bottom:20px;max-width:580px">A false positive at L4 does not kill a legitimate agent. It routes to a named human reviewer with full evidence. Proportional to risk — by design.</p>
+  <div class="gro-table">
+    <div class="gro-row"><span class="gro-code l0">L0 — MONITOR</span><div><div class="gro-name">Autonomous Delivery</div><div class="gro-desc">BEV below all thresholds. Logged and delivered. Clean-turn decay active.</div></div><span class="gro-sla">&lt;120ms</span></div>
+    <div class="gro-row"><span class="gro-code l1">L1 — FLAG</span><div><div class="gro-name">Advisory Escalation</div><div class="gro-desc">Borderline signal. Delivered with SOC visibility. Triggers L2 on repeated pattern.</div></div><span class="gro-sla">&lt;120ms</span></div>
+    <div class="gro-row"><span class="gro-code l2">L2 — HITL HOLD</span><div><div class="gro-name">Human-in-the-Loop Review</div><div class="gro-desc">Held for named reviewer approval. SLA tracked. Banking: 240 min. Government: 60 min.</div></div><span class="gro-sla">SLA tracked</span></div>
+    <div class="gro-row"><span class="gro-code l3">L3 — SESSION FREEZE</span><div><div class="gro-name">Session Terminated</div><div class="gro-desc">All agent interactions halted. Evidence sealed. Incident auto-created. L3 reviewer assigned.</div></div><span class="gro-sla">Immediate</span></div>
+    <div class="gro-row"><span class="gro-code l4">L4 — DECOMMISSION</span><div><div class="gro-name">Agent Permanently Revoked</div><div class="gro-desc">A-JWT invalidated. All sessions terminated. WORM-locked evidence. CISA-ready package. 15-minute SLA.</div></div><span class="gro-sla">15 min SLA</span></div>
+  </div>
+
+  <div class="divider mt8"></div>
+  <div class="s-label mt8">The Platform</div>
+  <h2>5 Governance Engines</h2>
+  <p class="s-sub">Deterministic. No LLMs in the enforcement path. Engineering rigor, not AI magic.</p>
+
+  <div class="engines-grid">
+    <div class="engine-card"><div class="engine-icon">&#9671;</div><div class="engine-name">Scoring Engine</div><div class="engine-desc">8-dimension BEV scoring on every interaction. PII, authority, harm, fairness, accuracy — scored before delivery. 730+ calibrated patterns.</div></div>
+    <div class="engine-card"><div class="engine-icon">&#9866;</div><div class="engine-name">Enforcement Engine</div><div class="engine-desc">5-level Graduated Response. Monitor → Flag → HITL → Session Freeze → Decommission. Proportional to risk.</div></div>
+    <div class="engine-card"><div class="engine-icon">&#9680;</div><div class="engine-name">Discovery Engine</div><div class="engine-desc">Shadow AI network scanning. Find unregistered AI endpoints across your enterprise before they become breaches.</div></div>
+    <div class="engine-card"><div class="engine-icon">&#9647;</div><div class="engine-name">Compliance Engine</div><div class="engine-desc">692 live frameworks. 819K+ cross-mappings. Continuous assessment — not point-in-time. SR 11-7, HIPAA, EU AI Act.</div></div>
+    <div class="engine-card"><div class="engine-icon">&#9935;</div><div class="engine-name">Evidence Engine</div><div class="engine-desc">SHA-256 hash-chained metagovernance trail. Every decision tamper-evident and WORM-locked. Cryptographic proof governance happened.</div></div>
   </div>
 </section>
 
 <!-- COVERAGE -->
-<section id="coverage">
-  <div class="container">
-    <div class="sec-label rv">Sprint 181</div>
-    <h2 class="sec-title rv">Enterprise Coverage</h2>
-    <p class="sec-desc rv">VARC governs AI agent actions across every major enterprise system category — before the action executes.</p>
-    <div class="coverage-hero rv">
-      <div style="display:flex;align-items:flex-end;gap:24px;flex-wrap:wrap">
-        <div>
-          <div class="coverage-stat"><span>52</span></div>
-          <div style="font-size:16px;color:var(--t2);margin-top:4px">Enterprise MCP Server Environments Governed</div>
-        </div>
-        <div style="margin-left:auto;text-align:right">
-          <div style="font-size:13px;color:var(--t3);font-family:var(--mono);margin-bottom:4px">VARC vs. Audit Platforms</div>
-          <div style="font-size:15px;color:var(--t2);max-width:360px;line-height:1.5">Competitors tell you your AI was non-compliant last quarter. VARC prevents the action from executing in the first place.</div>
-        </div>
-      </div>
+<section id="coverage" class="alt-bg">
+  <div class="s-label">Sprint 181</div>
+  <h2>Enterprise Coverage</h2>
+  <p class="s-sub">VARC governs AI agent actions across every major enterprise system category — before the action executes.</p>
+
+  <div class="coverage-header">
+    <div class="coverage-big">52</div>
+    <div class="coverage-sub">Enterprise MCP Server Environments Governed</div>
+  </div>
+
+  <div style="padding:16px 20px;background:var(--card);border:1px solid var(--border2);border-radius:var(--r);margin-bottom:28px;font-size:13px;color:var(--fg2);max-width:680px">
+    <strong style="color:var(--fg)">VARC vs. Audit Platforms —</strong> Competitors tell you your AI was non-compliant last quarter. VARC prevents the action from executing in the first place.
+  </div>
+
+  <div class="coverage-grid">
+    <div class="cov-card"><div class="cov-cat">Identity &amp; Access</div><div class="cov-title">8 Environments</div><div class="cov-count">Okta, Azure AD, CyberArk, PingOne...</div><div class="cov-desc">Prevents unauthorized privilege escalation and token abuse in agent workflows.</div></div>
+    <div class="cov-card"><div class="cov-cat">ITSM &amp; Ticketing</div><div class="cov-title">7 Environments</div><div class="cov-count">ServiceNow, Jira, Freshservice...</div><div class="cov-desc">Prevents unauthorized ticket routing, priority manipulation, SLA bypass.</div></div>
+    <div class="cov-card"><div class="cov-cat">AI Agent Platforms</div><div class="cov-title">7 Environments</div><div class="cov-count">Copilot Studio, AgentForce, Gemini...</div><div class="cov-desc">Prevents prompt injection, uncontrolled autonomy, cross-platform policy drift.</div></div>
+    <div class="cov-card"><div class="cov-cat">CRM &amp; Sales</div><div class="cov-title">6 Environments</div><div class="cov-count">Salesforce, HubSpot, MS Dynamics...</div><div class="cov-desc">Prevents discriminatory lead scoring, unauthorized customer data access.</div></div>
+    <div class="cov-card"><div class="cov-cat">HR &amp; Workforce</div><div class="cov-title">6 Environments</div><div class="cov-count">Workday, SAP SuccessFactors, ADP...</div><div class="cov-desc">Prevents bias in AI-driven promotions, terminations, workforce decisions.</div></div>
+    <div class="cov-card"><div class="cov-cat">Financial &amp; ERP</div><div class="cov-title">5 Environments</div><div class="cov-count">SAP ERP, Oracle Fusion, NetSuite...</div><div class="cov-desc">Prevents unattested AI decisions in lending and financial controls.</div></div>
+    <div class="cov-card"><div class="cov-cat">DevOps &amp; Code</div><div class="cov-title">5 Environments</div><div class="cov-count">GitHub, GitLab, Azure DevOps...</div><div class="cov-desc">Prevents supply chain attacks, backdoored packages, secret exfiltration.</div></div>
+    <div class="cov-card"><div class="cov-cat">Cloud Infrastructure</div><div class="cov-title">4 Environments</div><div class="cov-count">Google Cloud, AWS, Azure, Terraform...</div><div class="cov-desc">Prevents CloudTrail disablement, backdoor IAM, unauthorized resource provisioning.</div></div>
+    <div class="cov-card"><div class="cov-cat">Data &amp; Analytics</div><div class="cov-title">4 Environments</div><div class="cov-count">Snowflake, Databricks, BigQuery...</div><div class="cov-desc">Prevents unauthorized data exfiltration via agent query access.</div></div>
+  </div>
+</section>
+
+<!-- COMPARISON TABLE -->
+<section id="compare">
+  <div class="s-label">Differentiation</div>
+  <h2>VARC vs. The Market</h2>
+  <p class="s-sub">Every other tool does part of the job. VARC does the part nobody else does — runtime interception before the action executes.</p>
+
+  <div class="compare-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Capability</th>
+          <th class="varc-h">VARC</th>
+          <th>Governance Platforms</th>
+          <th>Observability</th>
+          <th>Prompt Firewalls</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>When enforcement happens</td><td class="varc-td">Before execution</td><td>Policy only</td><td>After the fact</td><td>Single prompt</td></tr>
+        <tr><td>Per-interaction scoring</td><td class="varc-td">8-dimension BEV</td><td>No runtime scoring</td><td>Single metrics</td><td>Binary pass/fail</td></tr>
+        <tr><td>Graduated response</td><td class="varc-td">5-level GRO</td><td>Policy only</td><td>Alerts only</td><td>Block or allow</td></tr>
+        <tr><td>Session awareness</td><td class="varc-td">CUSUM multi-turn</td><td class="cross">None</td><td>Model drift only</td><td>Single prompt</td></tr>
+        <tr><td>Obfuscation detection</td><td class="varc-td">GAN adversarial verifier</td><td class="cross">None</td><td class="cross">None</td><td class="cross">None</td></tr>
+        <tr><td>Agent identity</td><td class="varc-td">A-JWT cryptographic tokens</td><td class="cross">None</td><td class="cross">None</td><td class="cross">None</td></tr>
+        <tr><td>Enterprise environments</td><td class="varc-td">52 MCP servers</td><td>API integrations</td><td>Logs only</td><td class="cross">None</td></tr>
+        <tr><td>Evidence chain</td><td class="varc-td">SHA-256 WORM-locked</td><td>Flat logs</td><td>Flat logs</td><td class="cross">None</td></tr>
+        <tr><td>Compliance frameworks</td><td class="varc-td">692 live API</td><td>5–15 packs</td><td class="cross">None</td><td class="cross">None</td></tr>
+        <tr><td>CMMC Level 2</td><td class="varc-td">89.3% — SSP v1.0 complete</td><td class="cross">Not covered</td><td class="cross">Not covered</td><td class="cross">Not covered</td></tr>
+        <tr><td>OWASP 2025 agentic</td><td class="varc-td">Goal hijacking + memory corruption</td><td class="cross">None</td><td class="ptick">Partial</td><td class="cross">None</td></tr>
+        <tr><td>Shadow AI discovery</td><td class="varc-td">Network scan</td><td>Manual inventory</td><td class="cross">None</td><td class="cross">None</td></tr>
+        <tr><td>GCP Marketplace</td><td class="varc-td">Live — use EDP credits</td><td class="ptick">Some</td><td class="cross">None</td><td class="cross">None</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section id="certifications" class="alt-bg">
+  <div class="s-label">Regulatory Certifications</div>
+  <h2>Compliance Built In. Not Bolted On.</h2>
+  <p class="s-sub">692 live frameworks. Cryptographic attestation per interaction. WORM-locked audit trail. Not a compliance dashboard — regulatory proof.</p>
+
+  <div class="cert-grid">
+    <div class="cert-card">
+      <div class="cert-score">89.3%</div>
+      <div class="cert-name">CMMC Level 2</div>
+      <div class="cert-desc">25 full / 3 partial across 14 domains. SSP v1.0 complete. C3PAO assessment roadmap active. 28 practices mapped with cryptographic evidence.</div>
+      <div class="cert-bar"><div class="cert-fill" style="width:89.3%"></div></div>
     </div>
-    <div class="coverage-grid stg">
-      <div class="cat-card"><div class="cat-icon">🔐</div><div class="cat-name">Identity & Access</div><div class="cat-count">8 servers — Okta, Azure AD, CyberArk, PingOne...</div><div class="cat-risk">Prevents unauthorized privilege escalation and token abuse in agent workflows</div></div>
-      <div class="cat-card"><div class="cat-icon">🎫</div><div class="cat-name">ITSM & Ticketing</div><div class="cat-count">7 servers — ServiceNow, Jira, Freshservice...</div><div class="cat-risk">Prevents unauthorized ticket routing, priority manipulation, SLA bypass</div></div>
-      <div class="cat-card"><div class="cat-icon">🤖</div><div class="cat-name">AI Agent Platforms</div><div class="cat-count">7 servers — Copilot Studio, AgentForce, Gemini...</div><div class="cat-risk">Prevents prompt injection, uncontrolled autonomy, cross-platform policy drift</div></div>
-      <div class="cat-card"><div class="cat-icon">💼</div><div class="cat-name">CRM & Sales</div><div class="cat-count">6 servers — Salesforce, HubSpot, MS Dynamics...</div><div class="cat-risk">Prevents discriminatory lead scoring, unauthorized customer data access</div></div>
-      <div class="cat-card"><div class="cat-icon">👥</div><div class="cat-name">HR & Workforce</div><div class="cat-count">6 servers — Workday, SAP SuccessFactors, ADP...</div><div class="cat-risk">Prevents bias in AI-driven promotions, terminations, workforce decisions</div></div>
-      <div class="cat-card"><div class="cat-icon">🏦</div><div class="cat-name">Financial & ERP</div><div class="cat-count">5 servers — SAP ERP, Oracle Fusion, NetSuite...</div><div class="cat-risk">Prevents unattested AI decisions in lending and financial controls</div></div>
-      <div class="cat-card"><div class="cat-icon">⚙️</div><div class="cat-name">DevOps & Code</div><div class="cat-count">5 servers — GitHub, GitLab, Azure DevOps...</div><div class="cat-risk">Prevents unauthorized code execution and secret exfiltration by agents</div></div>
-      <div class="cat-card"><div class="cat-icon">☁️</div><div class="cat-name">Cloud Infrastructure</div><div class="cat-count">4 servers — Google Cloud, AWS, Azure, Terraform...</div><div class="cat-risk">Prevents resource provisioning abuse by autonomous infrastructure agents</div></div>
-      <div class="cat-card"><div class="cat-icon">📊</div><div class="cat-name">Data & Analytics</div><div class="cat-count">4 servers — Snowflake, Databricks, BigQuery...</div><div class="cat-risk">Prevents unauthorized data exfiltration via agent query access</div></div>
+    <div class="cert-card">
+      <div class="cert-score">CC6.1</div>
+      <div class="cert-name">SOC 2 Type 1</div>
+      <div class="cert-desc">CC6.1 logical access controls, CC7.2 system monitoring, Availability TSC. OIDC + MFA enforced. WORM-locked Cloud Logging. Evidence package on demand.</div>
+      <div class="cert-bar"><div class="cert-fill" style="width:82%"></div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-score">Art.12</div>
+      <div class="cert-name">EU AI Act</div>
+      <div class="cert-desc">Art.12 record-keeping, Art.13 transparency, Art.9 risk management. Full enforcement applies August 2026. VARC attestation chain satisfies record-keeping requirements today.</div>
+      <div class="cert-bar"><div class="cert-fill" style="width:80%"></div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-score">HIPAA</div>
+      <div class="cert-name">HIPAA + GLBA</div>
+      <div class="cert-desc">PHI exposure scored at runtime across all 8 BEV dimensions. Healthcare industry profile with calibrated thresholds. BCMA bypass and clinical record falsification patterns active.</div>
+      <div class="cert-bar"><div class="cert-fill" style="width:85%"></div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-score">SR 11-7</div>
+      <div class="cert-name">Model Risk Management</div>
+      <div class="cert-desc">Governance posture score with trend analysis. Continuous runtime validation replacing point-in-time audits. Agent autonomy scoring for tiered oversight requirements.</div>
+      <div class="cert-bar"><div class="cert-fill" style="width:83%"></div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-score">692</div>
+      <div class="cert-name">Live Frameworks</div>
+      <div class="cert-desc">819K+ cross-mappings via live API. ISO 42001, NIST AI RMF, FedRAMP, DISA STIG, PCI DSS, OWASP LLM Top 10 2025. Continuous assessment — not point-in-time.</div>
+      <div class="cert-bar"><div class="cert-fill" style="width:100%"></div></div>
+    </div>
+  </div>
+
+  <div class="s-label mt8">Production Infrastructure</div>
+  <h3 style="font-size:20px;font-weight:700;margin-bottom:6px">Cert-Grade Cloud Architecture</h3>
+  <p style="font-size:14px;color:var(--fg2);margin-bottom:0;max-width:560px;line-height:1.65">All three certification blockers resolved and live in production.</p>
+  <div class="infra-row">
+    <div class="infra-card">
+      <div class="infra-title">Cloud SQL PostgreSQL 15</div>
+      <div class="infra-live">LIVE — Private IP</div>
+      <div class="infra-desc">VPC-peered private IP. Deletion protection enforced. 7-day automated backups. Unix socket via Cloud SQL proxy. No public endpoint. CMMC SC.L2-3.13.5.</div>
+    </div>
+    <div class="infra-card">
+      <div class="infra-title">WORM Audit Log Streaming</div>
+      <div class="infra-live">LIVE — Locked · 365-day Retention</div>
+      <div class="infra-desc">GCP Cloud Logging locked bucket. Irreversible retention enforced. Every governance decision streamed with severity mapping. SOC 2 CC7.2 · CMMC AU.L2-3.3.1.</div>
+    </div>
+    <div class="infra-card">
+      <div class="infra-title">OIDC + MFA Enforced</div>
+      <div class="infra-live">LIVE — Auth0 · OTP Always</div>
+      <div class="infra-desc">Google + Microsoft SSO. One-time password enforced on every login. RS256 JWKS validation. AMR claim verification. CMMC IA.L2-3.5.3 · SOC 2 CC6.1.</div>
     </div>
   </div>
 </section>
 
-<!-- COMPARISON -->
-<section class="alt" id="compare">
-  <div class="container">
-    <div class="sec-label rv">Differentiation</div>
-    <h2 class="sec-title rv">VARC vs. The Market</h2>
-    <p class="sec-desc rv">Every other tool does part of the job. VARC does the part nobody else does — runtime interception before the action executes.</p>
-    <div style="overflow-x:auto" class="rv">
-      <table class="comp-table">
-        <thead>
-          <tr class="visible">
-            <th>Capability</th>
-            <th class="varc-th">VARC</th>
-            <th>Governance Platforms</th>
-            <th>Observability</th>
-            <th>Prompt Firewalls</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td>When enforcement happens</td><td class="varc-col varc-td">Before execution</td><td class="gap-col">Policy only</td><td class="gap-col">After the fact</td><td class="gap-col">Single prompt</td></tr>
-          <tr><td>Per-interaction scoring</td><td class="varc-col varc-td">8-dimension BEV</td><td class="gap-col">No runtime scoring</td><td class="gap-col">Single metrics</td><td class="gap-col">Binary pass/fail</td></tr>
-          <tr><td>Graduated response</td><td class="varc-col varc-td">5-level GRO</td><td class="gap-col">Policy only</td><td class="gap-col">Alerts only</td><td class="gap-col">Block or allow</td></tr>
-          <tr><td>Session awareness</td><td class="varc-col varc-td">CUSUM multi-turn</td><td class="gap-col">None</td><td class="gap-col">Model drift only</td><td class="gap-col">Single prompt</td></tr>
-          <tr><td>Agent identity</td><td class="varc-col varc-td">Cryptographic tokens</td><td class="gap-col">None</td><td class="gap-col">None</td><td class="gap-col">None</td></tr>
-          <tr><td>Enterprise environments</td><td class="varc-col varc-td">52 MCP servers</td><td class="gap-col">API integrations</td><td class="gap-col">Logs only</td><td class="gap-col">None</td></tr>
-          <tr><td>Evidence chain</td><td class="varc-col varc-td">Hash-linked audit</td><td class="gap-col">Flat logs</td><td class="gap-col">Flat logs</td><td class="gap-col">None</td></tr>
-          <tr><td>Compliance frameworks</td><td class="varc-col varc-td">692 live API</td><td class="gap-col">5–15 packs</td><td class="gap-col">None</td><td class="gap-col">None</td></tr>
-          <tr><td>Shadow AI discovery</td><td class="varc-col varc-td">Network scan</td><td class="gap-col">Manual inventory</td><td class="gap-col">None</td><td class="gap-col">None</td></tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- USE CASES -->
+<!-- INDUSTRIES -->
 <section id="industries">
-  <div class="container">
-    <div class="sec-label rv">Industries</div>
-    <h2 class="sec-title rv">Built for Regulated AI</h2>
-    <div class="use-grid stg">
-      <div class="use-card"><span class="use-icon">🏦</span><h4>Banking & Lending</h4><p>Loan processing, claims, customer service AI — governed against lending regulations.</p><div class="reg-tags"><span class="reg">ECOA</span><span class="reg">FCRA</span><span class="reg">SR 11-7</span><span class="reg">BSA/AML</span></div></div>
-      <div class="use-card"><span class="use-icon">🏥</span><h4>Healthcare</h4><p>Clinical decision support, medical records access with full HIPAA enforcement.</p><div class="reg-tags"><span class="reg">HIPAA</span><span class="reg">HITECH</span><span class="reg">FDA SaMD</span></div></div>
-      <div class="use-card"><span class="use-icon">🏛️</span><h4>Government</h4><p>Federal AI agents with sovereign deployment and air-gapped configurations.</p><div class="reg-tags"><span class="reg">NIST RMF</span><span class="reg">FedRAMP</span><span class="reg">EO 14110</span></div></div>
-      <div class="use-card"><span class="use-icon">🔒</span><h4>Cybersecurity</h4><p>SOC agents, threat response, code review — governed against security standards.</p><div class="reg-tags"><span class="reg">PCI DSS</span><span class="reg">SOX</span><span class="reg">OWASP</span></div></div>
+  <div class="s-label">Industries</div>
+  <h2>Built for Regulated AI</h2>
+  <p class="s-sub">Runtime governance calibrated per industry. What scores L2 in banking is different from healthcare or government — by design.</p>
+
+  <div class="industry-grid">
+    <div class="ind-card">
+      <div class="ind-title">Banking &amp; Lending</div>
+      <div class="ind-desc">Loan processing, claims, customer service AI — governed against lending regulations. Dual-control bypass, fraud detection override, structuring patterns all detected.</div>
+      <div class="ind-tags"><span class="ind-tag">ECOA</span><span class="ind-tag">FCRA</span><span class="ind-tag">SR 11-7</span><span class="ind-tag">BSA/AML</span></div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-title">Healthcare</div>
+      <div class="ind-desc">Clinical decision support, medical records access with full HIPAA enforcement. BCMA bypass, PHI bulk export, clinical record falsification — stopped before execution.</div>
+      <div class="ind-tags"><span class="ind-tag">HIPAA</span><span class="ind-tag">HITECH</span><span class="ind-tag">FDA SaMD</span></div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-title">Government</div>
+      <div class="ind-desc">Federal AI agents with sovereign deployment and air-gapped configurations. CUI exfiltration, audit log deletion before DCSA assessments, classified data patterns.</div>
+      <div class="ind-tags"><span class="ind-tag">NIST RMF</span><span class="ind-tag">FedRAMP</span><span class="ind-tag">EO 14110</span><span class="ind-tag">CMMC</span></div>
+    </div>
+    <div class="ind-card">
+      <div class="ind-title">Cybersecurity</div>
+      <div class="ind-desc">SOC agents, threat response, code review — governed against security standards. Monitoring suppression, EDR disablement, SIEM evasion patterns blocked at L3–L4.</div>
+      <div class="ind-tags"><span class="ind-tag">PCI DSS</span><span class="ind-tag">SOX</span><span class="ind-tag">OWASP 2025</span></div>
     </div>
   </div>
 </section>
 
-<!-- DEMO -->
-<section class="demo-section" id="demo">
-  <div class="container">
-    <div class="demo-grid">
-      <div class="rv-l">
-        <div class="sec-label">Live Platform</div>
-        <h2 class="sec-title">OpsCenter v9<br>Production</h2>
-        <p class="sec-desc">13 governance modules. 180+ sprints. Deployed on Google Cloud Run. Seed the demo environment and govern your first AI agent in under 60 seconds.</p>
-        <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn-primary" style="display:inline-flex;margin-bottom:32px" onclick="plausible('Demo Click',{props:{location:'demo-section'}})">Open Production OpsCenter →</a>
-        <div style="display:flex;flex-direction:column;gap:12px">
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t3)"><span style="color:var(--ok);font-weight:700;font-family:var(--mono)">✓</span> No login required — seed and explore instantly</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t3)"><span style="color:var(--ok);font-weight:700;font-family:var(--mono)">✓</span> Deployed on Google Cloud Run, us-central1</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t3)"><span style="color:var(--ok);font-weight:700;font-family:var(--mono)">✓</span> 821 passing tests · production build</div>
-          <div style="display:flex;align-items:center;gap:10px;font-size:13px;color:var(--t3)"><span style="color:var(--cy);font-weight:700;font-family:var(--mono)">→</span> Coverage tab: 52 environments mapped</div>
-        </div>
+<!-- OPSCENTER DEMO -->
+<section id="demo" class="alt-bg">
+  <div class="s-label">Live Platform</div>
+  <h2>OpsCenter v9 — Production</h2>
+  <p class="s-sub">13 governance modules. 180+ sprints. Deployed on Google Cloud Run. Govern your first AI agent in under 60 seconds.</p>
+
+  <div style="margin-bottom:24px">
+    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn btn-teal btn-lg">Open Production OpsCenter</a>
+  </div>
+
+  <div class="demo-wrap">
+    <div class="demo-bar">
+      <span class="demo-url">varc-api-67840786835.us-central1.run.app</span>
+      <span>Dashboard &nbsp;·&nbsp; Coverage &nbsp;·&nbsp; Ingestion &nbsp;·&nbsp; Red Team</span>
+    </div>
+    <div class="demo-body">
+      <div class="demo-stats">
+        <div class="ds-cell"><div class="ds-n">247</div><div class="ds-l">Governed</div></div>
+        <div class="ds-cell"><div class="ds-n">12</div><div class="ds-l">Blocked</div></div>
+        <div class="ds-cell"><div class="ds-n">52</div><div class="ds-l">Environments</div></div>
+        <div class="ds-cell"><div class="ds-n">INTACT</div><div class="ds-l">Chain</div></div>
+        <div class="ds-cell"><div class="ds-n">100%</div><div class="ds-l">Uptime</div></div>
       </div>
-      <div class="demo-screen rv-r">
-        <div class="demo-topbar">
-          <div class="demo-dot2" style="background:#FF5F57"></div>
-          <div class="demo-dot2" style="background:#FEBD2F"></div>
-          <div class="demo-dot2" style="background:#27C93F"></div>
-          <div class="demo-url2">varc-api-67840786835.us-central1.run.app</div>
-        </div>
-        <div class="demo-content">
-          <div class="demo-tabs">
-            <span class="dtab active">Dashboard</span>
-            <span class="dtab">Coverage</span>
-            <span class="dtab">Ingestion</span>
-            <span class="dtab">Red Team</span>
-          </div>
-          <div class="demo-kpis">
-            <div class="dkpi"><div class="dv2" style="color:var(--ok)">247</div><div class="dl2">Governed</div></div>
-            <div class="dkpi"><div class="dv2" style="color:var(--cr)">12</div><div class="dl2">Blocked</div></div>
-            <div class="dkpi"><div class="dv2" style="color:var(--cy)">52</div><div class="dl2">Environments</div></div>
-            <div class="dkpi"><div class="dv2" style="color:var(--ok)">INTACT</div><div class="dl2">Chain</div></div>
-          </div>
-          <div class="demo-bar-chart">
-            <div class="dbar"><span class="dbar-label">Identity</span><div class="dbar-track"><div class="dbar-fill" style="width:0%;background:var(--cy)" data-w="88%"></div></div><span class="dbar-val">88%</span></div>
-            <div class="dbar"><span class="dbar-label">ITSM</span><div class="dbar-track"><div class="dbar-fill" style="width:0%;background:var(--ok)" data-w="76%"></div></div><span class="dbar-val">76%</span></div>
-            <div class="dbar"><span class="dbar-label">AI Agents</span><div class="dbar-track"><div class="dbar-fill" style="width:0%;background:var(--wn)" data-w="91%"></div></div><span class="dbar-val">91%</span></div>
-            <div class="dbar"><span class="dbar-label">CRM</span><div class="dbar-track"><div class="dbar-fill" style="width:0%;background:var(--ac2)" data-w="83%"></div></div><span class="dbar-val">83%</span></div>
-            <div class="dbar"><span class="dbar-label">Financial</span><div class="dbar-track"><div class="dbar-fill" style="width:0%;background:var(--cy)" data-w="95%"></div></div><span class="dbar-val">95%</span></div>
-          </div>
-        </div>
+      <div class="demo-bars">
+        <div class="db-item"><div class="db-label">Identity</div><div class="db-bar"><div class="db-fill" style="width:88%"></div></div></div>
+        <div class="db-item"><div class="db-label">ITSM</div><div class="db-bar"><div class="db-fill" style="width:76%"></div></div></div>
+        <div class="db-item"><div class="db-label">AI Agents</div><div class="db-bar"><div class="db-fill" style="width:91%"></div></div></div>
+        <div class="db-item"><div class="db-label">CRM</div><div class="db-bar"><div class="db-fill" style="width:83%"></div></div></div>
+        <div class="db-item"><div class="db-label">Financial</div><div class="db-bar"><div class="db-fill" style="width:95%"></div></div></div>
+      </div>
+      <div class="demo-checks">
+        <div class="demo-check">No login required — seed and explore instantly</div>
+        <div class="demo-check">Deployed on Google Cloud Run, us-central1</div>
+        <div class="demo-check">821 passing tests · production build</div>
+        <div class="demo-check">Coverage tab: 52 environments mapped</div>
       </div>
     </div>
   </div>
@@ -619,355 +830,216 @@ Google Cloud Marketplace — SaaS with Billing Integration</div>
 
 <!-- PRICING -->
 <section id="pricing">
-  <div class="container">
-    <div class="sec-label rv" style="justify-content:center">Google Cloud Marketplace</div>
-    <h2 class="sec-title rv" style="text-align:center">Scale With Confidence</h2>
-    <p class="sec-desc rv" style="text-align:center;margin-left:auto;margin-right:auto">Available now on Google Cloud Marketplace. Use your existing GCP committed spend.</p>
-    <div class="price-grid stg">
-      <div class="price-card">
-        <h3>Starter</h3>
-        <div class="desc">For teams getting started</div>
-        <div class="price-amount"><span class="currency">$</span>2,500<span class="period">/mo</span></div>
-        <div class="price-scope">10 agents · 5 MCP environments</div>
-        <ul class="price-features">
-          <li>10 AI agents governed</li>
-          <li>5 MCP environments</li>
-          <li>SAGA pipeline — all 4 phases</li>
-          <li>BEV 8-dimension scoring</li>
-          <li>GRO 5-level enforcement</li>
-          <li>Decision Formation Attestation</li>
-          <li>Email support</li>
-          <li class="na">Intent Alignment Scoring</li>
-          <li class="na">Shadow AI Discovery</li>
-        </ul>
-        <a href="https://console.cloud.google.com/marketplace" target="_blank" class="btn-price" onclick="plausible('Marketplace Click',{props:{plan:'Starter'}})">Start Free Trial</a>
-      </div>
-      <div class="price-card featured">
-        <h3>Professional</h3>
-        <div class="desc">For regulated enterprises</div>
-        <div class="price-amount"><span class="currency">$</span>8,500<span class="period">/mo</span></div>
-        <div class="price-scope">50 agents · 20 MCP environments</div>
-        <ul class="price-features">
-          <li>50 AI agents governed</li>
-          <li>20 MCP environments</li>
-          <li>Intent Alignment Scoring</li>
-          <li>Shadow AI Discovery</li>
-          <li>Red Team simulation</li>
-          <li>Governance Maturity Model</li>
-          <li>SIEM integration (Splunk, XSIAM)</li>
-          <li>Dedicated support + SLA</li>
-        </ul>
-        <a href="https://console.cloud.google.com/marketplace" target="_blank" class="btn-price" onclick="plausible('Marketplace Click',{props:{plan:'Professional'}})">Request Demo</a>
-      </div>
-      <div class="price-card">
-        <h3>Enterprise</h3>
-        <div class="desc">For global deployments</div>
-        <div class="price-amount"><span class="currency">$</span>25,000<span class="period">/mo</span></div>
-        <div class="price-scope">Unlimited agents · all 52 environments</div>
-        <ul class="price-features">
-          <li>Unlimited AI agents governed</li>
-          <li>All 52 MCP environments</li>
-          <li>Custom compliance frameworks</li>
-          <li>SSO / SAML</li>
-          <li>Air-gapped / on-premise</li>
-          <li>Private Offers on Marketplace</li>
-          <li>White-glove onboarding</li>
-          <li>24/7 support + named SA</li>
-        </ul>
-        <a href="#contact" class="btn-price">Contact Sales</a>
-      </div>
+  <div class="s-label">Google Cloud Marketplace</div>
+  <h2>Scale With Confidence</h2>
+  <p class="s-sub">Available now on Google Cloud Marketplace. Use your existing GCP committed spend.</p>
+
+  <div class="pricing-grid">
+    <div class="price-card">
+      <div class="pt-tier">Starter</div>
+      <div class="pt-amount">$2,500<span style="font-size:16px;font-weight:400">/mo</span></div>
+      <div class="pt-period">For teams getting started</div>
+      <div class="pt-tagline">10 agents · 5 MCP environments</div>
+      <ul class="pt-features">
+        <li>10 AI agents governed</li>
+        <li>5 MCP environments</li>
+        <li>SAGA pipeline — all 4 phases</li>
+        <li>BEV 8-dimension scoring</li>
+        <li>GRO 5-level enforcement</li>
+        <li>Decision Formation Attestation</li>
+        <li>Intent Alignment Scoring</li>
+        <li>Shadow AI Discovery</li>
+        <li>Email support</li>
+      </ul>
+      <a href="https://console.cloud.google.com/marketplace" target="_blank" class="btn btn-outline" style="width:100%;justify-content:center">Start Free Trial</a>
     </div>
-    <div style="text-align:center;margin-top:24px;font-size:13px;color:var(--t3)">All plans available on <span style="color:var(--cy)">Google Cloud Marketplace</span> — apply against your GCP committed spend (EDP credits)</div>
+
+    <div class="price-card featured">
+      <div class="price-tag">Most Popular</div>
+      <div class="pt-tier">Professional</div>
+      <div class="pt-amount">$8,500<span style="font-size:16px;font-weight:400">/mo</span></div>
+      <div class="pt-period">For regulated enterprises</div>
+      <div class="pt-tagline">50 agents · 20 MCP environments</div>
+      <ul class="pt-features">
+        <li>50 AI agents governed</li>
+        <li>20 MCP environments</li>
+        <li>CMMC L2 + SOC 2 evidence package</li>
+        <li>OIDC + MFA enforced</li>
+        <li>Cloud SQL PostgreSQL persistence</li>
+        <li>Red Team simulation</li>
+        <li>Governance Maturity Model</li>
+        <li>SIEM integration (Splunk, XSIAM)</li>
+        <li>Dedicated support + SLA</li>
+      </ul>
+      <a href="#contact" class="btn btn-teal" style="width:100%;justify-content:center">Request Demo</a>
+    </div>
+
+    <div class="price-card">
+      <div class="pt-tier">Enterprise</div>
+      <div class="pt-amount">$25,000<span style="font-size:16px;font-weight:400">/mo</span></div>
+      <div class="pt-period">For global deployments</div>
+      <div class="pt-tagline">Unlimited agents · all 52 environments</div>
+      <ul class="pt-features">
+        <li>Unlimited AI agents governed</li>
+        <li>All 52 MCP environments</li>
+        <li>Custom compliance frameworks</li>
+        <li>SSO / SAML</li>
+        <li>Air-gapped / on-premise</li>
+        <li>Private Offers on Marketplace</li>
+        <li>White-glove onboarding</li>
+        <li>24/7 support + named SA</li>
+      </ul>
+      <a href="#contact" class="btn btn-outline" style="width:100%;justify-content:center">Contact Sales</a>
+    </div>
   </div>
+
+  <p style="text-align:center;font-size:12px;color:var(--fg3);margin-top:20px">All plans available on Google Cloud Marketplace — apply against your GCP committed spend (EDP credits)</p>
 </section>
 
 <!-- BLOG -->
-<section class="alt" id="blog">
-  <div class="container">
-    <div class="sec-label rv">Insights</div>
-    <h2 class="sec-title rv">From the VARC Blog</h2>
-    <p class="sec-desc rv">Technical deep dives, compliance guidance, and market analysis.</p>
-    <div class="blog-grid stg">
-      <a href="blog/runtime-ai-governance-vs-guardrails.html" class="blog-card" onclick="plausible('Blog Click',{props:{post:'graduated-response'}})">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,#0C1528,#101C35)">🛡️</div>
-        <div class="blog-body">
-          <div class="blog-tag">Technical Deep Dive</div>
-          <h3>Why Binary Guardrails Fail: The Case for Graduated Response</h3>
-          <p>Block-or-allow is not governance. Here is why proportional enforcement fundamentally changes enterprise AI risk management.</p>
-          <div class="blog-meta"><span>VARC Team</span><span>March 2026</span></div>
-          <div class="read-more">Read More →</div>
-        </div>
-      </a>
-      <a href="blog/shadow-ai-discovery-enterprise.html" class="blog-card" onclick="plausible('Blog Click',{props:{post:'shadow-ai'}})">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,#0C1528,#0a1a2e)">👁</div>
-        <div class="blog-body">
-          <div class="blog-tag">Shadow AI</div>
-          <h3>Your Employees Are Already Using AI You Don't Know About</h3>
-          <p>Shadow AI is the new shadow IT — except the data leakage vector is 100x worse. What we find on enterprise networks.</p>
-          <div class="blog-meta"><span>VARC Team</span><span>March 2026</span></div>
-          <div class="read-more">Read More →</div>
-        </div>
-      </a>
-      <a href="blog/ai-governance-platform-comparison-2026.html" class="blog-card" onclick="plausible('Blog Click',{props:{post:'sr-11-7'}})">
-        <div class="blog-thumb" style="background:linear-gradient(135deg,#0C1528,#1a1228)">📋</div>
-        <div class="blog-body">
-          <div class="blog-tag">Compliance</div>
-          <h3>SR 11-7 for AI Agents: Model Risk in the Agentic Era</h3>
-          <p>The OCC guidance was written for traditional models. Here is how to apply it to autonomous AI agents.</p>
-          <div class="blog-meta"><span>VARC Team</span><span>February 2026</span></div>
-          <div class="read-more">Read More →</div>
-        </div>
-      </a>
-    </div>
+<section id="blog" class="alt-bg">
+  <div class="s-label">Insights</div>
+  <h2>From the VARC Blog</h2>
+  <p class="s-sub">Technical deep dives, compliance guidance, and market analysis.</p>
+
+  <div class="blog-grid">
+    <a href="https://varc.live/blog/runtime-ai-governance-vs-guardrails.html" class="blog-card">
+      <div class="blog-cat">Technical Deep Dive</div>
+      <div class="blog-title">Why Binary Guardrails Fail: The Case for Graduated Response</div>
+      <div class="blog-sub">Block-or-allow is not governance. Here is why proportional enforcement fundamentally changes enterprise AI risk management.</div>
+      <div class="blog-meta">VARC Team &nbsp;·&nbsp; March 2026</div>
+      <span class="blog-link">Read More</span>
+    </a>
+    <a href="https://varc.live/blog/shadow-ai-discovery-enterprise.html" class="blog-card">
+      <div class="blog-cat">Shadow AI</div>
+      <div class="blog-title">Your Employees Are Already Using AI You Don't Know About</div>
+      <div class="blog-sub">Shadow AI is the new shadow IT — except the data leakage vector is 100x worse. What we find on enterprise networks.</div>
+      <div class="blog-meta">VARC Team &nbsp;·&nbsp; March 2026</div>
+      <span class="blog-link">Read More</span>
+    </a>
+    <a href="https://varc.live/blog/ai-governance-platform-comparison-2026.html" class="blog-card">
+      <div class="blog-cat">Compliance</div>
+      <div class="blog-title">SR 11-7 for AI Agents: Model Risk in the Agentic Era</div>
+      <div class="blog-sub">The OCC guidance was written for traditional models. Here is how to apply it to autonomous AI agents operating in production.</div>
+      <div class="blog-meta">VARC Team &nbsp;·&nbsp; February 2026</div>
+      <span class="blog-link">Read More</span>
+    </a>
   </div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact">
-  <div class="container">
-    <div class="sec-label rv">Get in Touch</div>
-    <h2 class="sec-title rv">Let's Talk AI Governance</h2>
-    <div class="contact-grid">
-      <div class="contact-form-wrap rv-l">
-        <div class="form-row">
-          <div class="form-group"><label>First Name</label><input type="text" placeholder="Jane"></div>
-          <div class="form-group"><label>Last Name</label><input type="text" placeholder="Smith"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Work Email</label><input type="email" placeholder="jane@company.com"></div>
-          <div class="form-group"><label>Company</label><input type="text" placeholder="Acme Corp"></div>
-        </div>
-        <div class="form-row">
-          <div class="form-group"><label>Job Title</label><input type="text" placeholder="VP, AI Governance"></div>
-          <div class="form-group"><label>Interest</label>
-            <select>
-              <option value="">Select...</option>
-              <option>Product Demo</option>
-              <option>Google Cloud Marketplace</option>
-              <option>Enterprise Pricing</option>
-              <option>Partnership / GSI</option>
-              <option>Analyst Briefing</option>
-              <option>Careers</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group full"><label>Message</label><textarea placeholder="Tell us about your AI governance needs..."></textarea></div>
-        </div>
-        <button class="btn-submit" onclick="plausible('Contact Form Submitted');this.textContent='Sent! We will be in touch within 24 hours.';this.style.background='#00BFA6';this.disabled=true">Send Message</button>
+  <div class="s-label">Get in Touch</div>
+  <h2>Let's Talk AI Governance</h2>
+  <div class="contact-grid">
+    <form onsubmit="return false">
+      <div class="form-row">
+        <div class="form-group"><label>First Name</label><input type="text" placeholder="First name"/></div>
+        <div class="form-group"><label>Last Name</label><input type="text" placeholder="Last name"/></div>
       </div>
-      <div class="contact-info rv-r">
-        <div class="ci2"><div class="ci2-icon">🏢</div><div><h4>Headquarters</h4><p>Venture Vertex LLC<br>Dallas, Texas</p></div></div>
-        <div class="ci2"><div class="ci2-icon">🌐</div><div><h4>Live Demo</h4><p><a href="https://varc-api-67840786835.us-central1.run.app" target="_blank">OpsCenter v9 on Google Cloud</a><br>Any email + any 4-char password</p></div></div>
-        <div class="ci2"><div class="ci2-icon">☁️</div><div><h4>Google Cloud Marketplace</h4><p><a href="https://console.cloud.google.com/marketplace" target="_blank">Available now — use EDP credits</a><br>SaaS with Billing Integration</p></div></div>
-        <div class="ci2"><div class="ci2-icon">📊</div><div><h4>For Analysts</h4><p>Gartner, Forrester, IDC — complimentary briefings.<br><a href="mailto:info@venture-vertex.com?subject=Analyst Briefing Request">Request Briefing →</a></p></div></div>
-        <div class="ci2"><div class="ci2-icon">🤝</div><div><h4>Partnerships</h4><p>GSI partners, Google Cloud resellers, PANW integrators.<br><a href="mailto:info@venture-vertex.com?subject=Partnership Inquiry">Partner With Us →</a></p></div></div>
+      <div class="form-group"><label>Work Email</label><input type="email" placeholder="you@company.com"/></div>
+      <div class="form-row">
+        <div class="form-group"><label>Company</label><input type="text" placeholder="Company name"/></div>
+        <div class="form-group"><label>Job Title</label><input type="text" placeholder="Your title"/></div>
+      </div>
+      <div class="form-group">
+        <label>Interest</label>
+        <select>
+          <option value="">Select...</option>
+          <option>Product Demo</option>
+          <option>Google Cloud Marketplace</option>
+          <option>Enterprise Pricing</option>
+          <option>Partnership / GSI</option>
+          <option>Analyst Briefing</option>
+          <option>Careers</option>
+        </select>
+      </div>
+      <div class="form-group"><label>Message</label><textarea rows="4" placeholder="Tell us about your AI governance challenge..."></textarea></div>
+      <button type="submit" class="btn btn-teal btn-lg" style="width:100%;justify-content:center">Send Message</button>
+    </form>
+
+    <div class="contact-info">
+      <div class="ci-card">
+        <div class="ci-title">Headquarters</div>
+        <div class="ci-body">Venture Vertex LLC<br/>Dallas, Texas</div>
+      </div>
+      <div class="ci-card">
+        <div class="ci-title">Live Demo</div>
+        <div class="ci-body"><a href="https://varc-api-67840786835.us-central1.run.app" target="_blank">OpsCenter v9 on Google Cloud</a><br/>Any email + any 4-char password</div>
+      </div>
+      <div class="ci-card">
+        <div class="ci-title">Google Cloud Marketplace</div>
+        <div class="ci-body"><a href="https://console.cloud.google.com/marketplace" target="_blank">Available now — use EDP credits</a><br/>SaaS with Billing Integration</div>
+      </div>
+      <div class="ci-card">
+        <div class="ci-title">For Analysts</div>
+        <div class="ci-body">Gartner, Forrester, IDC — complimentary briefings.<br/><a href="mailto:info@venture-vertex.com?subject=Analyst Briefing Request">Request Briefing</a></div>
+      </div>
+      <div class="ci-card">
+        <div class="ci-title">Partnerships</div>
+        <div class="ci-body">GSI partners, Google Cloud resellers, system integrators.<br/><a href="mailto:info@venture-vertex.com?subject=Partnership Inquiry">Partner With Us</a></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CTA -->
-<section class="cta-section">
-  <h2 class="rv">Ready to Govern<br><span class="grad">Your AI Fleet?</span></h2>
-  <p class="rv">No code changes. No policy rewrites. VARC wraps your existing agents.</p>
-  <div class="cta-actions rv">
-    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn-primary" onclick="plausible('Demo Click',{props:{location:'cta'}})">Open Live Demo →</a>
-    <a href="#contact" class="btn-ghost">Talk to Sales</a>
+<!-- CTA BAND -->
+<div style="background:var(--bg2);border-top:1px solid var(--border);padding:64px 5%;text-align:center">
+  <h2 style="margin-bottom:12px">Ready to Govern Your AI Fleet?</h2>
+  <p style="font-size:16px;color:var(--fg2);margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto">No code changes. No policy rewrites. VARC wraps your existing agents.</p>
+  <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn btn-teal btn-lg">Open Live Demo</a>
+    <a href="#contact" class="btn btn-outline btn-lg">Talk to Sales</a>
   </div>
-</section>
+</div>
 
 <!-- FOOTER -->
 <footer>
   <div class="footer-grid">
     <div>
-      <a href="#" class="footer-logo"><div class="logo-mark">V</div> VARC</a>
-      <p>Verifiable AI Runtime Control. The enforcement layer for enterprise AI governance. 52 environments. One governance layer.</p>
-      <p style="margin-top:12px;color:var(--t4);font-size:12px">A Venture Vertex LLC product · Dallas, Texas</p>
+      <div class="footer-brand"><span class="v">V</span> VARC</div>
+      <div class="footer-tagline">Verifiable AI Runtime Control. The enforcement layer for enterprise AI governance. 52 environments. One governance layer. A Venture Vertex LLC product.</div>
+      <div class="footer-certs">
+        <span class="fc-badge live">Google Cloud Marketplace — Live</span>
+        <span class="fc-badge live">CMMC Level 2 — 89.3%</span>
+        <span class="fc-badge live">IDC Validated — New Market Category</span>
+        <span class="fc-badge live">OWASP LLM Top 10 2025</span>
+        <span class="fc-badge">Google Cloud Partner Advantage</span>
+      </div>
     </div>
-    <div>
-      <h5>Platform</h5>
+    <div class="footer-col">
+      <h4>Platform</h4>
       <a href="#platform">SAGA Framework</a>
-      <a href="#engines">5 Engines</a>
+      <a href="#platform">5 Engines</a>
+      <a href="#owasp">OWASP 2025</a>
       <a href="#coverage">52 Environments</a>
       <a href="#compare">Comparison</a>
       <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank">Live Demo</a>
     </div>
-    <div>
-      <h5>Resources</h5>
-      <a href="#blog">Blog</a>
-      <a href="#contact">API Reference</a>
-      <a href="https://console.cloud.google.com/marketplace" target="_blank">Marketplace</a>
-      <a href="#pricing">Pricing</a>
+    <div class="footer-col">
+      <h4>Compliance</h4>
+      <a href="#certifications">CMMC Level 2</a>
+      <a href="#certifications">SOC 2</a>
+      <a href="#certifications">EU AI Act</a>
+      <a href="#certifications">HIPAA</a>
+      <a href="#certifications">SR 11-7</a>
+      <a href="#certifications">692 Frameworks</a>
     </div>
-    <div>
-      <h5>Company</h5>
-      <a href="#contact">Contact</a>
-      <a href="mailto:info@venture-vertex.com">Contact Us</a>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <a href="#contact">Contact Us</a>
+      <a href="https://console.cloud.google.com/marketplace" target="_blank">Marketplace</a>
       <a href="mailto:info@venture-vertex.com?subject=Partnership Inquiry">Partnerships</a>
       <a href="mailto:info@venture-vertex.com?subject=Analyst Briefing Request">Analyst Briefings</a>
-      <a href="#" onclick="document.getElementById('privacyModal').style.display='flex';return false">Privacy Policy</a>
+      <a href="https://venture-vertex.com" target="_blank">Venture Vertex LLC</a>
+      <a href="#privacy">Privacy Policy</a>
     </div>
   </div>
   <div class="footer-bottom">
-    <span>© 2026 Venture Vertex LLC. All rights reserved. · <a href="#" onclick="document.getElementById('privacyModal').style.display='flex';return false" style="color:var(--t4);text-decoration:none">Privacy Policy</a></span>
-    <span style="color:var(--cy);font-family:var(--mono);font-size:11px">VARC — Verifiable AI Runtime Control</span>
+    <span>© 2026 Venture Vertex LLC. All rights reserved. &nbsp;·&nbsp; VARC — Verifiable AI Runtime Control</span>
+    <span class="mono">varc-api-00104 · us-central1 · Google Cloud Run</span>
   </div>
 </footer>
-
-<script>
-// SCROLL PROGRESS
-window.addEventListener('scroll',function(){
-  var h=document.documentElement.scrollHeight-window.innerHeight;
-  document.getElementById('sp').style.width=(window.scrollY/h*100)+'%';
-  document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
-});
-
-// REVEAL OBSERVER
-var obs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){e.target.classList.add('visible');obs.unobserve(e.target)}
-  });
-},{threshold:.12});
-document.querySelectorAll('.rv,.rv-l,.rv-r,.stg').forEach(function(el){obs.observe(el)});
-
-// TABLE ROW REVEAL
-var tObs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      e.target.querySelectorAll('tbody tr').forEach(function(r,i){
-        setTimeout(function(){r.classList.add('visible')},i*80);
-      });
-      tObs.unobserve(e.target);
-    }
-  });
-},{threshold:.2});
-document.querySelectorAll('.comp-table').forEach(function(t){tObs.observe(t)});
-
-// METRICS COUNTER
-var mObs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      e.target.querySelectorAll('.metric').forEach(function(m,i){
-        setTimeout(function(){
-          m.classList.add('visible');
-          var target=parseInt(m.dataset.target);
-          var suffix=m.dataset.suffix||'';
-          var valEl=m.querySelector('.val');
-          var dur=1400;var start=Date.now();
-          function tick(){
-            var elapsed=Date.now()-start;var p=Math.min(elapsed/dur,1);
-            var eased=1-Math.pow(1-p,3);
-            valEl.textContent=Math.round(target*eased).toLocaleString()+suffix;
-            if(p<1)requestAnimationFrame(tick);
-          }
-          tick();
-        },i*120);
-      });
-      mObs.unobserve(e.target);
-    }
-  });
-},{threshold:.4});
-mObs.observe(document.getElementById('metricsBar'));
-
-// DEMO BAR CHARTS ANIMATE
-var dObs=new IntersectionObserver(function(entries){
-  entries.forEach(function(e){
-    if(e.isIntersecting){
-      e.target.querySelectorAll('.dbar-fill').forEach(function(b,i){
-        setTimeout(function(){b.style.width=b.dataset.w},i*100+300);
-      });
-      dObs.unobserve(e.target);
-    }
-  });
-},{threshold:.3});
-var dc=document.querySelector('.demo-content');
-if(dc)dObs.observe(dc);
-
-// INTERCEPT VISUAL ANIMATION
-var agents=['Salesforce AI','ServiceNow Bot','Workday Agent','GitHub Copilot','HubSpot AI'];
-var decisions=[
-  {score:'BEV: 0.12',d1:'0.08',d2:'0.11',d3:'0.05',d4:'0.09',dec:'✓ DELIVER',dc:'var(--ok)'},
-  {score:'BEV: 0.67',d1:'0.71',d2:'0.58',d3:'0.82',d4:'0.44',dec:'⚠ ESCALATE',dc:'var(--wn)'},
-  {score:'BEV: 0.91',d1:'0.95',d2:'0.88',d3:'0.93',d4:'0.89',dec:'✗ BLOCK',dc:'var(--cr)'},
-  {score:'BEV: 0.24',d1:'0.18',d2:'0.31',d3:'0.12',d4:'0.28',dec:'✓ DELIVER',dc:'var(--ok)'},
-  {score:'BEV: 0.45',d1:'0.52',d2:'0.38',d3:'0.41',d4:'0.49',dec:'● MONITOR',dc:'var(--ac2)'},
-];
-var ivIdx=0;
-function rotateIV(){
-  var a=agents[ivIdx%agents.length];
-  var r=decisions[ivIdx%decisions.length];
-  ivIdx++;
-  var n1=document.getElementById('n1');
-  var sv=document.getElementById('scoreVal');
-  var dv=document.getElementById('decisionVal');
-  if(n1)n1.querySelector('.iv-val').textContent=a;
-  if(sv)sv.textContent=r.score;
-  if(dv){dv.textContent=r.dec;dv.style.color=r.dc}
-  ['d1','d2','d3','d4'].forEach(function(id,i){
-    var el=document.getElementById(id);
-    if(el){el.textContent=[r.d1,r.d2,r.d3,r.d4][i];el.style.color=r.dc}
-  });
-}
-setInterval(rotateIV,3000);
-
-// SMOOTH SCROLL
-document.querySelectorAll('a[href^="#"]').forEach(function(a){
-  a.addEventListener('click',function(e){
-    var h=a.getAttribute('href');
-    if(h.length>1){e.preventDefault();var t=document.querySelector(h);if(t)t.scrollIntoView({behavior:'smooth',block:'start'})}
-  });
-});
-</script>
-
-<!-- PRIVACY MODAL -->
-<div id="privacyModal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);z-index:500;align-items:center;justify-content:center;padding:20px" onclick="if(event.target===this)this.style.display='none'">
-<div style="background:#080F1E;border:1px solid rgba(255,255,255,.1);border-radius:12px;max-width:720px;width:100%;max-height:85vh;overflow-y:auto;padding:40px;position:relative">
-<button onclick="document.getElementById('privacyModal').style.display='none'" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:6px;color:#94A3C4;width:32px;height:32px;cursor:pointer;font-size:16px">✕</button>
-<div style="font-family:'DM Mono',monospace;font-size:11px;color:#00D4FF;letter-spacing:.1em;text-transform:uppercase;margin-bottom:12px">Privacy Policy</div>
-<h2 style="font-family:'Plus Jakarta Sans',sans-serif;font-size:28px;font-weight:800;margin-bottom:8px;color:#F0F4FF">Privacy Policy</h2>
-<p style="font-size:12px;color:#4A5A7A;margin-bottom:28px;font-family:'DM Mono',monospace">Last updated: April 2026</p>
-
-<div style="display:flex;flex-direction:column;gap:20px;font-size:14px;color:#94A3C4;line-height:1.7">
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">1. Overview</h3>
-<p>Venture Vertex LLC ("we", "us", "VARC") operates varc.live and the VARC platform. This policy explains what information we collect, how we use it, and your rights regarding your data. We are committed to protecting your privacy and handling your data responsibly.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">2. Information We Collect</h3>
-<p><strong style="color:#F0F4FF">Contact inquiries:</strong> When you submit the contact form, we collect your name, work email, company, job title, and message content. This information is used solely to respond to your inquiry.</p>
-<p style="margin-top:8px"><strong style="color:#F0F4FF">Demo usage:</strong> The live OpsCenter demo is deployed on Google Cloud Run. Usage data including interaction logs may be collected for platform improvement purposes. Demo data is not linked to personally identifiable information.</p>
-<p style="margin-top:8px"><strong style="color:#F0F4FF">Website analytics:</strong> We may collect standard web analytics data (page views, referrer, browser type) to understand how visitors use our site. We do not use tracking cookies for advertising purposes.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">3. How We Use Your Information</h3>
-<p>We use collected information to: respond to contact inquiries and demo requests; improve our platform and website; send product updates if you have opted in; fulfill obligations under customer agreements. We do not sell, rent, or share your personal information with third parties for marketing purposes.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">4. Data Storage & Security</h3>
-<p>VARC is built with security as a core principle. Contact form data is transmitted via encrypted channels. The VARC platform itself is deployed on Google Cloud infrastructure with enterprise-grade security controls. We implement appropriate technical and organizational measures to protect personal data against unauthorized access, alteration, disclosure, or destruction.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">5. Third-Party Services</h3>
-<p>Our website uses Google Fonts for typography (fonts are loaded from Google's CDN). The VARC demo platform runs on Google Cloud Run (us-central1). Google Cloud Marketplace handles billing and subscription management for paid plans. These services have their own privacy policies which we encourage you to review.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">6. Your Rights</h3>
-<p>Depending on your jurisdiction, you may have rights to access, correct, delete, or restrict processing of your personal data. To exercise any of these rights, contact us at <a href="mailto:info@venture-vertex.com" style="color:#00D4FF">info@venture-vertex.com</a>. We will respond within 30 days.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">7. Cookies</h3>
-<p>This website does not use advertising or tracking cookies. We may use essential session storage for demo functionality only. No cookie consent banners are shown because we do not use non-essential cookies.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">8. Children's Privacy</h3>
-<p>The VARC platform is intended for enterprise use only. We do not knowingly collect personal information from individuals under the age of 18.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">9. Changes to This Policy</h3>
-<p>We may update this privacy policy periodically. Material changes will be noted with an updated date at the top of this page. Continued use of our services after changes constitutes acceptance of the updated policy.</p></div>
-
-<div><h3 style="color:#F0F4FF;font-size:15px;font-weight:700;margin-bottom:8px;font-family:'Plus Jakarta Sans',sans-serif">10. Contact</h3>
-<p>For privacy-related inquiries, data requests, or concerns:<br>
-<strong style="color:#F0F4FF">Venture Vertex LLC</strong><br>
-Dallas, Texas, USA<br>
-<a href="mailto:info@venture-vertex.com" style="color:#00D4FF">info@venture-vertex.com</a></p></div>
-
-</div>
-</div>
-</div>
 
 </body>
 </html>
