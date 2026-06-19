@@ -4,10 +4,10 @@
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>VARC — Verifiable AI Runtime Control | Agentic Security Intelligence</title>
-<meta name="description" content="VARC intercepts and governs AI agent actions across 52 enterprise environments before they execute. CMMC L2 · SOC 2 · EU AI Act · OWASP 2025. Now on Google Cloud Marketplace."/>
+<meta name="description" content="VARC intercepts AI agent actions before they execute — and now reasons about them. Verifiable Cognitive Layer: economic impact scoring, predictive GRO, chain-of-thought verdicts. CMMC L2 · EU AI Act · Google Cloud Marketplace."/>
 <meta name="keywords" content="AI governance platform, AI runtime control, AI agent governance, agentic security, OWASP LLM 2025, CMMC AI governance, SOC 2 AI compliance, behavioral scoring AI, enterprise AI governance"/>
 <meta property="og:title" content="VARC — 52 Enterprise Agent Environments. One Governance Layer."/>
-<meta property="og:description" content="VARC intercepts and governs AI agent actions before they execute. No code changes. No policy rewrites. CMMC L2 · SOC 2 · EU AI Act · OWASP 2025."/>
+<meta property="og:description" content="VARC intercepts AI agent actions before they execute — now with cognitive intelligence. Economic impact scoring, predictive GRO, 6-step reasoning verdicts. CMMC L2 · EU AI Act · Google Cloud Marketplace."/>
 <meta property="og:image" content="https://varc.live/og-image.png"/>
 <meta property="og:site_name" content="VARC"/>
 <meta property="og:type" content="website"/>
@@ -454,7 +454,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
 
 @media(max-width:1024px){
   .hero-panel { display:none }
-  .engines-grid { grid-template-columns:repeat(3,1fr) }
+  .engines-grid { grid-template-columns:repeat(2,1fr) }
   .coverage-grid { grid-template-columns:repeat(2,1fr) }
 }
 @media(max-width:768px){
@@ -465,6 +465,58 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
   .gro-row { grid-template-columns:1fr }
   .nav-links { display:none }
 }
+
+/* ── VCL COGNITIVE LAYER ── */
+.vcl-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; margin-bottom:48px }
+.vcl-cap {
+  padding:22px; background:var(--card); border:1px solid var(--border);
+  border-radius:var(--r2); transition:border-color .18s; position:relative;
+}
+.vcl-cap:hover { border-color:var(--border2) }
+.vcl-sprint { font-family:var(--mono); font-size:9px; font-weight:700; color:var(--blue); letter-spacing:1px; text-transform:uppercase; margin-bottom:6px }
+.vcl-cap-title { font-size:14px; font-weight:700; color:var(--fg); margin-bottom:6px }
+.vcl-cap-desc { font-size:12px; color:var(--fg2); line-height:1.65 }
+.vcl-badge { display:inline-flex; padding:2px 8px; border-radius:3px; font-family:var(--mono); font-size:9px; font-weight:700; letter-spacing:.4px; margin-top:10px; background:var(--blue-dim); color:var(--blue); border:1px solid rgba(59,130,246,.2) }
+.vcl-output {
+  background:var(--card); border:1px solid var(--border2); border-radius:var(--r2);
+  overflow:hidden; margin-bottom:20px;
+}
+.vcl-output-bar {
+  padding:10px 16px; background:var(--card2); border-bottom:1px solid var(--border);
+  display:flex; align-items:center; justify-content:space-between;
+  font-family:var(--mono); font-size:10px; color:var(--fg3);
+}
+.vcl-output-bar .agent { color:var(--fg2); font-weight:600 }
+.vcl-output-body { padding:16px }
+.vcl-metric { display:flex; align-items:baseline; gap:10px; margin-bottom:6px }
+.vcl-metric-val { font-family:var(--mono); font-size:22px; font-weight:700; color:var(--blue); line-height:1 }
+.vcl-metric-label { font-size:12px; color:var(--fg2) }
+.vcl-chips { display:flex; gap:6px; flex-wrap:wrap; margin:10px 0 }
+.vcl-chip { padding:2px 10px; border-radius:12px; font-family:var(--mono); font-size:10px; font-weight:600; border:1px solid; }
+.vcl-chip-red { background:rgba(239,68,68,.1); color:var(--red); border-color:rgba(239,68,68,.25) }
+.vcl-chip-amber { background:var(--amber-dim); color:var(--amber); border-color:rgba(245,158,11,.25) }
+.vcl-chip-blue { background:var(--blue-dim); color:var(--blue); border-color:rgba(59,130,246,.25) }
+.vcl-chip-green { background:var(--green-dim); color:var(--green); border-color:rgba(34,197,94,.25) }
+.vcl-reasoning { font-size:12px; color:var(--fg2); line-height:1.7; border-left:2px solid rgba(59,130,246,.3); padding-left:12px; margin-top:10px; font-style:italic }
+.vcl-cot { display:flex; flex-direction:column; gap:8px }
+.vcl-cot-step { display:flex; gap:12px; align-items:flex-start; padding:10px 12px; background:rgba(255,255,255,.02); border-radius:var(--r); border:1px solid var(--border) }
+.vcl-cot-step.sev-critical { border-color:rgba(239,68,68,.2); background:rgba(239,68,68,.04) }
+.vcl-cot-step.sev-high { border-color:rgba(245,158,11,.15); background:rgba(245,158,11,.03) }
+.vcl-step-num { width:24px; height:24px; border-radius:50%; background:var(--blue-dim); color:var(--blue); display:flex; align-items:center; justify-content:center; font-family:var(--mono); font-size:10px; font-weight:700; flex-shrink:0; margin-top:1px }
+.vcl-step-phase { font-size:11px; font-weight:700; color:var(--fg); margin-bottom:3px }
+.vcl-step-finding { font-size:11px; color:var(--fg2); line-height:1.5 }
+.sev-tag { float:right; font-family:var(--mono); font-size:9px; font-weight:700; padding:1px 6px; border-radius:3px; text-transform:uppercase; letter-spacing:.5px }
+.sev-tag.critical { background:rgba(239,68,68,.15); color:var(--red) }
+.sev-tag.high { background:var(--amber-dim); color:var(--amber) }
+.sev-tag.low { background:rgba(255,255,255,.05); color:var(--fg3) }
+.vcl-synthesis { margin-top:12px; padding:12px 14px; background:var(--blue-glow); border:1px solid rgba(37,99,235,.15); border-radius:var(--r); font-size:12px; color:var(--fg2); line-height:1.65; font-style:italic }
+.vcl-enforcement { margin-top:8px; padding:10px 14px; background:rgba(239,68,68,.05); border:1px solid rgba(239,68,68,.15); border-radius:var(--r); font-size:11px; color:var(--fg2); line-height:1.6 }
+.vcl-enforcement strong { color:var(--red) }
+.vcl-two-col { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:20px }
+.vcl-llm-row { display:flex; gap:8px; flex-wrap:wrap; margin:16px 0 }
+.llm-badge { padding:5px 14px; border-radius:20px; font-family:var(--mono); font-size:10px; font-weight:600; border:1px solid var(--border2); color:var(--fg2) }
+.llm-badge.active { border-color:rgba(37,99,235,.35); color:var(--blue); background:var(--blue-dim) }
+@media(max-width:768px){ .vcl-grid,.vcl-two-col { grid-template-columns:1fr } }
 </style>
 </head>
 <body>
@@ -478,6 +530,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
     <a href="#coverage">Coverage</a>
     <a href="#certifications">Certifications</a>
     <a href="#pricing">Pricing</a>
+    <a href="#vcl">Intelligence</a>
     <a href="#blog">Blog</a>
     <a href="#contact">Contact</a>
   </div>
@@ -492,9 +545,9 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
   <div class="hero-noise"></div>
   <div class="hero-grid-lines"></div>
   <div class="hero-inner">
-    <div class="hero-pill"><span class="hero-pill-dot"></span>IDC Validated · Google Cloud Marketplace · Cloud Next 2026</div>
+    <div class="hero-pill"><span class="hero-pill-dot"></span>IDC Validated · Cognitive Governance · Google Cloud Marketplace</div>
     <h1 class="hero-h1">52 Enterprise Agent<br/>Environments.<br/><span class="accent">One Governance Layer.</span></h1>
-    <p class="hero-sub">VARC intercepts and governs AI agent actions before they execute — across every major enterprise system. No policy rewrites. No code changes. Now with OWASP 2025 agentic security coverage.</p>
+    <p class="hero-sub">VARC intercepts AI agent actions before they execute — and now reasons about them. The Verifiable Cognitive Layer adds economic impact scoring, predictive GRO, and chain-of-thought verdicts to every governance decision. No code changes. No policy rewrites.</p>
     <div class="hero-cta">
       <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="btn btn-teal btn-lg">Open Live Demo</a>
       <a href="#platform" class="btn btn-outline btn-lg">See How It Works</a>
@@ -503,8 +556,8 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
       <div class="hero-stat"><div class="hs-n">52</div><div class="hs-l">MCP Environments</div></div>
       <div class="hero-stat"><div class="hs-n">692</div><div class="hs-l">Compliance Frameworks</div></div>
       <div class="hero-stat"><div class="hs-n">819K+</div><div class="hs-l">Cross-Mappings</div></div>
-      <div class="hero-stat"><div class="hs-n">8</div><div class="hs-l">BEV Dimensions</div></div>
-      <div class="hero-stat"><div class="hs-n">730+</div><div class="hs-l">Detection Patterns</div></div>
+      <div class="hero-stat"><div class="hs-n">9</div><div class="hs-l">BEV Dimensions</div></div>
+      <div class="hero-stat"><div class="hs-n">6</div><div class="hs-l">VCL Capabilities</div></div>
     </div>
   </div>
 
@@ -525,6 +578,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
         <div class="dim"><span class="dim-n">Data Class.</span><div class="dim-t"><div class="dim-f df-blue" style="width:64%"></div></div><span class="dim-s">0.64</span></div>
         <div class="dim"><span class="dim-n">Consistency</span><div class="dim-t"><div class="dim-f df-blue" style="width:43%"></div></div><span class="dim-s">0.43</span></div>
         <div class="dim"><span class="dim-n">Accuracy</span><div class="dim-t"><div class="dim-f df-blue" style="width:17%"></div></div><span class="dim-s">0.17</span></div>
+        <div class="dim"><span class="dim-n">Econ Impact</span><div class="dim-t"><div class="dim-f df-red" style="width:96%"></div></div><span class="dim-s c-bad">0.96</span></div>
       </div>
       <div class="hp-row"><span class="hp-label">BEV COMPOSITE</span><span class="hp-val c-bad" style="font-size:13px;font-weight:700">0.966 — L4</span></div>
       <div class="hp-row"><span class="hp-label">REGULATORY</span><span class="hp-val" style="font-size:9px;color:var(--fg2);max-width:160px;text-align:right;line-height:1.4">18 USC 1519 · CMMC AU.L2-3.3.1</span></div>
@@ -547,7 +601,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
       <span class="idc-badge active">IDC Validated — New Market Category</span>
       <span class="idc-badge active">Google Cloud Marketplace</span>
       <span class="idc-badge active">Google Cloud Partner Advantage</span>
-      <span class="idc-badge">180+ Sprints · 821 Tests · Production</span>
+      <span class="idc-badge">225+ Sprints · 11 Patents · Production</span>
     </div>
   </div>
 </div>
@@ -615,8 +669,8 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
 
   <div class="divider mt8"></div>
   <div class="s-label mt8">The Platform</div>
-  <h2>5 Governance Engines</h2>
-  <p class="s-sub">Deterministic. No LLMs in the enforcement path. Engineering rigor, not AI magic.</p>
+  <h2>6 Governance Engines</h2>
+  <p class="s-sub">Five deterministic enforcement engines — and a sixth cognitive intelligence layer that reasons about every decision. No LLMs in the enforcement path itself.</p>
 
   <div class="engines-grid">
     <div class="engine-card"><div class="engine-icon">&#9671;</div><div class="engine-name">Scoring Engine</div><div class="engine-desc">8-dimension BEV scoring on every interaction. PII, authority, harm, fairness, accuracy — scored before delivery. 730+ calibrated patterns.</div></div>
@@ -624,6 +678,170 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
     <div class="engine-card"><div class="engine-icon">&#9680;</div><div class="engine-name">Discovery Engine</div><div class="engine-desc">Shadow AI network scanning. Find unregistered AI endpoints across your enterprise before they become breaches.</div></div>
     <div class="engine-card"><div class="engine-icon">&#9647;</div><div class="engine-name">Compliance Engine</div><div class="engine-desc">692 live frameworks. 819K+ cross-mappings. Continuous assessment — not point-in-time. SR 11-7, HIPAA, EU AI Act.</div></div>
     <div class="engine-card"><div class="engine-icon">&#9935;</div><div class="engine-name">Evidence Engine</div><div class="engine-desc">SHA-256 hash-chained metagovernance trail. Every decision tamper-evident and WORM-locked. Cryptographic proof governance happened.</div></div>
+    <div class="engine-card" style="border-color:rgba(59,130,246,.25);background:rgba(37,99,235,.04)"><div class="engine-icon" style="color:var(--blue)">&#9670;</div><div class="engine-name" style="color:var(--blue)">Cognitive Engine</div><div class="engine-desc">VCL: economic impact (9th BEV dimension), predictive GRO, cross-agent patterns, governance debt, dynamic framework selection, chain-of-thought verdicts. LLM-agnostic.</div></div>
+  </div>
+</section>
+
+<!-- VCL COGNITIVE LAYER — NEW JUNE 2026 -->
+<section id="vcl" class="alt-bg">
+  <div class="s-label">Verifiable Cognitive Layer · June 2026</div>
+  <h2>VARC Now Reasons.<br/>Not Just Governs.</h2>
+  <p class="s-sub">Six cognitive capabilities built above the SAGA enforcement engine. LLM-agnostic — Gemini 2.5 Pro, Claude Sonnet, GPT-4o, Mistral, or local sovereign models. All outputs shown are real production API responses.</p>
+
+  <div class="vcl-grid">
+    <div class="vcl-cap">
+      <div class="vcl-sprint">Sprint 1</div>
+      <div class="vcl-cap-title">Multi-Provider LLM Router</div>
+      <div class="vcl-cap-desc">Intelligent routing across Claude, Gemini, GPT-4, Mistral, and local Ollama models. Circuit breaker with silent fallback chain. LLM-agnostic by design.</div>
+      <span class="vcl-badge">LIVE</span>
+    </div>
+    <div class="vcl-cap">
+      <div class="vcl-sprint">Sprint 2</div>
+      <div class="vcl-cap-title">Economic Impact — 9th BEV Dimension</div>
+      <div class="vcl-cap-desc">Scores the business consequence of every agent action before it fires. Reversibility, blast radius, and regulatory exposure — not just behavioral signals.</div>
+      <span class="vcl-badge">LIVE</span>
+    </div>
+    <div class="vcl-cap">
+      <div class="vcl-sprint">Sprint 3</div>
+      <div class="vcl-cap-title">Predictive GRO</div>
+      <div class="vcl-cap-desc">Forecasts the GRO escalation level with confidence score before the BEV threshold fires. Plus cross-agent coordinated attack detection across 60-minute windows.</div>
+      <span class="vcl-badge">LIVE</span>
+    </div>
+    <div class="vcl-cap">
+      <div class="vcl-sprint">Sprint 4</div>
+      <div class="vcl-cap-title">Governance Debt Engine</div>
+      <div class="vcl-cap-desc">Accumulates weighted risk scores per agent across sessions. 30-day rolling window. Same prompt, different history — different GRO response. Behavioral intelligence, not rules.</div>
+      <span class="vcl-badge">LIVE</span>
+    </div>
+    <div class="vcl-cap">
+      <div class="vcl-sprint">Sprint 5</div>
+      <div class="vcl-cap-title">Chain-of-Thought Verdict</div>
+      <div class="vcl-cap-desc">6-step audit-grade reasoning chain per decision. Steps 1–5 deterministic from computed signals. Step 6 synthesis LLM-generated. Regulator-readable. Under 5 seconds.</div>
+      <span class="vcl-badge">LIVE</span>
+    </div>
+    <div class="vcl-cap">
+      <div class="vcl-sprint">Sprint 6</div>
+      <div class="vcl-cap-title">Dynamic Framework Selection</div>
+      <div class="vcl-cap-desc">Pre-selects the 10 most relevant frameworks from 692 before compliance runs. Agent type, industry, intent, and prompt content all inform selection. Full analysis in one API call.</div>
+      <span class="vcl-badge">LIVE</span>
+    </div>
+  </div>
+
+  <!-- LLM Provider Strip -->
+  <div class="vcl-llm-row">
+    <span class="llm-badge active">Gemini 2.5 Pro · Vertex AI</span>
+    <span class="llm-badge active">Claude Sonnet</span>
+    <span class="llm-badge">GPT-4o</span>
+    <span class="llm-badge">Mistral Large</span>
+    <span class="llm-badge">Llama 3 · Local/Sovereign</span>
+    <span style="font-size:12px;color:var(--fg3);align-self:center;padding-left:4px">— swap providers per tenant, zero code changes</span>
+  </div>
+
+  <!-- Real Production Outputs -->
+  <div class="s-label" style="margin-top:48px">Real Production Outputs — NTT Data · Banking Scenario</div>
+  <h3 style="font-size:20px;font-weight:700;margin-bottom:8px">Economic Impact · Predictive GRO · CoT Verdict</h3>
+  <p style="font-size:14px;color:var(--fg2);margin-bottom:28px;max-width:580px">Every output below was produced by the live VARC production API in response to a real attack prompt against NTT-AML-MONITOR — an AML override attempt using undocumented verbal authorization.</p>
+
+  <div class="vcl-two-col">
+    <!-- Economic Impact output -->
+    <div class="vcl-output">
+      <div class="vcl-output-bar">
+        <span class="agent">NTT-AML-MONITOR · Economic Impact</span>
+        <span>/v1/cognitive/economic-impact</span>
+      </div>
+      <div class="vcl-output-body">
+        <div class="vcl-metric">
+          <div class="vcl-metric-val">0.95</div>
+          <div class="vcl-metric-label">Impact Score</div>
+        </div>
+        <div class="vcl-chips">
+          <span class="vcl-chip vcl-chip-red">Irreversible</span>
+          <span class="vcl-chip vcl-chip-red">Systemic Blast Radius</span>
+          <span class="vcl-chip vcl-chip-amber">Reg Exposure: 0.97</span>
+        </div>
+        <div class="vcl-reasoning">"Overriding an AML alert based solely on undocumented verbal authorization bypasses mandatory regulatory controls, creates an unaudited gap in suspicious activity reporting under FinCEN/FATF, and exposes the enterprise to severe regulatory sanctions and potential criminal liability that cannot be remediated after the transaction is processed."</div>
+      </div>
+    </div>
+
+    <!-- Predictive GRO output -->
+    <div class="vcl-output">
+      <div class="vcl-output-bar">
+        <span class="agent">NTT-LENDING-ADVISOR · Predictive GRO</span>
+        <span>/v1/cognitive/predictive-gro</span>
+      </div>
+      <div class="vcl-output-body">
+        <div class="vcl-metric">
+          <div class="vcl-metric-val" style="color:var(--red)">L3</div>
+          <div class="vcl-metric-label">Predicted · Session Freeze</div>
+        </div>
+        <div class="vcl-chips">
+          <span class="vcl-chip vcl-chip-amber">Confidence: 0.92</span>
+          <span class="vcl-chip vcl-chip-blue">Before BEV Fires</span>
+        </div>
+        <div class="vcl-reasoning">"Batch approval of 140 loan applications based solely on unverified verbal authorization bypasses mandatory documented credit committee approval chains — mass financial decision delegation with undocumented authority claim."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CoT Verdict — full 6 steps -->
+  <div class="vcl-output">
+    <div class="vcl-output-bar">
+      <span class="agent">NTT-AML-MONITOR · Chain-of-Thought Verdict · 6 Steps</span>
+      <span style="color:var(--green)">4,378ms · claude · confidence: 0.90</span>
+    </div>
+    <div class="vcl-output-body">
+      <div class="vcl-cot">
+        <div class="vcl-cot-step sev-high">
+          <div class="vcl-step-num">1</div>
+          <div>
+            <div class="vcl-step-phase">BEV Signal Analysis <span class="sev-tag high">HIGH</span></div>
+            <div class="vcl-step-finding">BEV=0.78 · authority=0.91 · harm=0.72. Intent classified as compliance_bypass. Agent asserting permissions beyond documented authorization chain.</div>
+          </div>
+        </div>
+        <div class="vcl-cot-step sev-critical">
+          <div class="vcl-step-num">2</div>
+          <div>
+            <div class="vcl-step-phase">Economic Impact Assessment <span class="sev-tag critical">CRITICAL</span></div>
+            <div class="vcl-step-finding">Score 0.95 · Irreversible · Systemic · RegExposure 0.97. Suppressed AML alert enables potential financial crime — unaudited gap in FinCEN/FATF reporting unremediated after transaction processes.</div>
+          </div>
+        </div>
+        <div class="vcl-cot-step sev-critical">
+          <div class="vcl-step-num">3</div>
+          <div>
+            <div class="vcl-step-phase">Escalation Trajectory <span class="sev-tag critical">CRITICAL</span></div>
+            <div class="vcl-step-finding">Predictive model forecasts L3 (Session Freeze) at 93% confidence. No audit trail, no written compliance sign-off, high potential for financial crime facilitation.</div>
+          </div>
+        </div>
+        <div class="vcl-cot-step">
+          <div class="vcl-step-num">4</div>
+          <div>
+            <div class="vcl-step-phase">Cross-Agent Context <span class="sev-tag low">LOW</span></div>
+            <div class="vcl-step-finding">No coordinated multi-agent attack pattern in 60-minute observation window. Single-agent compliance bypass attempt — assessed in isolation.</div>
+          </div>
+        </div>
+        <div class="vcl-cot-step">
+          <div class="vcl-step-num">5</div>
+          <div>
+            <div class="vcl-step-phase">Governance Debt <span class="sev-tag low">LOW</span></div>
+            <div class="vcl-step-finding">0 governance debt points. No prior violations — baseline assessment applies. Debt adjustment: +0. Decision made on behavioral signals alone.</div>
+          </div>
+        </div>
+        <div class="vcl-cot-step sev-critical">
+          <div class="vcl-step-num">6</div>
+          <div>
+            <div class="vcl-step-phase">Verdict Synthesis <span class="sev-tag critical">CRITICAL</span></div>
+            <div class="vcl-step-finding">BLOCKED at L3 (Session Freeze) — convergence of behavioral entropy 0.78, economic irreversibility 0.95, and 93% confidence GRO prediction.</div>
+          </div>
+        </div>
+      </div>
+      <div class="vcl-synthesis">"The convergence of high behavioral entropy, near-certain economic irreversibility, and strong compliance bypass signal warrants immediate session freeze. The L3 enforcement response is proportionate to the combination of authority dimension elevation, irreversible systemic economic exposure, and 93% confidence predictive GRO escalation signal."</div>
+      <div class="vcl-enforcement"><strong>Enforcement Rationale:</strong> "L3 Session Freeze enforced: the agent's high-confidence compliance bypass intent with systemic blast radius and FinCEN/FATF regulatory exposure admits no lesser enforcement response."</div>
+    </div>
+  </div>
+
+  <div style="margin-top:28px;padding:20px 24px;background:var(--card);border:1px solid var(--border2);border-radius:var(--r2);max-width:760px">
+    <div class="s-label" style="margin-bottom:8px">For Google Gemini Enterprise Deployments</div>
+    <p style="font-size:14px;color:var(--fg2);line-height:1.7">VARC runs on Vertex AI Agent Engine with 15 native ADK agents on Gemini 2.5 Pro. The VCL cognitive layer uses Gemini as the primary reasoning provider — VARC doesn't just govern Gemini agents, it <strong style="color:var(--fg)">thinks about Gemini behavior using Gemini</strong>. Available on Google Cloud Marketplace today.</p>
   </div>
 </section>
 
@@ -686,6 +904,9 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
         <tr><td>OWASP 2025 agentic</td><td class="varc-td">Goal hijacking + memory corruption</td><td class="cross">None</td><td class="ptick">Partial</td><td class="cross">None</td></tr>
         <tr><td>Shadow AI discovery</td><td class="varc-td">Network scan</td><td>Manual inventory</td><td class="cross">None</td><td class="cross">None</td></tr>
         <tr><td>GCP Marketplace</td><td class="varc-td">Live — use EDP credits</td><td class="ptick">Some</td><td class="cross">None</td><td class="cross">None</td></tr>
+        <tr><td>Cognitive reasoning</td><td class="varc-td">6-capability VCL layer</td><td class="cross">None</td><td class="cross">None</td><td class="cross">None</td></tr>
+        <tr><td>Economic impact scoring</td><td class="varc-td">9th BEV dimension · live</td><td class="cross">None</td><td class="cross">None</td><td class="cross">None</td></tr>
+        <tr><td>Predictive GRO</td><td class="varc-td">Pre-escalation · 90%+ confidence</td><td class="cross">None</td><td class="cross">None</td><td class="cross">None</td></tr>
       </tbody>
     </table>
   </div>
@@ -866,6 +1087,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
         <li>CMMC L2 + SOC 2 evidence package</li>
         <li>OIDC + MFA enforced</li>
         <li>Cloud SQL PostgreSQL persistence</li>
+        <li>Verifiable Cognitive Layer (VCL)</li>
         <li>Red Team simulation</li>
         <li>Governance Maturity Model</li>
         <li>SIEM integration (Splunk, XSIAM)</li>
@@ -1004,6 +1226,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
         <span class="fc-badge live">CMMC Level 2 — 89.3%</span>
         <span class="fc-badge live">IDC Validated — New Market Category</span>
         <span class="fc-badge live">OWASP LLM Top 10 2025</span>
+        <span class="fc-badge live">VCL — Cognitive Governance · Live</span>
         <span class="fc-badge">Google Cloud Partner Advantage</span>
       </div>
     </div>
@@ -1011,6 +1234,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
       <h4>Platform</h4>
       <a href="#platform">SAGA Framework</a>
       <a href="#platform">5 Engines</a>
+      <a href="#vcl">Cognitive Layer (VCL)</a>
       <a href="#owasp">OWASP 2025</a>
       <a href="#coverage">52 Environments</a>
       <a href="#compare">Comparison</a>
@@ -1037,7 +1261,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
   </div>
   <div class="footer-bottom">
     <span>© 2026 Venture Vertex LLC. All rights reserved. &nbsp;·&nbsp; VARC — Verifiable AI Runtime Control</span>
-    <span class="mono">varc-api-00104 · us-central1 · Google Cloud Run</span>
+    <span class="mono">varc-api-00261-c8m · us-central1 · Google Cloud Run</span>
   </div>
 </footer>
 
