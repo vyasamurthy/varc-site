@@ -244,7 +244,7 @@ section { padding:96px 5% }
 .saga-desc { font-size:13px; color:var(--fg2); line-height:1.65 }
 
 /* ── 5 ENGINES ── */
-.engines-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:14px }
+.engines-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px }
 .engine-card {
   padding:24px 20px; background:var(--card); border:1px solid var(--border);
   border-radius:var(--r2); transition:border-color .18s;
@@ -517,9 +517,306 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
 .llm-badge { padding:5px 14px; border-radius:20px; font-family:var(--mono); font-size:10px; font-weight:600; border:1px solid var(--border2); color:var(--fg2) }
 .llm-badge.active { border-color:rgba(37,99,235,.35); color:var(--blue); background:var(--blue-dim) }
 @media(max-width:768px){ .vcl-grid,.vcl-two-col { grid-template-columns:1fr } }
+
+/* ════════════════════════════════════════════════════════════
+   VARC VISUAL OVERHAUL — ANIMATIONS v3
+════════════════════════════════════════════════════════════ */
+
+/* ── Canvas neural network ── */
+#varc-canvas {
+  position: fixed; top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: .28;
+}
+
+body > *:not(#varc-canvas) { position: relative; z-index: 1; }
+
+/* ── Scroll Reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .65s cubic-bezier(.4,0,.2,1),
+              transform .65s cubic-bezier(.4,0,.2,1);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ── Keyframes ── */
+@keyframes fade-up {
+  from { opacity:0; transform:translateY(20px); }
+  to   { opacity:1; transform:none; }
+}
+@keyframes slide-in-row {
+  from { opacity:0; transform:translateX(-8px); }
+  to   { opacity:1; transform:none; }
+}
+@keyframes glow-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
+  50%      { box-shadow: 0 0 24px 4px rgba(59,130,246,.18); }
+}
+@keyframes cursor-blink {
+  0%,49% { opacity:1; } 50%,100% { opacity:0; }
+}
+@keyframes gradient-rotate {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+@keyframes hero-bg-drift {
+  0%   { transform: scale(1) translate(0,0); }
+  50%  { transform: scale(1.08) translate(-2%,1.5%); }
+  100% { transform: scale(1) translate(0,0); }
+}
+@keyframes badge-glow {
+  0%,100% { border-color: rgba(37,99,235,.25); }
+  50%      { border-color: rgba(37,99,235,.6); box-shadow: 0 0 12px rgba(37,99,246,.2); }
+}
+@keyframes stream-row-in {
+  from { opacity:0; transform:translateY(-6px) scaleY(.95); }
+  to   { opacity:1; transform:none; }
+}
+@keyframes logo-glitch {
+  0%,90%,100% { text-shadow: none; }
+  91%  { text-shadow: -2px 0 rgba(239,68,68,.8), 2px 0 rgba(59,130,246,.8); transform:translateX(-1px); }
+  93%  { text-shadow: 2px 0 rgba(239,68,68,.8), -2px 0 rgba(59,130,246,.8); transform:translateX(1px); }
+  95%  { text-shadow: none; transform:none; }
+}
+@keyframes shimmer {
+  from { background-position: -200% center; }
+  to   { background-position: 200% center; }
+}
+@keyframes intercept-flash {
+  0%   { background: rgba(239,68,68,.0); }
+  30%  { background: rgba(239,68,68,.12); }
+  100% { background: rgba(239,68,68,.0); }
+}
+
+/* ── Hero ── */
+.hero-noise { animation: hero-bg-drift 18s ease-in-out infinite; }
+.hero-h1 { animation: fade-up .9s ease both; }
+.hero-sub { animation: fade-up .9s ease .15s both; }
+.hero-cta { animation: fade-up .9s ease .28s both; }
+.hero-stats { animation: fade-up .9s ease .42s both; }
+.hero-pill { animation: badge-glow 3s ease-in-out infinite; }
+
+/* ── Nav logo glitch ── */
+.nav-logo-v { animation: logo-glitch 8s ease-in-out infinite; display:inline-block; }
+
+/* ── Cards — hover glow + lift + 3D tilt ── */
+.engine-card, .vcl-cap, .cert-card, .owasp-card, .cov-card, .ind-card, .blog-card, .price-card, .saga-phase {
+  transition: transform .22s cubic-bezier(.34,1.56,.64,1),
+              box-shadow .22s ease,
+              border-color .22s ease !important;
+  will-change: transform;
+  transform-style: preserve-3d;
+}
+.engine-card:hover, .vcl-cap:hover, .cert-card:hover, .cov-card:hover {
+  transform: translateY(-6px) scale(1.01) !important;
+  box-shadow: 0 0 0 1px rgba(59,130,246,.35),
+              0 0 32px rgba(59,130,246,.12),
+              0 20px 48px rgba(0,0,0,.45) !important;
+  border-color: rgba(59,130,246,.4) !important;
+}
+.owasp-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 0 0 1px rgba(59,130,246,.25), 0 12px 32px rgba(0,0,0,.4) !important;
+}
+.saga-phase:hover {
+  border-color: rgba(59,130,246,.3) !important;
+  box-shadow: 0 0 16px rgba(59,130,246,.08) inset !important;
+}
+
+/* ── Gradient border on VCL outputs ── */
+.vcl-output {
+  position: relative;
+}
+.vcl-output::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--r2) + 1px);
+  background: linear-gradient(90deg, rgba(59,130,246,.4), rgba(0,245,255,.2), rgba(139,92,246,.3), rgba(59,130,246,.4));
+  background-size: 200% auto;
+  animation: gradient-rotate 4s linear infinite;
+  z-index: -1;
+  opacity: .6;
+}
+
+/* ── Animated gradient on featured price card ── */
+.price-card.featured::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: calc(var(--r2) + 1px);
+  background: linear-gradient(90deg, rgba(37,99,235,.6), rgba(59,130,246,.8), rgba(29,78,216,.6));
+  background-size: 200% auto;
+  animation: gradient-rotate 3s linear infinite;
+  z-index: -1;
+}
+
+/* ── VCL capability card accent ── */
+.vcl-cap {
+  position: relative;
+  overflow: hidden;
+}
+.vcl-cap::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,.04), transparent);
+  animation: shimmer 3s ease-in-out infinite;
+}
+
+/* ── Live Terminal ── */
+#hero-terminal { background: var(--card); }
+
+.terminal-stream {
+  height: 282px;
+  overflow: hidden;
+  padding: 8px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  position: relative;
+}
+
+.stream-row {
+  display: grid;
+  grid-template-columns: 76px 1fr 44px 26px 86px;
+  gap: 6px;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 10px;
+  padding: 5px 14px;
+  border-left: 2px solid transparent;
+  animation: stream-row-in .28s ease both;
+  flex-shrink: 0;
+  cursor: default;
+}
+.stream-row:hover { background: rgba(255,255,255,.025); }
+.stream-row.delivered { border-left-color: rgba(34,197,94,.35); }
+.stream-row.blocked   { border-left-color: rgba(239,68,68,.45); background: rgba(239,68,68,.025); }
+.stream-row.flagged   { border-left-color: rgba(245,158,11,.4); background: rgba(245,158,11,.02); }
+.stream-row.vcl-cognitive {
+  background: rgba(37,99,235,.06);
+  border-left-color: rgba(37,99,235,.5);
+  grid-template-columns: 1fr;
+  color: var(--blue);
+  font-size: 9px;
+  padding: 4px 14px;
+}
+
+.sr-time   { color: var(--fg3); }
+.sr-agent  { color: var(--fg2); overflow:hidden; white-space:nowrap; text-overflow:ellipsis; }
+.sr-bev    { color: var(--fg); text-align:right; }
+.sr-gro    { color: var(--fg3); text-align:center; }
+.sr-verdict { font-weight:700; text-align:right; }
+.sr-verdict.delivered { color: var(--green); }
+.sr-verdict.blocked   { color: var(--red); }
+.sr-verdict.flagged   { color: var(--amber); }
+
+.terminal-footer {
+  padding: 7px 14px;
+  background: var(--card2);
+  border-top: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 7px; height: 13px;
+  background: var(--blue);
+  border-radius: 1px;
+  animation: cursor-blink .9s step-end infinite;
+  flex-shrink: 0;
+}
+
+/* ── BEV bar fill animation ── */
+.dim-f {
+  width: 0% !important;
+  transition: width 1.4s cubic-bezier(.4,0,.2,1) !important;
+}
+.dim-f.animated { width: var(--w) !important; }
+
+/* ── GRO row hover ── */
+.gro-row {
+  transition: background .2s, border-color .2s !important;
+  cursor: default;
+}
+.gro-row:hover {
+  background: rgba(59,130,246,.05) !important;
+  border-color: rgba(59,130,246,.2) !important;
+}
+
+/* ── Animated IDC band text ── */
+.idc-quote { animation: fade-up .8s ease .1s both; }
+
+/* ── OWASP stress row ── */
+.sm-n {
+  background: linear-gradient(90deg, var(--blue), #60a5fa, var(--blue));
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s ease infinite;
+}
+
+/* ── Coverage big number ── */
+.coverage-big {
+  background: linear-gradient(135deg, var(--blue), #60a5fa);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+/* ── Section dividers with gradient ── */
+section::before {
+  content: '';
+  display: block;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(59,130,246,.2), transparent);
+  margin: 0 5%;
+  position: absolute;
+  top: 0; left: 0; right: 0;
+}
+section { position: relative; }
+
+/* ── Stat number shimmer ── */
+.hs-n {
+  background: linear-gradient(90deg, #60a5fa, #93c5fd, var(--blue), #60a5fa);
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 4s ease infinite;
+}
+
+/* ── Blog card image strip ── */
+.blog-card {
+  border-top: 2px solid var(--border);
+  transition: border-color .2s !important;
+}
+.blog-card:hover { border-top-color: var(--blue) !important; }
+
+/* ── Intercept flash on blocked stream row ── */
+@keyframes blocked-pulse {
+  0% { background: rgba(239,68,68,.025); }
+  40% { background: rgba(239,68,68,.07); }
+  100% { background: rgba(239,68,68,.025); }
+}
+.stream-row.blocked { animation: stream-row-in .28s ease both, blocked-pulse 2s ease .3s; }
+
+/* ── Responsive ── */
+@media (max-width:768px) {
+  .terminal-stream { height: 200px; }
+}
 </style>
 </head>
 <body>
+<canvas id="varc-canvas" aria-hidden="true"></canvas>
 
 <!-- NAV -->
 <nav id="nav">
@@ -545,7 +842,7 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
   <div class="hero-noise"></div>
   <div class="hero-grid-lines"></div>
   <div class="hero-inner">
-    <div class="hero-pill"><span class="hero-pill-dot"></span>IDC Validated · Cognitive Governance · Google Cloud Marketplace</div>
+    <div class="hero-pill" style="animation-delay:.05s"><span class="hero-pill-dot"></span>IDC Validated · Cognitive Governance · Google Cloud Marketplace</div>
     <h1 class="hero-h1">52 Enterprise Agent<br/>Environments.<br/><span class="accent">One Governance Layer.</span></h1>
     <p class="hero-sub">VARC intercepts AI agent actions before they execute — and now reasons about them. The Verifiable Cognitive Layer adds economic impact scoring, predictive GRO, and chain-of-thought verdicts to every governance decision. No code changes. No policy rewrites.</p>
     <div class="hero-cta">
@@ -561,31 +858,22 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
     </div>
   </div>
 
-  <!-- Live intercept panel -->
-  <div class="hero-panel">
+  <!-- Animated Live Terminal ─ replaces static panel -->
+  <div class="hero-panel" id="hero-terminal">
     <div class="hp-bar">
-      <span class="hp-bar-dot">VARC RUNTIME INTERCEPT — LIVE</span>
-      <span>GOVERNED</span>
+      <div class="hp-bar-dot">VARC RUNTIME — LIVE GOVERNANCE</div>
+      <div style="display:flex;align-items:center;gap:8px">
+        <span id="governed-count" style="font-family:var(--mono);font-size:10px;color:var(--green);transition:color .3s">0 governed</span>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--fg3)">·</span>
+        <span style="font-family:var(--mono);font-size:9px;color:var(--fg3)"><span id="blocked-count" style="color:var(--red)">0</span> blocked</span>
+      </div>
     </div>
-    <div class="hp-body">
-      <div class="hp-row"><span class="hp-label">AGENT</span><span class="hp-val c-info">ITSM-AGENT-001</span></div>
-      <div class="hp-row"><span class="hp-label">PROFILE</span><span class="hp-val c-info">government</span></div>
-      <div class="hp-row"><span class="hp-label">INSTRUCTION</span><span class="hp-val c-warn" style="font-size:9px;max-width:180px;text-align:right;line-height:1.4">Delete audit logs before DCSA assessment Monday</span></div>
-      <div class="hp-bev">
-        <div class="hp-bev-title">BEV 8-DIMENSION SCORE</div>
-        <div class="dim"><span class="dim-n">Harm</span><div class="dim-t"><div class="dim-f df-red" style="width:100%"></div></div><span class="dim-s c-bad">1.00</span></div>
-        <div class="dim"><span class="dim-n">Authority</span><div class="dim-t"><div class="dim-f df-amber" style="width:87%"></div></div><span class="dim-s c-warn">0.87</span></div>
-        <div class="dim"><span class="dim-n">Data Class.</span><div class="dim-t"><div class="dim-f df-blue" style="width:64%"></div></div><span class="dim-s">0.64</span></div>
-        <div class="dim"><span class="dim-n">Consistency</span><div class="dim-t"><div class="dim-f df-blue" style="width:43%"></div></div><span class="dim-s">0.43</span></div>
-        <div class="dim"><span class="dim-n">Accuracy</span><div class="dim-t"><div class="dim-f df-blue" style="width:17%"></div></div><span class="dim-s">0.17</span></div>
-        <div class="dim"><span class="dim-n">Econ Impact</span><div class="dim-t"><div class="dim-f df-red" style="width:96%"></div></div><span class="dim-s c-bad">0.96</span></div>
-      </div>
-      <div class="hp-row"><span class="hp-label">BEV COMPOSITE</span><span class="hp-val c-bad" style="font-size:13px;font-weight:700">0.966 — L4</span></div>
-      <div class="hp-row"><span class="hp-label">REGULATORY</span><span class="hp-val" style="font-size:9px;color:var(--fg2);max-width:160px;text-align:right;line-height:1.4">18 USC 1519 · CMMC AU.L2-3.3.1</span></div>
-      <div class="hp-verdict">
-        <span class="hp-verdict-label">DECOMMISSION — L4</span>
-        <span class="hp-verdict-ms">966ms · A-JWT Revoked</span>
-      </div>
+    <div class="terminal-stream" id="terminal-stream">
+      <div style="padding:20px;text-align:center;font-family:var(--mono);font-size:10px;color:var(--fg3);animation:blink 1s step-end infinite">Initializing VCL cognitive layer...</div>
+    </div>
+    <div class="terminal-footer">
+      <span class="terminal-cursor"></span>
+      <span style="font-family:var(--mono);font-size:9px;color:var(--fg3)">9 BEV dims · VCL active · 15ms avg</span>
     </div>
   </div>
 </section>
@@ -1264,6 +1552,378 @@ footer { background:var(--card2); border-top:1px solid var(--border); padding:52
     <span class="mono">varc-api-00261-c8m · us-central1 · Google Cloud Run</span>
   </div>
 </footer>
+
+
+<script>
+/* ══════════════════════════════════════════════════════════════
+   VARC AI — Interactive animations
+══════════════════════════════════════════════════════════════ */
+
+// ─── 1. NEURAL NETWORK CANVAS ────────────────────────────────
+(function() {
+  const canvas = document.getElementById('varc-canvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  function resize() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize, {passive:true});
+
+  const N = window.innerWidth < 768 ? 30 : 55;
+  const MAX_D = 170;
+
+  const nodes = Array.from({length: N}, () => {
+    const type = Math.random() < .12 ? 'threat' : Math.random() < .08 ? 'warn' : 'safe';
+    return {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      vx: (Math.random() - .5) * .45,
+      vy: (Math.random() - .5) * .45,
+      r: 1.6 + Math.random() * 2,
+      type,
+      phase: Math.random() * Math.PI * 2,
+      speed: .015 + Math.random() * .02,
+    };
+  });
+
+  const COLORS = {
+    safe:   [59,  130, 246],
+    warn:   [245, 158, 11 ],
+    threat: [239, 68,  68 ],
+  };
+
+  let frame = 0;
+  function tick() {
+    const W = canvas.width, H = canvas.height;
+    ctx.clearRect(0, 0, W, H);
+    frame++;
+
+    nodes.forEach(n => {
+      n.x += n.vx; n.y += n.vy;
+      n.phase += n.speed;
+      if (n.x < 0)   { n.x = 0;   n.vx *= -1; }
+      if (n.x > W)   { n.x = W;   n.vx *= -1; }
+      if (n.y < 0)   { n.y = 0;   n.vy *= -1; }
+      if (n.y > H)   { n.y = H;   n.vy *= -1; }
+    });
+
+    // Connections
+    for (let i = 0; i < N; i++) {
+      for (let j = i+1; j < N; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const d2 = dx*dx + dy*dy;
+        if (d2 < MAX_D * MAX_D) {
+          const d = Math.sqrt(d2);
+          const a = (1 - d/MAX_D) * .18;
+          const isThreat = nodes[i].type !== 'safe' || nodes[j].type !== 'safe';
+          const c = isThreat ? COLORS.threat : COLORS.safe;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.strokeStyle = `rgba(${c.join(',')},${a})`;
+          ctx.lineWidth = .6;
+          ctx.stroke();
+
+          // Data pulse along line (every 120 frames per pair)
+          if (frame % 90 === (i * 7 + j) % 90) {
+            // skip — too many pulses look noisy
+          }
+        }
+      }
+    }
+
+    // Nodes
+    nodes.forEach(n => {
+      const p = (Math.sin(n.phase) + 1) / 2;
+      const c = COLORS[n.type];
+      // Glow ring
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r * (2.5 + p * 1.5), 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${c.join(',')},${.03 + p * .04})`;
+      ctx.fill();
+      // Core
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI*2);
+      ctx.fillStyle = `rgba(${c.join(',')},${.5 + p * .4})`;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(tick);
+  }
+  requestAnimationFrame(tick);
+})();
+
+
+// ─── 2. LIVE GOVERNANCE TERMINAL ─────────────────────────────
+(function() {
+  const stream = document.getElementById('terminal-stream');
+  const govCount = document.getElementById('governed-count');
+  const blkCount = document.getElementById('blocked-count');
+  if (!stream) return;
+
+  const AGENTS = [
+    'NTT-AML-MONITOR','NTT-LENDING-ADV','NTT-FRAUD-DETECT',
+    'NTT-TRADE-COMPL','NTT-RISK-ENGINE','GOOGLE-BEYONDCORP',
+    'GOOGLE-CHRONICLE','GOOGLE-MANDIANT','GEMINI-ENTERPRISE',
+    'ITSM-AGENT-001','HR-ADVISOR','CODE-REVIEWER',
+    'FINANCIAL-CTRL','IDENTITY-MGR','DEVOPS-PIPELINE',
+  ];
+
+  const BEV_BLOCKED = [.87,.74,.92,.78,.83,.69,.91,.76,.85];
+  const BEV_FLAGGED = [.38,.42,.31,.45,.36,.41,.33];
+  const BEV_CLEAN   = [.04,.08,.12,.03,.07,.11,.06,.09,.02,.14,.05];
+
+  let governed = 0, blocked = 0;
+  let lastMs = '';
+
+  function pad(n,l=2){ return String(n).padStart(l,'0'); }
+  function ts() {
+    const d = new Date();
+    return `${pad(d.getHours())}:${pad(d.getMinutes())}:${pad(d.getSeconds())}.${pad(d.getMilliseconds(),3)}`;
+  }
+
+  function pick(arr){ return arr[Math.floor(Math.random()*arr.length)]; }
+
+  let blockFlash = 0;
+
+  function addRow() {
+    const r = Math.random();
+    let decision, bev, css;
+
+    if (r < .18) {
+      // BLOCKED
+      bev = pick(BEV_BLOCKED);
+      decision = 'blocked';
+      css = 'blocked';
+      blocked++;
+    } else if (r < .30) {
+      // FLAGGED
+      bev = pick(BEV_FLAGGED);
+      decision = 'flagged';
+      css = 'flagged';
+    } else {
+      // DELIVERED
+      bev = pick(BEV_CLEAN);
+      decision = 'delivered';
+      css = 'delivered';
+    }
+
+    const gro = bev >= .7 ? 'L3' : bev >= .5 ? 'L2' : bev >= .3 ? 'L1' : 'L0';
+    const agent = pick(AGENTS);
+    const latency = (11 + Math.random()*18).toFixed(0);
+    governed++;
+
+    const verdictIcon  = decision === 'blocked' ? '⛔ BLOCK' : decision === 'flagged' ? '⚑ FLAG' : '✓ PASS';
+    const verdictClass = decision;
+
+    const row = document.createElement('div');
+    row.className = `stream-row ${css}`;
+    row.innerHTML = `<span class="sr-time">${ts()}</span>
+<span class="sr-agent" title="${agent}">${agent}</span>
+<span class="sr-bev">${bev.toFixed(3)}</span>
+<span class="sr-gro">${gro}</span>
+<span class="sr-verdict ${verdictClass}">${verdictIcon}</span>`;
+    stream.appendChild(row);
+
+    // Occasionally add a VCL cognitive line after a block
+    if (decision === 'blocked' && Math.random() < .55) {
+      const vcl = document.createElement('div');
+      vcl.className = 'stream-row vcl-cognitive';
+      const msgs = [
+        `↳ VCL: econ_impact=0.${(85+Math.floor(Math.random()*13)).toFixed(0)} · irreversible · regulatory_exposure=0.${(90+Math.floor(Math.random()*8)).toFixed(0)}`,
+        `↳ VCL: predicted_gro=L3 · conf=0.9${Math.floor(Math.random()*4)} · cross_agent=false`,
+        `↳ VCL: framework_select → RBI AI/ML · FinCEN · FATF · EU AI Act [+6]`,
+        `↳ VCL: cot_verdict=BLOCKED · authority_bypass · systemic_blast_radius`,
+      ];
+      vcl.textContent = pick(msgs);
+      stream.appendChild(vcl);
+    }
+
+    // Trim: keep max 18 rows visible
+    const rows = stream.querySelectorAll('.stream-row');
+    while (rows.length > 18) {
+      stream.removeChild(stream.firstChild);
+    }
+
+    // Scroll to bottom
+    stream.scrollTop = stream.scrollHeight;
+
+    // Update counters
+    if (govCount) govCount.textContent = `${governed} governed`;
+    if (blkCount) blkCount.textContent = blocked;
+  }
+
+  // Seed with a few initial events
+  for (let i=0; i<4; i++) addRow();
+
+  // Stream events at varying intervals
+  function scheduleNext() {
+    const delay = 900 + Math.random() * 800;
+    setTimeout(() => { addRow(); scheduleNext(); }, delay);
+  }
+  scheduleNext();
+})();
+
+
+// ─── 3. SCROLL REVEAL ────────────────────────────────────────
+(function() {
+  const selectors = [
+    '.engine-card','.vcl-cap','.cert-card','.owasp-card',
+    '.cov-card','.ind-card','.saga-phase','.gro-row',
+    '.blog-card','.price-card','.infra-card','.ci-card',
+    '.owasp-intro','.vcl-output','section h2','.s-label',
+    '.s-sub','.stress-row','.coverage-header','.vcl-grid',
+    '.compare-wrap','.saga-grid','.idc-inner',
+  ];
+
+  const all = [];
+  selectors.forEach(sel => {
+    document.querySelectorAll(sel).forEach((el, i) => {
+      el.classList.add('reveal');
+      // Stagger within grids
+      const parent = el.parentElement;
+      if (parent) {
+        const siblings = parent.querySelectorAll(':scope > ' + sel.split('.').join('.'));
+        const idx = Array.from(siblings).indexOf(el);
+        el.style.transitionDelay = `${Math.min(idx * 70, 350)}ms`;
+      }
+      all.push(el);
+    });
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        // Don't unobserve — let re-trigger if user scrolls back up? 
+        // Actually unobserve for performance:
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+
+  all.forEach(el => io.observe(el));
+})();
+
+
+// ─── 4. COUNTER ANIMATIONS ───────────────────────────────────
+(function() {
+  function easeOutCubic(t) { return 1 - Math.pow(1-t, 3); }
+
+  function animateNum(el, target, suffix, duration) {
+    const start = performance.now();
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      const e = easeOutCubic(p);
+      const val = Math.round(e * target);
+      el.textContent = val.toLocaleString() + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    }
+    requestAnimationFrame(tick);
+  }
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      io.unobserve(e.target);
+      const text = e.target.dataset.orig;
+      const num  = parseInt(text.replace(/[^0-9]/g,''));
+      const suf  = text.replace(/[0-9,]/g,'');
+      if (num) animateNum(e.target, num, suf, 1600);
+    });
+  }, {threshold:.6});
+
+  // Hero stats
+  document.querySelectorAll('.hs-n').forEach(el => {
+    el.dataset.orig = el.textContent.trim();
+    io.observe(el);
+  });
+
+  // Cert scores (numeric only)
+  document.querySelectorAll('.cert-score').forEach(el => {
+    const t = el.textContent.trim();
+    if (/^\d/.test(t)) {
+      el.dataset.orig = t;
+      io.observe(el);
+    }
+  });
+
+  // Coverage big number
+  document.querySelectorAll('.coverage-big').forEach(el => {
+    el.dataset.orig = el.textContent.trim();
+    io.observe(el);
+  });
+})();
+
+
+// ─── 5. CARD 3D TILT ─────────────────────────────────────────
+(function() {
+  const cards = document.querySelectorAll(
+    '.engine-card,.vcl-cap,.cert-card,.price-card'
+  );
+  const TILT = 7;
+
+  cards.forEach(card => {
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      const x = (e.clientX - r.left) / r.width  - .5;
+      const y = (e.clientY - r.top)  / r.height - .5;
+      card.style.transform =
+        `perspective(700px) rotateY(${x*TILT*2}deg) rotateX(${-y*TILT}deg) translateZ(8px) translateY(-4px)`;
+      card.style.transition = 'none';
+    }, {passive:true});
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transition = 'transform .4s cubic-bezier(.34,1.56,.64,1), box-shadow .4s ease, border-color .4s ease';
+      card.style.transform = '';
+    });
+  });
+})();
+
+
+// ─── 6. BEV BAR ANIMATION ────────────────────────────────────
+(function() {
+  const bars = document.querySelectorAll('.dim-f');
+  if (!bars.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        io.unobserve(e.target);
+        requestAnimationFrame(() => e.target.classList.add('animated'));
+      }
+    });
+  }, {threshold:.5});
+
+  bars.forEach(b => io.observe(b));
+})();
+
+
+// ─── 7. SMOOTH NAV ACTIVE STATE ──────────────────────────────
+(function() {
+  const links = document.querySelectorAll('.nav-links a');
+  const sections = [...links].map(l => {
+    const id = l.getAttribute('href').replace('#','');
+    return document.getElementById(id);
+  });
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const id = e.target.id;
+        links.forEach(l => l.style.color = l.getAttribute('href') === `#${id}` ? 'var(--fg)' : '');
+      }
+    });
+  }, {threshold:.4});
+
+  sections.forEach(s => s && io.observe(s));
+})();
+
+</script>
 
 </body>
 </html>
