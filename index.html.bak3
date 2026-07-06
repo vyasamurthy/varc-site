@@ -1270,7 +1270,7 @@ section { position: relative; }
   <div style="margin-top:28px;display:flex;gap:10px;flex-wrap:wrap">
     <a href="https://api.varc.live/v1/compliance/full-package?scenario=banking-enterprise" target="_blank" class="btn btn-teal">Open a major US bank Evidence Package →</a>
     <a href="https://api.varc.live/demo?scenario=ntt" target="_blank" class="btn btn-outline">a global banking technology firm scenario</a>
-    <a href="https://api.varc.live/demo?scenario=truist" target="_blank" class="btn btn-outline">Regional bank scenario</a>
+    <a href="https://api.varc.live/demo?scenario=truist" target="_blank" class="btn btn-outline">Truist scenario</a>
   </div>
 </section>
 <section id="platform">
@@ -1685,7 +1685,7 @@ section { position: relative; }
           <div style="display:flex;gap:6px;flex-wrap:wrap">
             <a href="https://api.varc.live/demo?scenario=banking-enterprise" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">a major US bank</a>
             <a href="https://api.varc.live/demo?scenario=ntt" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">a global banking technology firm</a>
-            <a href="https://api.varc.live/demo?scenario=truist" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">Regional Banking Enterprise Bank</a>
+            <a href="https://api.varc.live/demo?scenario=truist" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">Truist Bank</a>
             <a href="https://api.varc.live/demo?scenario=panw" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">Palo Alto</a>
             <a href="https://api.varc.live/demo?scenario=google" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">Google</a>
           </div>
