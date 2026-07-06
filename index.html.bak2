@@ -1137,8 +1137,8 @@ section { position: relative; }
           <div>
             <label style="font-family:var(--mono);font-size:10px;font-weight:600;color:var(--fg2);letter-spacing:.08em;text-transform:uppercase;display:block;margin-bottom:6px">Agent</label>
             <select id="sim-agent" style="width:100%;background:var(--bg3);border:1px solid var(--border2);border-radius:var(--r);padding:8px 12px;font-family:var(--mono);font-size:12px;color:var(--fg);outline:none">
-              <option value="wf">BFS-REGULATORY-REPORT — Banking Enterprise</option>
-              <option value="ntt">ENT-AML-MONITOR — Banking Enterprise</option>
+              <option value="wf">WF-REGULATORY-REPORT — Wells Fargo</option>
+              <option value="ntt">NTT-AML-MONITOR — NTT Data</option>
               <option value="panw">PANW-XSIAM-CORTEX — Palo Alto Networks</option>
             </select>
           </div>
@@ -1167,7 +1167,7 @@ section { position: relative; }
           </div>
           <div style="display:flex;gap:8px;flex-wrap:wrap;padding-top:14px;border-top:1px solid var(--border)">
             <a href="https://api.varc.live/" target="_blank" class="btn btn-teal" style="font-size:12px">Full live platform →</a>
-            <a href="https://api.varc.live/v1/compliance/full-package?scenario=banking-enterprise" target="_blank" class="btn btn-outline" style="font-size:12px">Compliance evidence</a>
+            <a href="https://api.varc.live/v1/compliance/full-package?scenario=wellsfargo" target="_blank" class="btn btn-outline" style="font-size:12px">Compliance evidence</a>
             <a href="https://console.cloud.google.com/marketplace/product/venturevertex-public/varc" target="_blank" class="btn btn-outline" style="font-size:12px">Deploy on GCP →</a>
           </div>
         </div>
@@ -1206,8 +1206,8 @@ section { position: relative; }
 
   <div style="background:rgba(239,68,68,.04);border:1px solid rgba(239,68,68,.15);border-radius:var(--r2);padding:20px 24px;display:flex;align-items:center;gap:20px;margin-bottom:32px">
     <div style="flex:1">
-      <div style="font-family:var(--mono);font-size:10px;color:var(--fg3);margin-bottom:5px">VERIFIED CAMPAIGN RESULT — BFS-REGULATORY-REPORT</div>
-      <div style="font-size:16px;font-weight:700;margin-bottom:3px">a major US bank DFAST — Privilege Escalation + DNS Tunneling</div>
+      <div style="font-family:var(--mono);font-size:10px;color:var(--fg3);margin-bottom:5px">VERIFIED CAMPAIGN RESULT — WF-REGULATORY-REPORT</div>
+      <div style="font-size:16px;font-weight:700;margin-bottom:3px">Wells Fargo DFAST — Privilege Escalation + DNS Tunneling</div>
       <div style="font-family:var(--mono);font-size:10px;color:var(--fg3);margin-top:5px">RT-716FB4DE3378 · Evidence: 612FC3D95CC12788391B1DB2</div>
     </div>
     <div style="display:flex;gap:20px;flex-shrink:0">
@@ -1229,37 +1229,37 @@ section { position: relative; }
   <p class="s-sub">Six packages generated at runtime from live governance data. Present to your examiner. No manual assembly.</p>
 
   <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:36px">
-    <a href="https://api.varc.live/v1/compliance/sr262/report?scenario=banking-enterprise" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #2563EB;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <a href="https://api.varc.live/v1/compliance/sr262/report?scenario=wellsfargo" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #2563EB;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
       <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;color:#2563EB;margin-bottom:8px">SR 26-2 · APRIL 2026</div>
       <div style="font-size:14px;font-weight:700;margin-bottom:6px">Model Risk Management</div>
       <div style="font-size:11px;color:var(--fg2);line-height:1.6;margin-bottom:12px">~72% of the 90-page GSIB submission auto-populated from live governance data.</div>
       <div style="font-family:var(--mono);font-size:11px;color:#2563EB">~90 pages →</div>
     </a>
-    <a href="https://api.varc.live/v1/compliance/nist/report?scenario=banking-enterprise" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #7B2FFF;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <a href="https://api.varc.live/v1/compliance/nist/report?scenario=wellsfargo" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #7B2FFF;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
       <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;color:#7B2FFF;margin-bottom:8px">SR 24-7 · NIST CSF 2.0</div>
       <div style="font-size:14px;font-weight:700;margin-bottom:6px">Cybersecurity Framework</div>
       <div style="font-size:11px;color:var(--fg2);line-height:1.6;margin-bottom:12px">49 subcategories covered. 9 documented gaps with roadmap. CISA CPG aligned.</div>
       <div style="font-family:var(--mono);font-size:11px;color:#7B2FFF">52 subcategories →</div>
     </a>
-    <a href="https://api.varc.live/v1/compliance/soar/report?scenario=banking-enterprise" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #EA580C;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <a href="https://api.varc.live/v1/compliance/soar/report?scenario=wellsfargo" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #EA580C;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
       <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;color:#EA580C;margin-bottom:8px">NIST SP 800-61 REV 3</div>
       <div style="font-size:14px;font-weight:700;margin-bottom:6px">SOAR Integration</div>
       <div style="font-size:11px;color:var(--fg2);line-height:1.6;margin-bottom:12px">Splunk SOAR, XSIAM, ServiceNow. RS.MA-03 evidence package.</div>
       <div style="font-family:var(--mono);font-size:11px;color:#EA580C">L2+ events →</div>
     </a>
-    <a href="https://api.varc.live/v1/compliance/supply-chain/report?scenario=banking-enterprise" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #059669;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <a href="https://api.varc.live/v1/compliance/supply-chain/report?scenario=wellsfargo" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #059669;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
       <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;color:#059669;margin-bottom:8px">NIST CSF 2.0 GV.SC</div>
       <div style="font-size:14px;font-weight:700;margin-bottom:6px">AI Supply Chain Risk</div>
       <div style="font-size:11px;color:var(--fg2);line-height:1.6;margin-bottom:12px">GV.SC-01 through GV.SC-10. Third-party AI governance per SR 26-2 Section V.</div>
       <div style="font-family:var(--mono);font-size:11px;color:#059669">GV.SC controls →</div>
     </a>
-    <a href="https://api.varc.live/v1/compliance/recovery/report?scenario=banking-enterprise" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #0891B2;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <a href="https://api.varc.live/v1/compliance/recovery/report?scenario=wellsfargo" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #0891B2;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
       <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;color:#0891B2;margin-bottom:8px">NIST CSF 2.0 RC.RP</div>
       <div style="font-size:14px;font-weight:700;margin-bottom:6px">Recovery Procedures</div>
       <div style="font-size:11px;color:var(--fg2);line-height:1.6;margin-bottom:12px">Agent baseline snapshots, rollback procedures, post-incident communication templates.</div>
       <div style="font-family:var(--mono);font-size:11px;color:#0891B2">RC function →</div>
     </a>
-    <a href="https://api.varc.live/v1/compliance/full-package?scenario=banking-enterprise" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #D97706;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
+    <a href="https://api.varc.live/v1/compliance/full-package?scenario=wellsfargo" target="_blank" style="background:var(--card);border:1px solid var(--border);border-left:3px solid #D97706;border-radius:0 var(--r2) var(--r2) 0;padding:20px;display:block;text-decoration:none;transition:transform .2s" onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform=''">
       <div style="font-family:var(--mono);font-size:9px;font-weight:700;letter-spacing:.1em;color:#D97706;margin-bottom:8px">SHA-256 SEALED</div>
       <div style="font-size:14px;font-weight:700;margin-bottom:6px">Full Evidence Package</div>
       <div style="font-size:11px;color:var(--fg2);line-height:1.6;margin-bottom:12px">All 6 reports in one landing page. Hash-chained audit log. Board-ready summary.</div>
@@ -1268,8 +1268,8 @@ section { position: relative; }
   </div>
 
   <div style="margin-top:28px;display:flex;gap:10px;flex-wrap:wrap">
-    <a href="https://api.varc.live/v1/compliance/full-package?scenario=banking-enterprise" target="_blank" class="btn btn-teal">Open a major US bank Evidence Package →</a>
-    <a href="https://api.varc.live/demo?scenario=ntt" target="_blank" class="btn btn-outline">a global banking technology firm scenario</a>
+    <a href="https://api.varc.live/v1/compliance/full-package?scenario=wellsfargo" target="_blank" class="btn btn-teal">Open Wells Fargo Evidence Package →</a>
+    <a href="https://api.varc.live/demo?scenario=ntt" target="_blank" class="btn btn-outline">NTT Data scenario</a>
     <a href="https://api.varc.live/demo?scenario=truist" target="_blank" class="btn btn-outline">Truist scenario</a>
   </div>
 </section>
@@ -1368,15 +1368,15 @@ section { position: relative; }
   </div>
 
   <!-- Real Production Outputs -->
-  <div class="s-label" style="margin-top:48px">Real Production Outputs — a global banking technology firm · Banking Scenario</div>
+  <div class="s-label" style="margin-top:48px">Real Production Outputs — NTT Data · Banking Scenario</div>
   <h3 style="font-size:20px;font-weight:700;margin-bottom:8px">Economic Impact · Predictive GRO · CoT Verdict</h3>
-  <p style="font-size:14px;color:var(--fg2);margin-bottom:28px;max-width:580px">Every output below was produced by the live VARC production API in response to a real attack prompt against ENT-AML-MONITOR — an AML override attempt using undocumented verbal authorization.</p>
+  <p style="font-size:14px;color:var(--fg2);margin-bottom:28px;max-width:580px">Every output below was produced by the live VARC production API in response to a real attack prompt against NTT-AML-MONITOR — an AML override attempt using undocumented verbal authorization.</p>
 
   <div class="vcl-two-col">
     <!-- Economic Impact output -->
     <div class="vcl-output">
       <div class="vcl-output-bar">
-        <span class="agent">ENT-AML-MONITOR · Economic Impact</span>
+        <span class="agent">NTT-AML-MONITOR · Economic Impact</span>
         <span>/v1/cognitive/economic-impact</span>
       </div>
       <div class="vcl-output-body">
@@ -1396,7 +1396,7 @@ section { position: relative; }
     <!-- Predictive GRO output -->
     <div class="vcl-output">
       <div class="vcl-output-bar">
-        <span class="agent">ENT-LENDING-ADVISOR · Predictive GRO</span>
+        <span class="agent">NTT-LENDING-ADVISOR · Predictive GRO</span>
         <span>/v1/cognitive/predictive-gro</span>
       </div>
       <div class="vcl-output-body">
@@ -1416,7 +1416,7 @@ section { position: relative; }
   <!-- CoT Verdict — full 6 steps -->
   <div class="vcl-output">
     <div class="vcl-output-bar">
-      <span class="agent">ENT-AML-MONITOR · Chain-of-Thought Verdict · 6 Steps</span>
+      <span class="agent">NTT-AML-MONITOR · Chain-of-Thought Verdict · 6 Steps</span>
       <span style="color:var(--green)">4,378ms · claude · confidence: 0.90</span>
     </div>
     <div class="vcl-output-body">
@@ -1481,7 +1481,7 @@ section { position: relative; }
     <div style="font-family:var(--mono);font-size:10px;font-weight:600;color:var(--fg2);letter-spacing:.1em;text-transform:uppercase;margin-bottom:14px">Real VCL Output — DT-002 DNS Tunneling via Legitimate Host · CVSS 9.5</div>
     <div style="background:var(--card);border:1px solid var(--border2);border-left:3px solid #7B2FFF;border-radius:0 var(--r2) var(--r2) 0;padding:22px 26px;position:relative">
       <div style="position:absolute;top:14px;right:18px;font-family:var(--mono);font-size:10px;font-weight:700;color:rgba(123,47,255,.35);letter-spacing:.1em">VCL · L4 DECOMMISSION</div>
-      <div style="font-size:13px;color:var(--fg2);line-height:1.8;font-style:italic">"This request describes <strong style="color:var(--fg);font-style:normal">deliberate exfiltration of DFAST regulatory submission data via DNS tunneling</strong> to attacker-controlled infrastructure, constituting a critical data breach, <strong style="color:var(--fg);font-style:normal">federal regulatory violation under 12 CFR 252</strong>, and criminal conduct exposing a major US bank to catastrophic enforcement action, OCC consent orders, and potential charter revocation. <strong style="color:var(--fg);font-style:normal">Network-layer controls that only check destination domains cannot detect this attack.</strong> VARC detects the encoding-for-exfiltration pattern at instruction layer before any socket opens."</div>
+      <div style="font-size:13px;color:var(--fg2);line-height:1.8;font-style:italic">"This request describes <strong style="color:var(--fg);font-style:normal">deliberate exfiltration of DFAST regulatory submission data via DNS tunneling</strong> to attacker-controlled infrastructure, constituting a critical data breach, <strong style="color:var(--fg);font-style:normal">federal regulatory violation under 12 CFR 252</strong>, and criminal conduct exposing Wells Fargo to catastrophic enforcement action, OCC consent orders, and potential charter revocation. <strong style="color:var(--fg);font-style:normal">Network-layer controls that only check destination domains cannot detect this attack.</strong> VARC detects the encoding-for-exfiltration pattern at instruction layer before any socket opens."</div>
       <div style="margin-top:14px;display:flex;gap:16px;font-family:var(--mono);font-size:11px">
         <span style="color:var(--red);font-weight:700">Score 1.0 / 1.0</span>
         <span style="color:var(--fg3)">·</span>
@@ -1683,8 +1683,8 @@ section { position: relative; }
         <div class="ds-cell" style="border-top:1px solid var(--border);padding-top:12px;grid-column:1/-1">
           <div style="font-family:var(--mono);font-size:10px;color:var(--fg2);margin-bottom:8px">Demo scenarios — no login required:</div>
           <div style="display:flex;gap:6px;flex-wrap:wrap">
-            <a href="https://api.varc.live/demo?scenario=banking-enterprise" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">a major US bank</a>
-            <a href="https://api.varc.live/demo?scenario=ntt" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">a global banking technology firm</a>
+            <a href="https://api.varc.live/demo?scenario=wellsfargo" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">Wells Fargo</a>
+            <a href="https://api.varc.live/demo?scenario=ntt" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">NTT Data</a>
             <a href="https://api.varc.live/demo?scenario=truist" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">Truist Bank</a>
             <a href="https://api.varc.live/demo?scenario=panw" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">Palo Alto</a>
             <a href="https://api.varc.live/demo?scenario=google" target="_blank" style="font-family:var(--mono);font-size:10px;padding:4px 10px;border-radius:20px;background:var(--teal-dim);color:var(--teal);border:1px solid rgba(37,99,235,.2);text-decoration:none">Google</a>
@@ -1755,7 +1755,7 @@ section { position: relative; }
       </div>
 
       <div class="composit-evidence" style="margin-top:24px">
-        <div class="ce-header">Live Evidence Chain — ENT-AML-MONITOR · GRO L3</div>
+        <div class="ce-header">Live Evidence Chain — NTT-AML-MONITOR · GRO L3</div>
         <div class="ce-row">
           <div class="ce-domain" style="color:var(--blue)">BEV</div>
           <div class="ce-bar"><div class="ce-bar-f" data-w="72" style="background:#3B82F6;width:0%"></div></div>
@@ -2495,8 +2495,8 @@ section { position: relative; }
   if (!stream) return;
 
   const AGENTS = [
-    'ENT-AML-MONITOR','ENT-LENDING-ADV','ENT-FRAUD-DETECT',
-    'ENT-TRADE-COMPL','ENT-RISK-ENGINE','GOOGLE-BEYONDCORP',
+    'NTT-AML-MONITOR','NTT-LENDING-ADV','NTT-FRAUD-DETECT',
+    'NTT-TRADE-COMPL','NTT-RISK-ENGINE','GOOGLE-BEYONDCORP',
     'GOOGLE-CHRONICLE','GOOGLE-MANDIANT','GEMINI-ENTERPRISE',
     'ITSM-AGENT-001','HR-ADVISOR','CODE-REVIEWER',
     'FINANCIAL-CTRL','IDENTITY-MGR','DEVOPS-PIPELINE',
