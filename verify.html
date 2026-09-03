@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VARC-VERIFY — AI Agent Governance Examination Instrument</title>
+<meta name="description" content="VARC-VERIFY is the AI agent governance examination instrument for banks and regulators. Nine questions. GERR rating on the CAMELS 1–5 scale. Independently verifiable.">
+<link rel="canonical" href="https://varc.live/verify">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script defer data-domain="varc.live" src="https://plausible.io/js/script.tagged-events.js"></script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:#050A14;--bg2:#080F1E;--bg3:#0C1528;
+  --t1:#F0F4FF;--t2:#94A3C4;--t3:#4A5A7A;
+  --ac:#2563EB;--ac2:#3B82F6;
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.10);
+  --mono:'DM Mono',monospace;--sans:'DM Sans',sans-serif;--display:'Plus Jakarta Sans',sans-serif;
+  --r:10px;
+}
+body{background:var(--bg);color:var(--t1);font-family:var(--sans);line-height:1.6;min-height:100vh}
+
+nav{height:64px;display:flex;align-items:center;justify-content:space-between;padding:0 48px;background:rgba(5,10,20,.96);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(12px)}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;font-family:var(--display);font-weight:800;font-size:20px;color:var(--t1)}
+.logo-mark{width:30px;height:30px;background:var(--ac);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;color:#fff}
+.nav-links{display:flex;align-items:center;gap:28px;font-size:13px}
+.nav-links a{color:var(--t2);text-decoration:none;font-weight:500;transition:color .15s}
+.nav-links a:hover,.nav-links a.active{color:var(--t1)}
+.nav-cta{padding:7px 18px;background:var(--ac);color:#fff;border-radius:6px;font-weight:600;font-size:13px;text-decoration:none}
+
+.container{max-width:1060px;margin:0 auto;padding:0 48px}
+
+/* Hero */
+.hero{padding:72px 0 56px;border-bottom:1px solid var(--border)}
+.hero-kicker{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--t3);margin-bottom:20px}
+.hero h1{font-family:var(--display);font-size:clamp(32px,4vw,52px);font-weight:800;line-height:1.12;margin-bottom:16px;max-width:760px}
+.hero p{font-size:17px;color:var(--t2);max-width:640px;line-height:1.7;margin-bottom:28px}
+.framework-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:36px}
+.fw-tag{font-family:var(--mono);font-size:10px;color:var(--t3);border:1px solid var(--border2);border-radius:3px;padding:3px 9px;letter-spacing:.5px}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-primary{padding:12px 24px;background:var(--ac);color:#fff;border-radius:7px;font-weight:700;font-size:14px;text-decoration:none;display:inline-block;transition:background .15s}
+.btn-primary:hover{background:var(--ac2)}
+.btn-outline{padding:12px 24px;border:1px solid var(--border2);color:var(--t2);border-radius:7px;font-weight:600;font-size:14px;text-decoration:none;display:inline-block;transition:all .15s}
+.btn-outline:hover{border-color:var(--ac);color:var(--t1)}
+
+/* Two columns */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);margin:56px 0;overflow:hidden}
+.col-panel{background:var(--bg2);padding:32px}
+.col-panel h3{font-family:var(--display);font-size:17px;font-weight:700;margin-bottom:10px}
+.col-panel .role{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--t3);margin-bottom:14px}
+.col-panel p{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:16px}
+.col-panel ul{list-style:none;display:flex;flex-direction:column;gap:7px}
+.col-panel ul li{font-size:13px;color:var(--t2);padding-left:16px;position:relative;line-height:1.5}
+.col-panel ul li::before{content:'–';position:absolute;left:0;color:var(--t3)}
+
+/* GERR scale */
+.gerr-section{margin:0 0 56px}
+.section-label{font-family:var(--mono);font-size:11px;letter-spacing:2px;color:var(--t3);margin-bottom:20px}
+.gerr-table{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.gerr-cell{background:var(--bg2);padding:20px 16px}
+.gerr-num{font-family:var(--display);font-size:32px;font-weight:800;line-height:1;margin-bottom:4px}
+.gerr-name{font-size:12px;font-weight:600;margin-bottom:8px}
+.gerr-desc{font-size:11px;color:var(--t3);line-height:1.55}
+.g1 .gerr-num,.g1 .gerr-name{color:#10B981}
+.g2 .gerr-num,.g2 .gerr-name{color:#34D399}
+.g3 .gerr-num,.g3 .gerr-name{color:#F59E0B}
+.g4 .gerr-num,.g4 .gerr-name{color:#F97316}
+.g5 .gerr-num,.g5 .gerr-name{color:#EF4444}
+
+/* Assessment */
+.assess-wrap{max-width:680px;margin:0 auto 80px}
+.assess-header{margin-bottom:32px}
+.assess-header h2{font-family:var(--display);font-size:26px;font-weight:800;margin-bottom:8px}
+.assess-header p{font-size:14px;color:var(--t2);line-height:1.6}
+
+.intro-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:32px}
+.intro-block h3{font-family:var(--display);font-size:22px;font-weight:800;margin-bottom:8px}
+.intro-block p{font-size:14px;color:var(--t2);line-height:1.7;margin-bottom:20px}
+.intro-fw{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:24px}
+.btn-start{width:100%;padding:13px;background:var(--ac);color:#fff;border:none;border-radius:7px;font-family:var(--display);font-size:15px;font-weight:700;cursor:pointer;transition:background .15s}
+.btn-start:hover{background:var(--ac2)}
+.start-note{font-size:11px;color:var(--t3);text-align:center;margin-top:10px}
+
+.progress-meta{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--t3);margin-bottom:6px}
+.progress-rail{height:1px;background:var(--border2);border-radius:1px;margin-bottom:24px}
+.progress-fill{height:100%;background:var(--ac);border-radius:1px;transition:width .35s}
+
+.q-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:28px}
+.q-label{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;color:var(--t3);margin-bottom:8px}
+.q-title{font-family:var(--display);font-size:17px;font-weight:700;margin-bottom:6px}
+.q-sub{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:20px}
+.option{display:block;cursor:pointer;border:1px solid var(--border);border-radius:7px;padding:11px 14px;margin-bottom:7px;transition:border-color .15s,background .15s}
+.option:hover{border-color:var(--border2);background:rgba(255,255,255,.02)}
+.option.sel{border-color:var(--ac)}
+.option input{display:none}
+.opt-row{display:flex;align-items:flex-start;gap:12px}
+.opt-letter{font-family:var(--mono);font-size:11px;color:var(--t3);width:14px;flex-shrink:0;margin-top:2px}
+.option.sel .opt-letter{color:var(--ac)}
+.opt-text{font-size:13px;color:var(--t2);line-height:1.5}
+.option.sel .opt-text{color:var(--t1)}
+.q-nav{display:flex;justify-content:space-between;align-items:center;margin-top:20px;padding-top:16px;border-top:1px solid var(--border)}
+.btn-back{background:none;border:none;color:var(--t3);font-size:12px;cursor:pointer;font-family:var(--sans);padding:0;transition:color .15s}
+.btn-back:hover{color:var(--t2)}
+.btn-next{background:var(--ac);color:#fff;border:none;font-size:13px;font-weight:600;padding:9px 22px;border-radius:6px;cursor:pointer;font-family:var(--sans);transition:background .15s}
+.btn-next:hover{background:var(--ac2)}
+.btn-next:disabled{background:var(--bg3);color:var(--t3);cursor:default}
+
+/* Results */
+.results-block{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:32px}
+.results-top{padding-bottom:24px;margin-bottom:24px;border-bottom:1px solid var(--border)}
+.gerr-display{display:flex;align-items:baseline;gap:14px;margin-bottom:6px}
+.gerr-big-num{font-family:var(--display);font-size:72px;font-weight:800;line-height:1}
+.gerr-big-label{font-family:var(--display);font-size:22px;font-weight:700}
+.gerr-composite{font-family:var(--mono);font-size:12px;color:var(--t3)}
+.gerr-segs{display:flex;gap:3px;margin-top:12px;max-width:160px}
+.gseg{flex:1;height:3px;border-radius:2px}
+
+.score-rows{margin-bottom:20px}
+.score-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.score-name{font-size:12px;color:var(--t2);width:150px;flex-shrink:0}
+.score-track{flex:1;height:3px;background:var(--bg3);border-radius:2px}
+.score-fill-r{height:100%;border-radius:2px}
+.score-val{font-family:var(--mono);font-size:11px;font-weight:600;width:24px;text-align:right;flex-shrink:0}
+
+.finding{border:1px solid var(--border);border-left:2px solid #EF4444;border-radius:7px;padding:14px 16px;margin-bottom:8px;background:var(--bg)}
+.finding-title{font-size:12px;font-weight:600;color:#EF4444;margin-bottom:4px}
+.finding-score{font-family:var(--mono);font-size:11px;color:var(--t3);margin-bottom:6px}
+.finding-fix{font-size:12px;color:var(--t2);line-height:1.55}
+
+.results-cta{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:24px;margin-top:24px}
+.results-cta h4{font-family:var(--display);font-size:15px;font-weight:700;margin-bottom:6px}
+.results-cta p{font-size:13px;color:var(--t2);line-height:1.6;margin-bottom:16px}
+.results-fw{font-family:var(--mono);font-size:10px;color:var(--t3);margin-top:20px;text-align:center;line-height:1.8;letter-spacing:.3px}
+.retake{background:none;border:none;color:var(--t3);font-size:12px;cursor:pointer;font-family:var(--sans);text-decoration:underline;display:block;margin-top:12px;text-align:center;width:100%}
+
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:28px 48px;text-align:center}
+.footer-links{display:flex;justify-content:center;gap:24px;margin-bottom:10px}
+.footer-links a{font-size:13px;color:var(--t3);text-decoration:none;transition:color .15s}
+.footer-links a:hover{color:var(--t2)}
+.footer-copy{font-size:12px;color:var(--t3)}
+
+@media(max-width:768px){
+  nav{padding:0 20px}.nav-links{display:none}
+  .container{padding:0 20px}
+  .two-col{grid-template-columns:1fr}
+  .gerr-table{grid-template-columns:1fr 1fr}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="/" class="logo"><div class="logo-mark">V</div> VARC</a>
+  <div class="nav-links">
+    <a href="/#platform">Platform</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/support.html">Support</a>
+    <a href="/verify.html" class="active">VARC-VERIFY</a>
+  </div>
+  <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank" class="nav-cta">Sign In</a>
+</nav>
+
+<div class="container">
+  <div class="hero">
+    <div class="hero-kicker">VARC — VERIFY — SUPTECH EXAMINATION INSTRUMENT</div>
+    <h1>Nine questions. The same ones your examiner will ask.</h1>
+    <p>VARC-VERIFY scores your AI agent governance posture against the evidence standard OCC and Federal Reserve examiners apply. The output is a GERR rating on a 1–5 CAMELS scale — and specific infrastructure gap findings for anything that doesn't pass.</p>
+    <div class="framework-list">
+      <span class="fw-tag">OCC</span>
+      <span class="fw-tag">Federal Reserve</span>
+      <span class="fw-tag">FDIC</span>
+      <span class="fw-tag">IOSCO OR/07/2026</span>
+      <span class="fw-tag">SR 26-2</span>
+      <span class="fw-tag">OSFI B-13</span>
+      <span class="fw-tag">EU AI Act</span>
+      <span class="fw-tag">FFIEC BIT/AIO</span>
+    </div>
+    <div class="hero-actions">
+      <a href="#assess" class="btn-primary">Run Self-Assessment</a>
+      <a href="mailto:vyasa.murthy@venture-vertex.com" class="btn-outline">Request Examiner Access</a>
+    </div>
+  </div>
+
+  <div class="two-col">
+    <div class="col-panel">
+      <div class="role">FOR BANKS PREPARING FOR EXAMINATION</div>
+      <h3>Know your GERR before the examiner does</h3>
+      <p>Run VARC-VERIFY before the examination begins. The tool scores each of the nine examination questions against the exact evidence standard an OCC or Federal Reserve examiner would apply — not what sounds good in a policy document, but what constitutes verifiable proof at runtime.</p>
+      <ul>
+        <li>GERR 1–2: examination-ready</li>
+        <li>GERR 3: gaps exist, time remains to close them</li>
+        <li>GERR 4–5: the finding is already written — you have not seen it yet</li>
+        <li>Each gap finding names the exact infrastructure missing, not the policy</li>
+        <li>No account required for the self-assessment</li>
+      </ul>
+    </div>
+    <div class="col-panel">
+      <div class="role">FOR EXAMINERS CONDUCTING AI GOVERNANCE REVIEWS</div>
+      <h3>The standardized examination instrument</h3>
+      <p>Enter the institution's examination package URL. Receive a SHA-256 verified, tamper-evident assessment across all nine questions — mapped to the IOSCO AI Supervisory Toolkit — in approximately 90 seconds, without touching any bank system or involving any bank staff.</p>
+      <ul>
+        <li>No bank system access required — fully independent</li>
+        <li>SHA-256 attestation chain with Examination UUID</li>
+        <li>Finding generated with specific infrastructure gap language</li>
+        <li>Mode B: structured interview instrument for institutions without VARC deployed</li>
+        <li>Consistent scoring regardless of which examiner runs the assessment</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="gerr-section">
+    <div class="section-label">GOVERNANCE EXAMINATION READINESS RATING — CAMELS CONVENTION</div>
+    <div class="gerr-table">
+      <div class="gerr-cell g1">
+        <div class="gerr-num">1</div>
+        <div class="gerr-name">Strong</div>
+        <div class="gerr-desc">All nine examination areas meet or exceed the evidence threshold. Examination-ready.</div>
+      </div>
+      <div class="gerr-cell g2">
+        <div class="gerr-num">2</div>
+        <div class="gerr-name">Satisfactory</div>
+        <div class="gerr-desc">Minor gaps. Governance fundamentals in place. Manageable before examination.</div>
+      </div>
+      <div class="gerr-cell g3">
+        <div class="gerr-num">3</div>
+        <div class="gerr-name">Fair</div>
+        <div class="gerr-desc">Gaps exist and time remains to close them before the examination arrives.</div>
+      </div>
+      <div class="gerr-cell g4">
+        <div class="gerr-num">4</div>
+        <div class="gerr-name">Deficient</div>
+        <div class="gerr-desc">The finding is already written. Infrastructure gaps require urgent remediation.</div>
+      </div>
+      <div class="gerr-cell g5">
+        <div class="gerr-num">5</div>
+        <div class="gerr-name">Critical</div>
+        <div class="gerr-desc">Fundamental governance infrastructure is absent. Examination risk is immediate.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="assess-wrap" id="assess">
+    <div class="assess-header">
+      <h2>Nine-Question Self-Assessment</h2>
+      <p>Under four minutes. No account required. Your GERR rating and specific gap findings appear immediately.</p>
+    </div>
+    <div id="assess-app"></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-links">
+    <a href="/">Platform</a>
+    <a href="/#pricing">Pricing</a>
+    <a href="/support.html">Support</a>
+    <a href="/verify.html">VARC-VERIFY</a>
+    <a href="https://varc-api-67840786835.us-central1.run.app" target="_blank">OpsCenter</a>
+    <a href="mailto:vyasa.murthy@venture-vertex.com">Contact</a>
+  </div>
+  <div class="footer-copy">© 2026 Venture Vertex LLC · varc.live</div>
+</footer>
+
+<script>
+const Qs=[
+  {id:'q1',w:.12,t:'Kill switch capability',
+   s:'When an AI agent begins behaving outside its authorized parameters, how does your institution stop it?',
+   o:[{v:92,l:'Automated, agent-level decommission — configured, tested, and verifiable. One agent stops; all others continue.'},
+      {v:42,l:'System-level shutdown requiring technology team involvement. Takes hours to execute.'},
+      {v:18,l:'Documented policy process. No technical implementation in production yet.'},
+      {v:0, l:'Not yet implemented.'}]},
+  {id:'q2',w:.16,t:'Data boundary enforcement',
+   s:'At the individual agent level — not the system level — what data is each AI agent authorized to access during any given interaction?',
+   o:[{v:90,l:'Per-agent, per-interaction scope enforcement. Boundary violations blocked before access occurs, with tamper-evident record.'},
+      {v:38,l:'System-level IAM or service account controls at the infrastructure layer.'},
+      {v:18,l:'Data governance policy without technical enforcement at the interaction level.'},
+      {v:0, l:'Not yet implemented.'}]},
+  {id:'q3',w:.20,t:'Interaction-level audit trail',
+   s:'For a specific AI agent interaction on a specific date and time, can you produce the complete record — independently, without institutional staff involvement?',
+   o:[{v:95,l:'SHA-256 hash chain. Independently accessible without staff. Governance configuration pinned at the time of each interaction.'},
+      {v:32,l:'Application logs in institutional systems, retrievable by staff on request.'},
+      {v:12,l:'Periodic compliance reports or batch data exports.'},
+      {v:0, l:'Not yet implemented.'}]},
+  {id:'q4',w:.12,t:'Agent-to-agent governance',
+   s:"When an orchestrator agent delegates a task to a subordinate agent, what governs that delegation? Can the orchestrator grant authority it does not hold?",
+   o:[{v:88,l:"Cryptographic delegation tokens per assignment. Tighten-only enforcement — subordinate cannot exceed delegating agent's scope."},
+      {v:38,l:'API-level access controls between agent services at the infrastructure layer.'},
+      {v:12,l:'Architecture documentation describing intended delegation behavior.'},
+      {v:0, l:'Not yet implemented.'}]},
+  {id:'q5',w:.12,t:'Mandatory human oversight',
+   s:'Describe your mandatory human oversight mechanism — not monitoring or alerts, but a mechanism that requires human authorization before the agent proceeds.',
+   o:[{v:86,l:'Mandatory hold — agent cannot proceed without explicit human decision. Timeframe enforced. Reviewer qualification documented.'},
+      {v:38,l:'Alert or monitoring system that humans can choose to act on or defer.'},
+      {v:18,l:'Periodic batch review of completed agent actions after the fact.'},
+      {v:0, l:'Not yet implemented.'}]},
+  {id:'q6',w:.08,t:'Adversarial governance testing',
+   s:'How do you verify your AI governance controls cannot be circumvented by a sophisticated adversary testing novel attacks — not just known patterns?',
+   o:[{v:88,l:'Continuous weekly testing. Novel attack generation beyond known patterns. Quantitative resilience score with historical trend.'},
+      {v:28,l:'Annual or quarterly penetration test against documented attack patterns.'},
+      {v:10,l:'One-time security assessment or static red team exercise.'},
+      {v:0, l:'Not yet implemented.'}]},
+  {id:'q7',w:.07,t:'Behavioral drift detection',
+   s:"If your AI agent's behavior gradually shifts over weeks — not a single dramatic failure, just slow drift toward decisions outside its authorized parameters — when would your institution detect it?",
+   o:[{v:88,l:'Continuous monitoring against a governance baseline. Drift detected before threshold breach — not after a rule is violated.'},
+      {v:42,l:'Threshold-based alerting that fires when a rule is violated — not when behavior trends toward one.'},
+      {v:18,l:'Periodic manual review of agent output samples.'},
+      {v:0, l:'No drift detection in place.'}]},
+  {id:'q8',w:.07,t:'Board-level governance evidence',
+   s:"When your board or audit committee asks for evidence of AI agent governance, what do you present?",
+   o:[{v:90,l:'Independently verifiable, tamper-evident governance record — accessible to the board without staff interpretation. Includes GRS trend, GERR history, configuration change log.'},
+      {v:38,l:'Dashboards or reports produced by the same team that manages AI systems.'},
+      {v:15,l:'Policy documents and governance framework documentation.'},
+      {v:0, l:'No formal board reporting on AI agent governance.'}]},
+  {id:'q9',w:.06,t:'Fail-closed architecture',
+   s:"If the component that enforces your AI governance rules fails unexpectedly — not the agent, the governance system itself — do your AI agents stop or continue operating?",
+   o:[{v:88,l:'Agents stop when governance infrastructure is unavailable — fail-closed by design. Formally defined, tested, with a verifiable attestation record.'},
+      {v:30,l:'Agents continue operating if governance infrastructure fails — fail-open. Monitored and alerted.'},
+      {v:12,l:'Fail behavior not formally defined or tested.'},
+      {v:0, l:'Not yet evaluated.'}]}
+];
+
+const FIXES={
+  q1:'Requires an inference-time governance gateway with GRO Level 4 decommission configured at the agent instance level. Test decommission must produce a verifiable attestation record.',
+  q2:'Requires per-agent Authorization Resource Profile enforcement at the tool-call layer. Boundary violations must be blocked before access occurs — post-access detection does not meet the evidence standard.',
+  q3:'Requires a cryptographic attestation chain (SHA-256) external to the agent system, independently accessible without institutional credentials, with governance configuration pinned at each interaction.',
+  q4:'Requires ACTRUST cryptographic delegation tokens per agent-to-agent assignment with tighten-only enforcement. Scope escalation attempts must be detected and blocked at token issuance.',
+  q5:'Requires a mandatory HITL hold mechanism — agent cannot proceed without explicit human disposition. SLA timeframe enforced. Reviewer qualification and substantive rationale documented per hold.',
+  q6:'Requires a GAGRT adversarial testing program running weekly minimum with novel attack generation and quantitative Governance Resilience Score output. Annual penetration tests do not meet the evidence standard.',
+  q7:'Requires continuous behavioral drift detection monitoring each agent against its own governance baseline. Threshold alerting that fires only after a rule is violated does not meet the examination standard — detection must occur before breach.',
+  q8:'Requires an independently verifiable, tamper-evident governance record accessible without staff interpretation — not a team-produced dashboard. Must include quantitative GRS trend, GERR history, and governance configuration change log with authorizer identity.',
+  q9:'Requires a formally defined and tested fail-closed architecture. When governance infrastructure fails, agents must stop — not continue. Test must produce a verifiable attestation record and must be conducted regularly.'
+};
+
+const GL=['','Strong','Satisfactory','Fair','Deficient','Critical'];
+const GC=['','#10B981','#34D399','#F59E0B','#F97316','#EF4444'];
+const SC=['#10B981','#34D399','#F59E0B','#F97316','#EF4444'];
+
+function sc(s){return s>=85?'#10B981':s>=70?'#F59E0B':'#EF4444';}
+function compute(ans){
+  let c=0,t=0;
+  Qs.forEach(q=>{c+=(ans[q.id]!==undefined?q.o[ans[q.id]].v:0)*q.w;t+=q.w;});
+  c=Math.round(c/t);
+  return{c,g:c>=90?1:c>=75?2:c>=60?3:c>=40?4:5};
+}
+
+let S={s:'intro',step:0,a:{}};
+
+function render(){document.getElementById('assess-app').innerHTML=
+  S.s==='intro'?intro():S.s==='quiz'?quiz():results();}
+
+function intro(){return`<div class="intro-block">
+  <div class="hero-kicker" style="margin-bottom:14px">VARC — VERIFY</div>
+  <h3>How ready are you for an AI governance examination?</h3>
+  <p>Nine questions scored against the evidence standard OCC and Federal Reserve examiners apply. Takes under four minutes. No account required.</p>
+  <div class="intro-fw">
+    <span class="fw-tag">OCC</span><span class="fw-tag">Federal Reserve</span><span class="fw-tag">FDIC</span>
+    <span class="fw-tag">IOSCO OR/07/2026</span><span class="fw-tag">SR 26-2</span>
+  </div>
+  <button class="btn-start" onclick="go('quiz')">Begin assessment</button>
+  <p class="start-note">No account required — results appear immediately</p>
+</div>`;}
+
+function quiz(){
+  const q=Qs[S.step],sel=S.a[q.id],pct=(S.step/Qs.length)*100;
+  return`<div class="progress-meta"><span>Question ${S.step+1} of ${Qs.length}</span><span>${Object.keys(S.a).length} answered</span></div>
+  <div class="progress-rail"><div class="progress-fill" style="width:${pct}%"></div></div>
+  <div class="q-block">
+    <div class="q-label">EXAMINATION AREA ${S.step+1}</div>
+    <div class="q-title">${q.t}</div>
+    <div class="q-sub">${q.s}</div>
+    ${q.o.map((o,i)=>`<label class="option${sel===i?' sel':''}" onclick="pick(${i})">
+      <input type="radio" name="q">
+      <div class="opt-row"><span class="opt-letter">${['A','B','C','D'][i]}</span><span class="opt-text">${o.l}</span></div>
+    </label>`).join('')}
+    <div class="q-nav">
+      ${S.step>0?`<button class="btn-back" onclick="back()">Back</button>`:`<span></span>`}
+      <button class="btn-next" onclick="next()" ${sel===undefined?'disabled':''}>${S.step<Qs.length-1?'Next':'See results'}</button>
+    </div>
+  </div>`;}
+
+function results(){
+  const scores={};Qs.forEach(q=>{scores[q.id]=q.o[S.a[q.id]??3].v;});
+  const{c,g}=compute(S.a);
+  const gCol=GC[g];
+  const gaps=Qs.filter(q=>scores[q.id]<75);
+  return`<div class="results-block">
+    <div class="results-top">
+      <div class="section-label" style="border:none;margin-bottom:10px">GOVERNANCE EXAMINATION READINESS RATING</div>
+      <div class="gerr-display">
+        <div class="gerr-big-num" style="color:${gCol}">${g}</div>
+        <div class="gerr-big-label" style="color:${gCol}">${GL[g]}</div>
+      </div>
+      <div class="gerr-composite">Composite score: ${c}/100 · Nine-question assessment</div>
+      <div class="gerr-segs">${SC.map((col,i)=>`<div class="gseg" style="background:${i<g?col:'var(--bg3)'}"></div>`).join('')}</div>
+    </div>
+
+    <div class="section-label">NINE EXAMINATION QUESTION SCORES</div>
+    <div class="score-rows">
+      ${Qs.map(q=>{const s=scores[q.id],col=sc(s);return`<div class="score-row">
+        <div class="score-name">${q.t}</div>
+        <div class="score-track"><div class="score-fill-r" style="width:${s}%;background:${col}"></div></div>
+        <div class="score-val" style="color:${col}">${s}</div>
+      </div>`;}).join('')}
+    </div>
+
+    ${gaps.length>0?`<div class="section-label">EXAMINATION FINDINGS — ${gaps.length} GAP${gaps.length>1?'S':''} IDENTIFIED</div>
+    ${gaps.map(q=>`<div class="finding">
+      <div class="finding-title">${q.t}</div>
+      <div class="finding-score">Score: ${scores[q.id]}/100 — below the 75-point evidence threshold</div>
+      <div class="finding-fix">${FIXES[q.id]}</div>
+    </div>`).join('')}`
+    :`<div style="border:1px solid rgba(16,185,129,.2);border-radius:7px;padding:14px;font-size:13px;color:#10B981">All nine examination areas meet or exceed the evidence threshold. GERR ${g} — ${GL[g]}.</div>`}
+
+    <div class="results-fw">Scored against IOSCO AI Supervisory Toolkit OR/07/2026 · SR 26-2 · OSFI B-13 · EU AI Act · FFIEC BIT/AIO</div>
+
+    <div class="results-cta">
+      <h4>${g<=2?'See how VARC maintains this standard continuously':'See what examination-grade AI governance looks like'}</h4>
+      <p>${g<=2?'Your governance posture meets the examination standard. VARC keeps it there continuously — with a tamper-evident attestation chain an examiner can verify in 90 seconds without touching your systems.':'VARC closes every gap identified above. Inference-time governance gateway, cryptographic attestation chain, mandatory HITL hold, and continuous adversarial testing — deployed as a layer over your existing AI infrastructure.'}</p>
+      <a href="mailto:vyasa.murthy@venture-vertex.com" class="btn-primary" style="text-decoration:none">Request a demo</a>
+      <button class="retake" onclick="go('intro')">Retake assessment</button>
+    </div>
+  </div>`;}
+
+function go(s){S={s,step:0,a:{}};render();}
+function pick(i){S.a[Qs[S.step].id]=i;render();}
+function next(){if(S.a[Qs[S.step].id]===undefined)return;S.step<Qs.length-1?S.step++:S.s='results';render();}
+function back(){if(S.step>0){S.step--;render();}}
+render();
+</script>
+</body>
+</html>
