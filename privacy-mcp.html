@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VARC MCP Connector — Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{--bg-deep:#040B17;--bg-dark:#071022;--bg-card:#0C1830;--bg-card2:#0F1E3A;--blue:#1A6BFF;--blue-light:#4B8FFF;--amber:#F59E0B;--green:#10B981;--white:#FFFFFF;--grey-100:#E2E8F0;--grey-300:#94A3B8;--grey-500:#475569;--border:rgba(26,107,255,0.15);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:'Inter',sans-serif;background:var(--bg-deep);color:var(--grey-100);font-size:15px;line-height:1.75;}
+nav{position:sticky;top:0;z-index:100;background:rgba(4,11,23,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:16px 40px;display:flex;align-items:center;justify-content:space-between;}
+.nav-brand{font-family:'Space Grotesk',sans-serif;font-size:18px;font-weight:700;color:var(--white);text-decoration:none;}
+.nav-brand span{color:var(--blue);}
+.nav-back{font-size:13px;color:var(--grey-300);text-decoration:none;border:1px solid var(--border);padding:6px 14px;border-radius:6px;}
+.nav-back:hover{border-color:var(--blue);color:var(--blue);}
+.hero{padding:64px 40px 48px;max-width:860px;margin:0 auto;border-bottom:1px solid var(--border);}
+.hero-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px;}
+.hero h1{font-family:'Space Grotesk',sans-serif;font-size:36px;font-weight:700;color:var(--white);line-height:1.15;margin-bottom:12px;}
+.hero-meta{font-size:13px;color:var(--grey-300);font-family:'JetBrains Mono',monospace;display:flex;gap:24px;flex-wrap:wrap;margin-top:20px;}
+.dot{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block;}
+.content{max-width:860px;margin:0 auto;padding:48px 40px 80px;}
+.section{margin-bottom:40px;}
+.section h2{font-family:'Space Grotesk',sans-serif;font-size:17px;font-weight:600;color:var(--white);margin-bottom:12px;padding-bottom:10px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;}
+.section h2::before{content:'';display:inline-block;width:3px;height:18px;background:var(--blue);border-radius:2px;}
+.section p{color:var(--grey-100);margin-bottom:12px;}
+.section ul{list-style:none;padding:0;display:flex;flex-direction:column;gap:8px;margin-bottom:12px;}
+.section ul li{padding:10px 14px;background:var(--bg-card);border:1px solid var(--border);border-radius:6px;font-size:14px;display:flex;gap:10px;align-items:flex-start;}
+.section ul li::before{content:'→';color:var(--blue);font-size:13px;flex-shrink:0;margin-top:1px;}
+.highlight{background:var(--bg-card2);border:1px solid var(--border);border-left:3px solid var(--amber);border-radius:6px;padding:16px 20px;margin-bottom:16px;font-size:14px;}
+.highlight strong{color:var(--amber);}
+.contact-card{background:var(--bg-card);border:1px solid var(--border);border-radius:8px;padding:24px 28px;margin-top:40px;}
+.contact-card h3{font-family:'Space Grotesk',sans-serif;font-size:15px;font-weight:600;color:var(--white);margin-bottom:12px;}
+.contact-row{display:flex;gap:8px;font-family:'JetBrains Mono',monospace;font-size:13px;color:var(--grey-300);margin-bottom:6px;align-items:center;}
+.contact-label{color:var(--blue);min-width:80px;}
+.contact-row a{color:var(--blue-light);text-decoration:none;}
+footer{border-top:1px solid var(--border);padding:24px 40px;max-width:860px;margin:0 auto;display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;}
+.footer-left{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--grey-500);}
+.footer-right{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--blue);}
+</style>
+</head>
+<body>
+<nav><a href="https://varc.live" class="nav-brand">VARC<span>.</span>live</a><a href="https://varc.live" class="nav-back">← Back to VARC</a></nav>
+<div class="hero">
+  <div class="hero-label">Legal · Privacy</div>
+  <h1>VARC MCP Connector<br>Privacy Policy</h1>
+  <div class="hero-meta"><span><span class="dot"></span> Venture Vertex LLC</span><span>Effective: September 20, 2026</span><span>Applies to: varc-mcp connector</span></div>
+</div>
+<div class="content">
+  <div class="section"><h2>What This Policy Covers</h2><p>This Privacy Policy describes how Venture Vertex LLC handles data when you use the VARC MCP Connector — a Model Context Protocol server that exposes VARC behavioral governance tools to Claude agents operating in regulated enterprise environments.</p><p>The connector exposes six tools: session governance (GIM), pre-action policy checking (Policy Bus), cryptographic tool-call commitment and verification (TCIV), behavioral scoring (BEV), and HITL hold status.</p></div>
+  <div class="section"><h2>Data We Collect</h2><p>When the VARC MCP Connector is invoked, the following data passes through to your organization's VARC tenant:</p><ul><li>Agent identifiers — the agent_id and session_id you supply in each tool call</li><li>Tenant identifier — your organization's VARC tenant ID</li><li>Tool call parameters — tool name, arguments, and action description</li><li>Task objectives — the task_objective string passed to varc_session_start</li><li>Behavioral flags — boolean indicators passed to varc_bev_score</li></ul><div class="highlight"><strong>What we do not collect:</strong> The connector does not collect, store, or process end-user personal data, conversation content, or Claude model outputs. No data is retained by the connector itself.</div></div>
+  <div class="section"><h2>How Data Is Used</h2><p>Data transmitted through the connector is used solely to operate VARC governance functions: deriving behavioral contracts, evaluating actions against policy, creating cryptographic attestation records, scoring behavioral dimensions, and checking HITL hold status. Data is not used for model training, advertising, or any purpose outside your governance workflow.</p></div>
+  <div class="section"><h2>Data Storage and Retention</h2><ul><li>The connector is stateless — no data is stored locally between calls</li><li>Governance records are stored in your organization's VARC tenant on Google Cloud Platform, us-central1</li><li>You own and control all governance records written to your tenant</li><li>Default retention: 90 days, configurable per tenant</li><li>You may delete your tenant data at any time by contacting support</li></ul></div>
+  <div class="section"><h2>Third-Party Services</h2><p>The connector transmits data to one service: the VARC API at api.varc.live, operated by Venture Vertex LLC. No other third-party services receive connector data.</p></div>
+  <div class="section"><h2>Authentication and Security</h2><ul><li>API keys are transmitted over HTTPS only and never logged by the connector</li><li>All connections use TLS 1.2 or higher</li><li>Keys are scoped to individual tenants</li></ul></div>
+  <div class="section"><h2>Your Rights</h2><ul><li>Access all governance records via the VARC API or OpsCenter</li><li>Export governance records in JSON format at any time</li><li>Request deletion of all data associated with your tenant</li></ul></div>
+  <div class="section"><h2>Changes to This Policy</h2><p>Material changes will be communicated via the VARC release notes at github.com/vyasamurthy/varc-mcp. Continued use constitutes acceptance of the updated policy.</p></div>
+  <div class="contact-card"><h3>Contact</h3><div class="contact-row"><span class="contact-label">Company</span>Venture Vertex LLC</div><div class="contact-row"><span class="contact-label">Contact</span>Vyasa Murthy, Founder</div><div class="contact-row"><span class="contact-label">Email</span><a href="mailto:vyasa.murthy@venture-vertex.com">vyasa.murthy@venture-vertex.com</a></div><div class="contact-row"><span class="contact-label">Location</span>Dallas / Frisco, TX, USA</div><div class="contact-row"><span class="contact-label">GitHub</span><a href="https://github.com/vyasamurthy/varc-mcp">github.com/vyasamurthy/varc-mcp</a></div></div>
+</div>
+<footer><div class="footer-left">© 2026 Venture Vertex LLC · varc.live</div><div class="footer-right">VARC MCP Connector · Privacy Policy</div></footer>
+</body>
+</html>
